@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GoldEx")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9925e6e39c2a52c32868ac302a38bc6f123ef472")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6c1d31470e7072456260410e3555e92a47b2b5d5")]
 [assembly: System.Reflection.AssemblyProductAttribute("GoldEx")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GoldEx")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
