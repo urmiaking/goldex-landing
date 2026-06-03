@@ -1,0 +1,61 @@
+## Ignore Visual Studio temporary files, build results, and user settings
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific files (MonoDevelop/Xamarin Studio)
+*.userprefs
+
+# Mono auto-generated files
+mono_crash.*
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPS/
+[Rr]elease/
+[Rr]eleasePS/
+x64/
+x86/
+[Aa]rm/
+[Aa]rm64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Log]/
+[Ll]og/
+
+# Tooling
+_ReSharper*/
+*.[Re]Sharper.user
+*.DotSettings.user
+
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Visual Studio Family
+.vs/
+
+# Rider
+.idea/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# ASP.NET Core
+appsettings.Development.json
+# Often, we don't ignore appsettings.json unless it contains secrets, but we can keep it unignored by default.
+# Secrets manager
+secrets.json
+
+# Rider
+*.sln.iml

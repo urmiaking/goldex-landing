@@ -20,7 +20,6 @@ C:\Users\Masoud\.gemini\antigravity\scratch\GoldEx\obj\Debug\net10.0\scopedcss\b
 C:\Users\Masoud\.gemini\antigravity\scratch\GoldEx\obj\Debug\net10.0\compressed\74rxt7nljy-{0}-m06gzyyaz1-m06gzyyaz1.gz
 C:\Users\Masoud\.gemini\antigravity\scratch\GoldEx\obj\Debug\net10.0\compressed\8woa77d039-{0}-qid3mbo69q-qid3mbo69q.gz
 C:\Users\Masoud\.gemini\antigravity\scratch\GoldEx\obj\Debug\net10.0\compressed\t60105kcbw-{0}-09wlfrri0r-09wlfrri0r.gz
-C:\Users\Masoud\.gemini\antigravity\scratch\GoldEx\obj\Debug\net10.0\compressed\748w842uma-{0}-mdf7zxunqg-mdf7zxunqg.gz
 C:\Users\Masoud\.gemini\antigravity\scratch\GoldEx\obj\Debug\net10.0\staticwebassets.build.json
 C:\Users\Masoud\.gemini\antigravity\scratch\GoldEx\obj\Debug\net10.0\staticwebassets.build.json.cache
 C:\Users\Masoud\.gemini\antigravity\scratch\GoldEx\obj\Debug\net10.0\staticwebassets.development.json
@@ -31,3 +30,4 @@ C:\Users\Masoud\.gemini\antigravity\scratch\GoldEx\obj\Debug\net10.0\refint\Gold
 C:\Users\Masoud\.gemini\antigravity\scratch\GoldEx\obj\Debug\net10.0\GoldEx.pdb
 C:\Users\Masoud\.gemini\antigravity\scratch\GoldEx\obj\Debug\net10.0\GoldEx.genruntimeconfig.cache
 C:\Users\Masoud\.gemini\antigravity\scratch\GoldEx\obj\Debug\net10.0\ref\GoldEx.dll
+C:\Users\Masoud\.gemini\antigravity\scratch\GoldEx\obj\Debug\net10.0\compressed\748w842uma-{0}-ip4kjjaa8n-ip4kjjaa8n.gz
