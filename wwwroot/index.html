@@ -32,21 +32,43 @@
                 </a>
                 
                 <ul class="nav-links">
-                    <li><a href="#home" class="active">خانه</a></li>
-                    <li><a href="#rates">نرخ‌های آنلاین</a></li>
-                    <li><a href="#calculators">ماشین حساب‌ها</a></li>
-                    <li><a href="#features">امکانات سازمانی</a></li>
-                    <li><a href="#mini">گلدکس مینی</a></li>
-                    <li><a href="#pricing">تعرفه‌ها</a></li>
-                    <li><a href="#comparison">جدول مقایسه</a></li>
-                    <li class="mobile-only"><a href="#calculators" class="btn-primary" style="margin-top: 0.5rem; color: #000000 !important; width: 100%; text-align: center;">دموی آنلاین</a></li>
+                    <li><a href="#home" class="active" data-i18n="nav_home">خانه</a></li>
+                    <li><a href="#rates" data-i18n="nav_rates">نرخ‌های آنلاین</a></li>
+                    <li><a href="#calculators" data-i18n="nav_calculators">ماشین حساب‌ها</a></li>
+                    <li><a href="#features" data-i18n="nav_features">امکانات سازمانی</a></li>
+                    <li><a href="#mini" data-i18n="nav_mini">گلدکس مینی</a></li>
+                    <li><a href="#pricing" data-i18n="nav_pricing">تعرفه‌ها</a></li>
+                    <li><a href="#comparison" data-i18n="nav_comparison">جدول مقایسه</a></li>
+                    <li class="mobile-only"><a href="#calculators" class="btn-primary" style="margin-top: 0.5rem; color: #000000 !important; width: 100%; text-align: center;" data-i18n="nav_demo">دموی آنلاین</a></li>
                 </ul>
                 
                 <div class="nav-actions">
+                    <!-- Modern custom language selector with emoji flags -->
+                    <div class="lang-selector">
+                        <button class="lang-btn" id="lang-select-btn" title="تغییر زبان / Change Language">
+                            <span class="flag-icon">🇮🇷</span>
+                            <span class="lang-code">FA</span>
+                        </button>
+                        <div class="lang-dropdown" id="lang-dropdown-menu">
+                            <div class="lang-option active" data-lang="fa">
+                                <span class="flag-icon">🇮🇷</span>
+                                <span>فارسی</span>
+                            </div>
+                            <div class="lang-option" data-lang="en">
+                                <span class="flag-icon">🇬🇧</span>
+                                <span>English</span>
+                            </div>
+                            <div class="lang-option" data-lang="tr">
+                                <span class="flag-icon">🇹🇷</span>
+                                <span>Türkçe</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <button class="theme-btn" id="theme-toggle-btn" title="تغییر پوسته (تیره / روشن)">
                         <i class="fa-solid fa-moon"></i>
                     </button>
-                    <a href="#calculators" class="btn-primary">دموی آنلاین</a>
+                    <a href="#calculators" class="btn-primary" data-i18n="nav_demo">دموی آنلاین</a>
                     <button class="hamburger-btn" id="mobile-menu-toggle" aria-label="منوی موبایل">
                         <span class="hamburger-bar"></span>
                         <span class="hamburger-bar"></span>
@@ -63,12 +85,12 @@
             <div class="container">
                 <div class="hero-grid">
                     <div class="hero-content">
-                        <span class="hero-tag"><i class="fa-solid fa-circle-check"></i> تحولی نو در حسابداری و مدیریت طلا</span>
-                        <h1 class="text-primary">پلتفرم هوشمند طلا و جواهر <br><span class="gradient-text-gold">گلدکس (GoldEx)</span></h1>
-                        <p>راهکاری جامع، مدرن و مبتنی بر فناوری‌های روز جهت پوشش کامل نیازهای صنف طلا و جواهر. مجهز به سیستم حسابداری دوطرفه خودکار طلا، موتور قیمت‌گذاری لحظه‌ای، انبارداری پیشرفته و نسخه آفلاین و سریع گلدکس مینی.</p>
+                        <span class="hero-tag" data-i18n="hero_tag"><i class="fa-solid fa-circle-check"></i> تحولی نو در حسابداری و مدیریت طلا</span>
+                        <h1 class="text-primary" data-i18n="hero_title">پلتفرم هوشمند طلا و جواهر <br><span class="gradient-text-gold">گلدکس (GoldEx)</span></h1>
+                        <p data-i18n="hero_desc">راهکاری جامع، مدرن و مبتنی بر فناوری‌های روز جهت پوشش کامل نیازهای صنف طلا و جواهر. مجهز به سیستم حسابداری دوطرفه خودکار طلا، موتور قیمت‌گذاری لحظه‌ای، انبارداری پیشرفته و نسخه آفلاین و سریع گلدکس مینی.</p>
                         <div class="hero-ctas">
-                            <a href="#calculators" class="btn-primary"><i class="fa-solid fa-calculator"></i> ماشین حساب هوشمند</a>
-                            <a href="#mini" class="btn-secondary"><i class="fa-solid fa-receipt"></i> فاکتور ساز آفلاین مینی</a>
+                            <a href="#calculators" class="btn-primary" data-i18n="hero_btn_calc"><i class="fa-solid fa-calculator"></i> ماشین حساب هوشمند</a>
+                            <a href="#mini" class="btn-secondary" data-i18n="hero_btn_mini"><i class="fa-solid fa-receipt"></i> فاکتور ساز آفلاین مینی</a>
                         </div>
                     </div>
                     
@@ -79,14 +101,14 @@
                             <div class="logo-card glass-panel">
                                 <img src="assets/goldex-logo.png" alt="GoldEx Enterprise Logo">
                                 <h3>GoldEx</h3>
-                                <span>ENTERPRISE</span>
+                                <span data-i18n="hero_enterprise_badge">ENTERPRISE</span>
                             </div>
                             
                             <!-- Mini Logo Card -->
                             <div class="logo-card glass-panel mini-card">
                                 <img src="assets/goldex-mini-logo.png" alt="GoldEx Mini Logo">
                                 <h3>GoldEx Mini</h3>
-                                <span>OFFLINE / CALCULATOR</span>
+                                <span data-i18n="hero_mini_badge">OFFLINE / CALCULATOR</span>
                             </div>
                         </div>
                     </div>
@@ -98,29 +120,29 @@
         <section class="rates-section" id="rates">
             <div class="container">
                 <div class="section-header">
-                    <h2><i class="fa-solid fa-chart-line text-gold"></i> موتور مدیریت نرخ و قیمت‌گذاری لحظه‌ای</h2>
-                    <p>رصد هوشمند و آنلاین بازار طلا، مسکوکات و ارزها با قابلیت اتصال به چندین منبع و تأمین‌کننده مختلف (Providers)</p>
+                    <h2 data-i18n="rates_title"><i class="fa-solid fa-chart-line text-gold"></i> موتور مدیریت نرخ و قیمت‌گذاری لحظه‌ای</h2>
+                    <p data-i18n="rates_subtitle">رصد هوشمند و آنلاین بازار طلا، مسکوکات و ارزها با قابلیت اتصال به چندین منبع و تأمین‌کننده مختلف (Providers)</p>
                 </div>
                 
                 <div class="rates-dashboard">
                     <!-- Gold Prices Card -->
                     <div class="rate-card glass-panel" id="rate-gold-card">
                         <div class="rate-title-wrapper">
-                            <span class="rate-title">طلای ۱۸ عیار و آبشده</span>
-                            <span class="rate-provider">اتحادیه تهران</span>
+                            <span class="rate-title" data-i18n="rate_gold_melt_title">طلای ۱۸ عیار و آبشده</span>
+                            <span class="rate-provider" data-i18n="rate_gold_provider">اتحادیه تهران</span>
                         </div>
                         <div class="rate-price-row">
                             <div>
                                 <span class="rate-price num-font" id="price-gold-18">۳,۷۲۰,۰۰۰</span>
-                                <span class="rate-unit">تومان / گرم</span>
+                                <span class="rate-unit"><span class="currency-label">تومان</span> <span data-i18n="rate_gold_unit">/ گرم</span></span>
                             </div>
                             <span class="rate-trend up" id="trend-gold-18"><i class="fa-solid fa-caret-up"></i> <span class="num-font">۰.۴٪</span></span>
                         </div>
                         <div class="rate-price-row" style="border-top: 1px solid var(--border-color); padding-top: 0.75rem; margin-top: 0.25rem;">
-                            <span class="text-secondary" style="font-size: 0.85rem;">مثقال طلای آبشده (مظنه)</span>
+                            <span class="text-secondary" style="font-size: 0.85rem;" data-i18n="rate_melt_title">مثقال طلای آبشده (مظنه)</span>
                             <div>
                                 <span class="rate-price num-font" id="price-gold-melt" style="font-size: 1.35rem;">۱۶,۱۱۵,۰۰۰</span>
-                                <span class="rate-unit">تومان</span>
+                                <span class="rate-unit"><span class="currency-label">تومان</span></span>
                             </div>
                         </div>
                     </div>
@@ -128,21 +150,21 @@
                     <!-- Coins Prices Card -->
                     <div class="rate-card glass-panel" id="rate-coin-card">
                         <div class="rate-title-wrapper">
-                            <span class="rate-title">مسکوکات بهار آزادی</span>
-                            <span class="rate-provider">سایت مرجع</span>
+                            <span class="rate-title" data-i18n="rate_coin_title">مسکوکات بهار آزادی</span>
+                            <span class="rate-provider" data-i18n="rate_coin_provider">سایت مرجع</span>
                         </div>
                         <div class="rate-price-row">
                             <div>
                                 <span class="rate-price num-font" id="price-coin-emami">۴۲,۸۵۰,۰۰۰</span>
-                                <span class="rate-unit">تومان / سکه</span>
+                                <span class="rate-unit"><span class="currency-label">تومان</span> <span data-i18n="rate_coin_unit">/ سکه</span></span>
                             </div>
                             <span class="rate-trend up" id="trend-coin-emami"><i class="fa-solid fa-caret-up"></i> <span class="num-font">۰.۲٪</span></span>
                         </div>
                         <div class="rate-price-row" style="border-top: 1px solid var(--border-color); padding-top: 0.75rem; margin-top: 0.25rem;">
-                            <span class="text-secondary" style="font-size: 0.85rem;">نیم سکه بهار آزادی</span>
+                            <span class="text-secondary" style="font-size: 0.85rem;" data-i18n="rate_coin_half_title">نیم سکه بهار آزادی</span>
                             <div>
                                 <span class="rate-price num-font" id="price-coin-half" style="font-size: 1.35rem;">۲۴,۱۰۰,۰۰۰</span>
-                                <span class="rate-unit">تومان</span>
+                                <span class="rate-unit"><span class="currency-label">تومان</span></span>
                             </div>
                         </div>
                     </div>
@@ -150,21 +172,21 @@
                     <!-- Currencies Prices Card -->
                     <div class="rate-card glass-panel" id="rate-currency-card">
                         <div class="rate-title-wrapper">
-                            <span class="rate-title">ارزهای رایج بازار</span>
-                            <span class="rate-provider">صرافی ملی</span>
+                            <span class="rate-title" data-i18n="rate_currency_title">ارزهای رایج بازار</span>
+                            <span class="rate-provider" data-i18n="rate_currency_provider">صرافی ملی</span>
                         </div>
                         <div class="rate-price-row">
                             <div>
                                 <span class="rate-price num-font" id="price-usd">۶۱,۵۰۰</span>
-                                <span class="rate-unit">تومان / دلار</span>
+                                <span class="rate-unit"><span class="currency-label">تومان</span> <span data-i18n="rate_currency_unit">/ دلار</span></span>
                             </div>
                             <span class="rate-trend down" id="trend-usd"><i class="fa-solid fa-caret-down"></i> <span class="num-font">۰.۱٪</span></span>
                         </div>
                         <div class="rate-price-row" style="border-top: 1px solid var(--border-color); padding-top: 0.75rem; margin-top: 0.25rem;">
-                            <span class="text-secondary" style="font-size: 0.85rem;">درهم امارات</span>
+                            <span class="text-secondary" style="font-size: 0.85rem;" data-i18n="rate_aed_title">درهم امارات</span>
                             <div>
                                 <span class="rate-price num-font" id="price-aed" style="font-size: 1.35rem;">۱۶,۷۵۰</span>
-                                <span class="rate-unit">تومان</span>
+                                <span class="rate-unit"><span class="currency-label">تومان</span></span>
                             </div>
                         </div>
                     </div>
@@ -173,9 +195,9 @@
                 <div class="rates-meta">
                     <div class="rates-live-indicator">
                         <div class="live-pulse"></div>
-                        <span>رصد آنلاین بازار فعال است (شبیه‌سازی به‌روزرسانی زنده فعال است)</span>
+                        <span data-i18n="rates_indicator">رصد آنلاین بازار فعال است (شبیه‌سازی به‌روزرسانی زنده فعال است)</span>
                     </div>
-                    <div>آخرین به‌روزرسانی: <span id="last-update-time" class="num-font">۲۳:۵۲:۱۲</span></div>
+                    <div><span data-i18n="rates_last_update">آخرین به‌روزرسانی:</span> <span id="last-update-time" class="num-font">۲۳:۵۲:۱۲</span></div>
                 </div>
             </div>
         </section>
@@ -184,75 +206,75 @@
         <section class="calc-section" id="calculators">
             <div class="container">
                 <div class="section-header">
-                    <h2><i class="fa-solid fa-calculator text-gold"></i> ماشین حساب و سیستم مبدل هوشمند</h2>
-                    <p>فرمول‌های دقیق محاسباتی صنف طلا و جواهر را به صورت زنده و تجربی آزمایش کنید</p>
+                    <h2 data-i18n="calc_title"><i class="fa-solid fa-calculator text-gold"></i> ماشین حساب و سیستم مبدل هوشمند</h2>
+                    <p data-i18n="calc_subtitle">فرمول‌های دقیق محاسباتی صنف طلا و جواهر را به صورت زنده و تجربی آزمایش کنید</p>
                 </div>
                 
                 <div class="calc-grid">
                     <!-- Gold Price Calculator -->
                     <div class="calc-card glass-panel">
-                        <h3><i class="fa-solid fa-coins text-gold"></i> ماشین حساب پیشرفته طلا و جواهر</h3>
+                        <h3 data-i18n="calc_card_gold_title"><i class="fa-solid fa-coins text-gold"></i> ماشین حساب پیشرفته طلا و جواهر</h3>
                         <div class="form-group">
-                            <label>نوع طلا / عیار طلا
+                            <label><span data-i18n="calc_label_gold_type">نوع طلا / عیار طلا</span>
                                 <span class="val-display" id="display-gold-type">طلای ۱۸ عیار</span>
                             </label>
                             <div class="input-wrapper">
                                 <select id="calc-gold-type">
-                                    <option value="18" selected>طلای ۱۸ عیار (۷۵۰)</option>
-                                    <option value="24">طلای ۲۴ عیار (۹۹۹)</option>
-                                    <option value="melted">طلای آبشده (مظنه مبنا)</option>
-                                    <option value="used">طلای کهنه / مستعمل</option>
+                                    <option value="18" selected data-i18n="calc_display_gold_18">طلای ۱۸ عیار (۷۵۰)</option>
+                                    <option value="24" data-i18n="calc_display_gold_24">طلای ۲۴ عیار (۹۹۹)</option>
+                                    <option value="melted" data-i18n="calc_display_gold_melt">طلای آبشده (مظنه مبنا)</option>
+                                    <option value="used" data-i18n="calc_display_gold_used">طلای کهنه / مستعمل</option>
                                 </select>
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label>وزن طلا (گرم)
-                                <span class="val-display num-font"><span id="display-weight">۵.۰۰</span> گرم</span>
+                            <label><span data-i18n="calc_label_weight">وزن طلا (گرم)</span>
+                                <span class="val-display num-font"><span id="display-weight">۵.۰۰</span> <span data-i18n="workspace_unit_grams">گرم</span></span>
                             </label>
                             <input type="range" id="calc-weight" min="0.1" max="100" step="0.05" value="5.0">
                         </div>
                         
                         <div class="form-group">
-                            <label>اجرت ساخت (%)
-                                <span class="val-display num-font"><span id="display-wage">۱۲</span>٪</span>
+                            <label><span data-i18n="calc_label_wage">اجرت ساخت (%)</span>
+                                <span class="val-display num-font"><span id="display-wage">۱۲</span><span class="percent-label">٪</span></span>
                             </label>
                             <input type="range" id="calc-wage" min="0" max="45" step="1" value="12">
                         </div>
                         
                         <div class="form-group">
-                            <label>سود گالری / فروشگاه (%)
-                                <span class="val-display num-font"><span id="display-profit">۷</span>٪</span>
+                            <label><span data-i18n="calc_label_profit">سود گالری / فروشگاه (%)</span>
+                                <span class="val-display num-font"><span id="display-profit">۷</span><span class="percent-label">٪</span></span>
                             </label>
                             <input type="range" id="calc-profit" min="1" max="15" step="1" value="7">
                         </div>
 
                         <div class="form-group">
-                            <label>مالیات بر ارزش افزوده (۹٪ روی سود و اجرت)
-                                <span class="val-display num-font">۹٪</span>
+                            <label><span data-i18n="calc_label_tax">مالیات بر ارزش افزوده (۹٪ روی سود و اجرت)</span>
+                                <span class="val-display num-font">۹<span class="percent-label">٪</span></span>
                             </label>
                         </div>
                         
                         <div class="calc-results">
                             <div class="result-row">
-                                <span>قیمت مبنای طلا (خام):</span>
-                                <div><span id="res-base-price" class="num-font">۱۸,۶۰۰,۰۰۰</span> <span style="font-size:0.8rem;">تومان</span></div>
+                                <span data-i18n="calc_base_price">قیمت مبنای طلا (خام):</span>
+                                <div><span id="res-base-price" class="num-font">۱۸,۶۰۰,۰۰۰</span> <span class="currency-label">تومان</span></div>
                             </div>
                             <div class="result-row">
-                                <span>اجرت ساخت:</span>
-                                <div><span id="res-wage-price" class="num-font">۲,۲۳۲,۰۰۰</span> <span style="font-size:0.8rem;">تومان</span></div>
+                                <span data-i18n="calc_wage_price">اجرت ساخت:</span>
+                                <div><span id="res-wage-price" class="num-font">۲,۲۳۲,۰۰۰</span> <span class="currency-label">تومان</span></div>
                             </div>
                             <div class="result-row">
-                                <span>سود گالری:</span>
-                                <div><span id="res-profit-price" class="num-font">۱,۴۵۸,۲۴۰</span> <span style="font-size:0.8rem;">تومان</span></div>
+                                <span data-i18n="calc_profit_price">سود گالری:</span>
+                                <div><span id="res-profit-price" class="num-font">۱,۴۵۸,۲۴۰</span> <span class="currency-label">تومان</span></div>
                             </div>
                             <div class="result-row">
-                                <span>مالیات بر ارزش افزوده (۹٪):</span>
-                                <div><span id="res-tax-price" class="num-font">۳۳۲,۱۲۱</span> <span style="font-size:0.8rem;">تومان</span></div>
+                                <span data-i18n="calc_tax_price">مالیات بر ارزش افزوده (۹٪):</span>
+                                <div><span id="res-tax-price" class="num-font">۳۳۲,۱۲۱</span> <span class="currency-label">تومان</span></div>
                             </div>
                             <div class="result-row">
-                                <span class="text-gold">قیمت نهایی برای مشتری:</span>
-                                <div class="text-gold"><span id="res-total-price" class="num-font">۲۲,۶۲۰,۳۶۱</span> <span style="font-weight: 700; font-size:0.85rem;">تومان</span></div>
+                                <span class="text-gold" data-i18n="calc_total_price">قیمت نهایی برای مشتری:</span>
+                                <div class="text-gold"><span id="res-total-price" class="num-font">۲۲,۶۲۰,۳۶۱</span> <span class="currency-label" style="font-weight: 700;">تومان</span></div>
                             </div>
                         </div>
                     </div>
@@ -260,32 +282,32 @@
                     <!-- Reverse Budget Calculator & Scanner Simulation -->
                     <div style="display: flex; flex-direction: column; gap: 2rem;">
                         <div class="calc-card glass-panel">
-                            <h3><i class="fa-solid fa-arrow-right-arrow-left text-gold"></i> مبدل معکوس بودجه به طلا</h3>
-                            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.5rem;">بودجه نقدی خود را وارد کنید تا سیستم هوشمند گلدکس محاسبه کند چه میزان طلا با نرخ لحظه‌ای می‌توانید بخرید:</p>
+                            <h3 data-i18n="calc_card_reverse_title"><i class="fa-solid fa-arrow-right-arrow-left text-gold"></i> مبدل معکوس بودجه به طلا</h3>
+                            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.5rem;" data-i18n="calc_reverse_desc">بودجه نقدی خود را وارد کنید تا سیستم هوشمند گلدکس محاسبه کند چه میزان طلا با نرخ لحظه‌ای می‌توانید بخرید:</p>
                             
                             <div class="form-group">
-                                <label>مبلغ سرمایه شما (تومان)
+                                <label><span data-i18n="calc_label_budget">مبلغ سرمایه شما</span> (<span class="currency-label">تومان</span>)
                                     <span class="val-display text-gold num-font" id="display-budget-formatted">۵۰,۰۰۰,۰۰۰ تومان</span>
                                 </label>
                                 <div class="input-wrapper">
                                     <input type="number" id="calc-budget" value="50000000" step="1000000" min="1000000">
-                                    <span class="input-unit">تومان</span>
+                                    <span class="input-unit currency-label">تومان</span>
                                 </div>
                                 <input type="range" id="calc-budget-slider" min="1000000" max="500000000" step="1000000" value="50000000">
                             </div>
                             
                             <div class="calc-results">
                                 <div class="result-row" style="font-size: 0.95rem;">
-                                    <span>طلای ۱۸ عیار خام قابل خرید:</span>
-                                    <div><strong id="res-buy-gold" class="num-font text-gold" style="font-size:1.15rem;">۱۳.۴۴</strong> <span style="font-size:0.8rem; font-weight:700;">گرم</span></div>
+                                    <span data-i18n="calc_res_gold_grams">طلای ۱۸ عیار خام قابل خرید:</span>
+                                    <div><strong id="res-buy-gold" class="num-font text-gold" style="font-size:1.15rem;">۱۳.۴۴</strong> <span style="font-size:0.8rem; font-weight:700;" data-i18n="workspace_unit_grams">گرم</span></div>
                                 </div>
                                 <div class="result-row" style="font-size: 0.95rem;">
-                                    <span>معادل سکه تمام بهار آزادی (امامی):</span>
-                                    <div><strong id="res-buy-coin" class="num-font text-gold" style="font-size:1.15rem;">۱.۱۶</strong> <span style="font-size:0.8rem; font-weight:700;">عدد</span></div>
+                                    <span data-i18n="calc_res_coins">معادل سکه تمام بهار آزادی (امامی):</span>
+                                    <div><strong id="res-buy-coin" class="num-font text-gold" style="font-size:1.15rem;">۱.۱۶</strong> <span style="font-size:0.8rem; font-weight:700;" data-i18n="unit_qty">عدد</span></div>
                                 </div>
                                 <div class="result-row" style="font-size: 0.95rem;">
-                                    <span>معادل ربع سکه بهار آزادی:</span>
-                                    <div><strong id="res-buy-quarter" class="num-font text-gold" style="font-size:1.15rem;">۳.۴۴</strong> <span style="font-size:0.8rem; font-weight:700;">عدد</span></div>
+                                    <span data-i18n="calc_res_quarters">معادل ربع سکه بهار آزادی:</span>
+                                    <div><strong id="res-buy-quarter" class="num-font text-gold" style="font-size:1.15rem;">۳.۴۴</strong> <span style="font-size:0.8rem; font-weight:700;" data-i18n="unit_qty">عدد</span></div>
                                 </div>
                             </div>
                         </div>
@@ -297,78 +319,84 @@
                                 <i class="fa-solid fa-barcode scan-icon-sim"></i>
                             </div>
                             <div class="scan-info-box">
-                                <h4><i class="fa-solid fa-qrcode"></i> اسکنر فیزیکی و دوربین اجناس</h4>
-                                <p style="font-size:0.82rem; color: var(--text-secondary); margin-bottom: 0.8rem;">بارکد کالا را از لیست انتخاب کرده و بر روی دکمه اسکن قیمت کلیک کنید تا نرخ لحظه‌ای کالا نمایش داده شود:</p>
+                                <h4 data-i18n="scan_title"><i class="fa-solid fa-qrcode"></i> اسکنر فیزیکی و دوربین اجناس</h4>
+                                <p style="font-size:0.82rem; color: var(--text-secondary); margin-bottom: 0.8rem;" data-i18n="scan_desc">بارکد کالا را از لیست انتخاب کرده و بر روی دکمه اسکن قیمت کلیک کنید تا نرخ لحظه‌ای کالا نمایش داده شود:</p>
                                 
                                 <select id="scan-item-select" class="scan-item-select">
-                                    <option value="item-1" data-desc="دستبند زنجیری طلایی ۱۸ عیار" data-weight="6.20" data-wage="18" data-profit="7">دستبند زنجیری ۱۸ عیار - ۶.۲ گرم</option>
-                                    <option value="item-2" data-desc="انگشتر فانتزی گل برلیان" data-weight="3.45" data-wage="25" data-profit="8">انگشتر فانتزی برلیان - ۳.۴۵ گرم</option>
-                                    <option value="item-3" data-desc="النگو داماس طلا زرد ۱۸ عیار" data-weight="12.80" data-wage="9" data-profit="7">النگو داماس طلا زرد - ۱۲.۸ گرم</option>
+                                    <option value="item-1" data-desc="دستبند زنجیری طلایی ۱۸ عیار" data-weight="6.20" data-wage="18" data-profit="7" data-i18n="scan_item_1">دستبند زنجیری ۱۸ عیار - ۶.۲ گرم</option>
+                                    <option value="item-2" data-desc="انگشتر فانتزی گل برلیان" data-weight="3.45" data-wage="25" data-profit="7" data-i18n="scan_item_2">انگشتر فانتزی گل برلیان - ۳.۴۵ گرم</option>
+                                    <option value="item-3" data-desc="النگوی زرد داماس" data-weight="12.80" data-wage="14" data-profit="7" data-i18n="scan_item_3">النگوی زرد داماس - ۱۲.۸ گرم</option>
                                 </select>
                                 
-                                <button class="btn-primary" id="btn-simulate-scan" style="width: 100%;"><i class="fa-solid fa-expand"></i> اسکن آنی بارکد</button>
+                                <button class="btn-primary btn-scan" id="btn-simulate-scan" data-i18n="scan_btn">
+                                    <i class="fa-solid fa-expand"></i> اسکن بارکد کالا
+                                </button>
                                 
-                                <div id="scan-result-display" style="display: none; background: rgba(0,0,0,0.4); border-radius: 8px; padding: 10px; border-right: 3px solid var(--accent-gold); margin-top: 10px;">
-                                    <p style="font-size: 0.85rem; font-weight: 700; margin-bottom: 3px;" id="scan-res-desc">دستبند زنجیری طلایی ۱۸ عیار</p>
-                                    <p style="font-size: 0.78rem; color: var(--text-muted);">وزن: <span class="num-font" id="scan-res-weight">۶.۲۰</span> گرم | اجرت: <span class="num-font" id="scan-res-wage">۱۸٪</span></p>
-                                    <p style="font-size: 0.95rem; font-weight: 800; color: var(--accent-gold); margin-top: 4px;">قیمت اسکن شده: <span class="num-font" id="scan-res-total">۲۹,۴۵۰,۰۰۰</span> تومان</p>
+                                <div class="scan-result-display glass-panel" id="scan-result-display" style="display: none; margin-top: 1.5rem; padding: 1.2rem; border-radius: 8px;">
+                                    <h5 style="color: var(--accent-gold); margin-bottom: 0.5rem; font-size: 1rem; font-weight: 700;" id="scan-res-desc">-</h5>
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.25rem;">
+                                        <span><span data-i18n="scan_res_label_weight">وزن:</span> <strong id="scan-res-weight" class="num-font">-</strong> گرم</span>
+                                        <span><span data-i18n="scan_res_label_wage">اجرت:</span> <strong id="scan-res-wage" class="num-font">-</strong></span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.95rem; font-weight: 700; margin-top: 0.5rem; border-top: 1px solid var(--border-color); padding-top: 0.5rem;">
+                                        <span data-i18n="scan_res_label_price">قیمت نهایی کالا:</span>
+                                        <div><span id="scan-res-total" class="num-font text-gold">-</span> <span class="currency-label">تومان</span></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- ENTERPRISE FEATURES SHOWCASE -->
+        </section>        <!-- ENTERPRISE FEATURES SHOWCASE -->
         <section class="features-section" id="features">
             <div class="container">
                 <div class="section-header">
-                    <h2><i class="fa-solid fa-building-shield text-gold"></i> امکانات و مشخصات فنی نسخه جامع گلدکس</h2>
-                    <p>سیستم نرم‌افزاری پیشرفته طراحی شده با معماری توزیع شده ویژه مدیریت کامل بنکداری‌ها و گالری‌های طلا</p>
+                    <h2 data-i18n="features_title"><i class="fa-solid fa-building-shield text-gold"></i> امکانات و مشخصات فنی نسخه جامع گلدکس</h2>
+                    <p data-i18n="features_subtitle">سیستم نرم‌افزاری پیشرفته طراحی شده با معماری توزیع شده ویژه مدیریت کامل بنکداری‌ها و گالری‌های طلا</p>
                 </div>
                 
                 <div class="features-grid">
                     <!-- F1 -->
                     <div class="feature-card glass-panel">
                         <div class="feature-icon-wrapper"><i class="fa-solid fa-cash-register"></i></div>
-                        <h3>حسابداری اتوماتیک بدون سند دستی</h3>
-                        <p>رعایت کامل اصول حسابداری دوطرفه طلا بدون نیاز به تخصص مالی. تمامی تراکنش‌ها، دفاتر کل و معین به صورت خودکار صادر می‌شوند.</p>
+                        <h3 data-i18n="f1_title">حسابداری اتوماتیک بدون سند دستی</h3>
+                        <p data-i18n="f1_desc">رعایت کامل اصول حسابداری دوطرفه طلا بدون نیاز به تخصص مالی. تمامی تراکنش‌ها، دفاتر کل و معین به صورت خودکار صادر می‌شوند.</p>
                     </div>
                     
                     <!-- F2 -->
                     <div class="feature-card glass-panel">
                         <div class="feature-icon-wrapper"><i class="fa-solid fa-boxes-stacked"></i></div>
-                        <h3>انبارداری پیشرفته و عملیات ذوب</h3>
-                        <p>مدیریت زنجیره تامین، چاپ بارکدهای اختصاصی و کاردکس کالا. ثبت فرآیند ورود طلای آبشده و محاسبه دقیق کسری (فرار طلا) پس از آزمایشگاه ریگیری.</p>
+                        <h3 data-i18n="f2_title">انبارداری پیشرفته و عملیات ذوب</h3>
+                        <p data-i18n="f2_desc">مدیریت زنجیره تامین، چاپ بارکدهای اختصاصی و کاردکس کالا. ثبت فرآیند ورود طلای آبشده و محاسبه دقیق کسری (فرار طلا) پس از آزمایشگاه ریگیری.</p>
                     </div>
                     
                     <!-- F3 -->
                     <div class="feature-card glass-panel">
                         <div class="feature-icon-wrapper"><i class="fa-solid fa-file-invoice-dollar"></i></div>
-                        <h3>سیستم فاکتوردهی هوشمند چندارزی</h3>
-                        <p>صدور فاکتورهای رسمی و غیررسمی با ارزهای مختلف، نمایش خودکار مانده قبلی مشتری (طلایی و ریالی) و امکان پرداخت‌های ترکیبی (طلا، نقد، چک).</p>
+                        <h3 data-i18n="f3_title">سیستم فاکتوردهی هوشمند چندارزی</h3>
+                        <p data-i18n="f3_desc">صدور فاکتورهای رسمی و غیررسمی با ارزهای مختلف، نمایش خودکار مانده قبلی مشتری (طلایی و ریالی) و امکان پرداخت‌های ترکیبی (طلا، نقد، چک).</p>
                     </div>
                     
                     <!-- F4 -->
                     <div class="feature-card glass-panel">
                         <div class="feature-icon-wrapper"><i class="fa-solid fa-vault"></i></div>
-                        <h3>تعدد صندوق‌ها و دفاتر مالی</h3>
-                        <p>امکان تعریف صندوق‌های مجزا (صندوق ریالی، ارزی، طلایی) جهت تفکیک کامل دارایی‌ها، سودآوری‌ها و بستانکاری‌های شعب و گالری‌ها.</p>
+                        <h3 data-i18n="f4_title">تعدد صندوق‌ها و دفاتر مالی</h3>
+                        <p data-i18n="f4_desc">امکان تعریف صندوق‌های مجزا (صندوق ریالی، ارزی، طلایی) جهت تفکیک کامل دارایی‌ها، سودآوری‌ها و بستانکاری‌های شعب و گالری‌ها.</p>
                     </div>
                     
                     <!-- F5 -->
                     <div class="feature-card glass-panel">
                         <div class="feature-icon-wrapper"><i class="fa-solid fa-message"></i></div>
-                        <h3>ارتباطات هوشمند و هشدار سررسید</h3>
-                        <p>ارسال خودکار پیامک‌های یادآوری سررسید چک‌ها و اقساط فاکتورها به مشتریان همراه با نوتیفیکیشن‌های سیستمی و درون‌برنامه‌ای.</p>
+                        <h3 data-i18n="f5_title">ارتباطات هوشمند و هشدار سررسید</h3>
+                        <p data-i18n="f5_desc">ارسال خودکار پیامک‌های یادآوری سررسید چک‌ها و اقساط فاکتورها به مشتریان همراه با نوتیفیکیشن‌های سیستمی و درون‌برنامه‌ای.</p>
                     </div>
                     
                     <!-- F6 -->
                     <div class="feature-card glass-panel">
                         <div class="feature-icon-wrapper"><i class="fa-solid fa-shield-halved"></i></div>
-                        <h3>احراز هویت چندلایه سازمانی</h3>
-                        <p>ورود امن از طریق Passkeyهای بیومتریک، نرم‌افزارهای اعتبارسنجی (Authenticator)، ورود مستقیم گوگل (Google Auth) و پیامک دومرحله‌ای 2FA.</p>
+                        <h3 data-i18n="f6_title">احراز هویت چندلایه سازمانی</h3>
+                        <p data-i18n="f6_desc">ورود امن از طریق Passkeyهای بیومتریک، نرم‌افزارهای اعتبارسنجی (Authenticator)، ورود مستقیم گوگل (Google Auth) و پیامک دومرحله‌ای 2FA.</p>
                     </div>
                 </div>
                 
@@ -376,13 +404,13 @@
                 <div class="reports-mockup glass-panel">
                     <div class="reports-mockup-header">
                         <div>
-                            <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--accent-gold); margin-bottom: 0.35rem;"><i class="fa-solid fa-file-contract"></i> سیستم گزارش‌گیری هوشمند و پویای حساب‌ها</h3>
-                            <p style="font-size: 0.85rem; color: var(--text-secondary);">گزارشات گردش حساب، کاردکس کالا و تراز حساب‌های مالی را به صورت آنلاین شبیه‌سازی کنید:</p>
+                            <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--accent-gold); margin-bottom: 0.35rem;" data-i18n="reports_title"><i class="fa-solid fa-file-contract"></i> سیستم گزارش‌گیری هوشمند و پویای حساب‌ها</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary);" data-i18n="reports_desc">گزارشات گردش حساب، کاردکس کالا و تراز حساب‌های مالی را به صورت آنلاین شبیه‌سازی کنید:</p>
                         </div>
                         <div class="report-select-tabs">
-                            <button class="report-tab-btn active" data-tab="capital">نمودار تراز سرمایه</button>
-                            <button class="report-tab-btn" data-tab="ledger">گردش حساب مشتریان</button>
-                            <button class="report-tab-btn" data-tab="stock">کاردکس موجودی انبار</button>
+                            <button class="report-tab-btn active" data-tab="capital" data-i18n="report_tab_capital">نمودار تراز سرمایه</button>
+                            <button class="report-tab-btn" data-tab="ledger" data-i18n="report_tab_ledger">گردش حساب مشتریان</button>
+                            <button class="report-tab-btn" data-tab="stock" data-i18n="report_tab_stock">کاردکس موجودی انبار</button>
                         </div>
                     </div>
                     
@@ -390,7 +418,7 @@
                     <div class="report-canvas-sim" id="report-canvas-box">
                         <!-- Tab 1 content: Capital chart simulation -->
                         <div class="tab-content" id="tab-capital-content">
-                            <p style="font-size: 0.90rem; color: var(--text-secondary); margin-bottom: 1rem;">نمودار رشد دارایی‌های ریالی و طلایی کل شعبه (۶ ماهه اخیر) - مقیاس به میلیارد ریال</p>
+                            <p style="font-size: 0.90rem; color: var(--text-secondary); margin-bottom: 1rem;" data-i18n="report_chart_desc">نمودار رشد دارایی‌های ریالی و طلایی کل شعبه (۶ ماهه اخیر) - مقیاس به میلیارد ریال</p>
                             <div class="chart-sim-container">
                                 <div class="chart-sim-gridlines">
                                     <div class="chart-gridline"></div>
@@ -403,42 +431,42 @@
                                     <div class="chart-bar-glow-container">
                                         <div class="chart-bar" style="height: 40%;" data-val="۱۲.۴ میلیارد"></div>
                                     </div>
-                                    <span class="chart-label">آذر</span>
+                                    <span class="chart-label" data-i18n="month_1">آذر</span>
                                 </div>
                                 <!-- Bar 2 -->
                                 <div class="chart-bar-group">
                                     <div class="chart-bar-glow-container">
                                         <div class="chart-bar" style="height: 52%;" data-val="۱۶.۱ میلیارد"></div>
                                     </div>
-                                    <span class="chart-label">دی</span>
+                                    <span class="chart-label" data-i18n="month_2">دی</span>
                                 </div>
                                 <!-- Bar 3 -->
                                 <div class="chart-bar-group">
                                     <div class="chart-bar-glow-container">
                                         <div class="chart-bar" style="height: 48%;" data-val="۱۴.۸ میلیارد"></div>
                                     </div>
-                                    <span class="chart-label">بهمن</span>
+                                    <span class="chart-label" data-i18n="month_3">بهمن</span>
                                 </div>
                                 <!-- Bar 4 -->
                                 <div class="chart-bar-group">
                                     <div class="chart-bar-glow-container">
                                         <div class="chart-bar" style="height: 68%;" data-val="۲۱.۰ میلیارد"></div>
                                     </div>
-                                    <span class="chart-label">اسفند</span>
+                                    <span class="chart-label" data-i18n="month_4">اسفند</span>
                                 </div>
                                 <!-- Bar 5 -->
                                 <div class="chart-bar-group">
                                     <div class="chart-bar-glow-container">
                                         <div class="chart-bar" style="height: 82%;" data-val="۲۵.۴ میلیارد"></div>
                                     </div>
-                                    <span class="chart-label">فروردین</span>
+                                    <span class="chart-label" data-i18n="month_5">فروردین</span>
                                 </div>
                                 <!-- Bar 6 -->
                                 <div class="chart-bar-group">
                                     <div class="chart-bar-glow-container">
                                         <div class="chart-bar" style="height: 95%;" data-val="۲۹.۵ میلیارد"></div>
                                     </div>
-                                    <span class="chart-label">اردیبهشت</span>
+                                    <span class="chart-label" data-i18n="month_6">اردیبهشت</span>
                                 </div>
                             </div>
                         </div>
@@ -449,41 +477,41 @@
                                 <table class="ledger-table-sim">
                                     <thead>
                                         <tr>
-                                            <th>تاریخ</th>
-                                            <th>شرح آرتیکل مالی</th>
-                                            <th>بدهکار (ریال)</th>
-                                            <th>بستانکار (گرم طلا)</th>
-                                            <th>مانده نهایی حساب</th>
+                                            <th data-i18n="report_table_date">تاریخ</th>
+                                            <th data-i18n="report_table_desc">شرح آرتیکل مالی</th>
+                                            <th data-i18n="report_table_debit">بدهکار (ریال)</th>
+                                            <th data-i18n="report_table_credit">بستانکار (گرم طلا)</th>
+                                            <th data-i18n="report_table_balance">مانده نهایی حساب</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="num-font">۱۴۰۵/۰۲/۰۵</td>
-                                            <td>فاکتور فروش شماره فروشگاهی #۱۰۴۲۲</td>
-                                            <td class="num-font">۴۵۰,۰۰۰,۰۰۰</td>
-                                            <td class="num-font">۰.۰۰۰</td>
-                                            <td>بدهکار ریالی</td>
+                                            <td class="num-font" data-i18n="report_r1_date">۱۴۰۵/۰۲/۰۵</td>
+                                            <td data-i18n="report_r1_desc">فاکتور فروش شماره فروشگاهی #۱۰۴۲۲</td>
+                                            <td class="num-font" data-i18n="report_r1_debit">۴۵۰,۰۰۰,۰۰۰</td>
+                                            <td class="num-font" data-i18n="report_r1_credit">۰.۰۰۰</td>
+                                            <td data-i18n="report_r1_bal">بدهکار ریالی</td>
                                         </tr>
                                         <tr>
-                                            <td class="num-font">۱۴۰۵/۰۲/۱۰</td>
-                                            <td>تسویه فاکتور با طلای متفرقه ۱۸ عیار مشتری</td>
-                                            <td class="num-font">۰</td>
-                                            <td class="num-font">۱۲۰.۵۰۰</td>
-                                            <td>بستانکار طلایی</td>
+                                            <td class="num-font" data-i18n="report_r2_date">۱۴۰۵/۰۲/۱۰</td>
+                                            <td data-i18n="report_r2_desc">تسویه فاکتور با طلای متفرقه ۱۸ عیار مشتری</td>
+                                            <td class="num-font" data-i18n="report_r2_debit">۰</td>
+                                            <td class="num-font" data-i18n="report_r2_credit">۱۲۰.۵۰۰</td>
+                                            <td data-i18n="report_r2_bal">بستانکار طلایی</td>
                                         </tr>
                                         <tr>
-                                            <td class="num-font">۱۴۰۵/۰۲/۱۵</td>
-                                            <td>ثبت دریافت چک صیادی بانک ملت شعبه مرکزی</td>
-                                            <td class="num-font">۲۰۰,۰۰۰,۰۰۰</td>
-                                            <td class="num-font">۰.۰۰۰</td>
-                                            <td>بدهکار ریالی</td>
+                                            <td class="num-font" data-i18n="report_r3_date">۱۴۰۵/۰۲/۱۵</td>
+                                            <td data-i18n="report_r3_desc">ثبت دریافت چک صیادی بانک ملت شعبه مرکزی</td>
+                                            <td class="num-font" data-i18n="report_r3_debit">۲۰۰,۰۰۰,۰۰۰</td>
+                                            <td class="num-font" data-i18n="report_r3_credit">۰.۰۰۰</td>
+                                            <td data-i18n="report_r3_bal">بدهکار ریالی</td>
                                         </tr>
                                         <tr class="text-gold">
                                             <td>-</td>
-                                            <td>مانده کل حساب تجمیعی مشتری</td>
-                                            <td class="num-font">۲۵۰,۰۰۰,۰۰۰ بدهکار</td>
-                                            <td class="num-font">۱۲۰.۵۰۰ بستانکار</td>
-                                            <td>مانده ترکیبی</td>
+                                            <td data-i18n="report_r4_desc">مانده کل حساب تجمیعی مشتری</td>
+                                            <td class="num-font" data-i18n="report_r4_debit">۲۵۰,۰۰۰,۰۰۰ بدهکار</td>
+                                            <td class="num-font" data-i18n="report_r4_credit">۱۲۰.۵۰۰ بستانکار</td>
+                                            <td data-i18n="report_r4_bal">مانده ترکیبی</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -496,41 +524,41 @@
                                 <table class="ledger-table-sim">
                                     <thead>
                                         <tr>
-                                            <th>کد کالا</th>
-                                            <th>عنوان جنس و جنس انبار شده</th>
-                                            <th>ورودی انبار (تعداد/گرم)</th>
-                                            <th>خروجی (فروش رفته)</th>
-                                            <th>موجودی فعلی ویترین</th>
+                                            <th data-i18n="report_table_code">کد کالا</th>
+                                            <th data-i18n="report_table_name">عنوان جنس و جنس انبار شده</th>
+                                            <th data-i18n="report_table_in">ورودی انبار (تعداد/گرم)</th>
+                                            <th data-i18n="report_table_out">خروجی (فروش رفته)</th>
+                                            <th data-i18n="report_table_curr">موجودی فعلی ویترین</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="num-font">GLD-۵۰۲۲</td>
-                                            <td>انگشتر گل جواهر برلیان - ویترین اصلی</td>
-                                            <td class="num-font">۵ عدد</td>
-                                            <td class="num-font">۲ عدد</td>
-                                            <td>۳ عدد موجود</td>
+                                            <td class="num-font" data-i18n="stock_r1_code">GLD-۵۰۲۲</td>
+                                            <td data-i18n="stock_r1_desc">انگشتر گل جواهر برلیان - ویترین اصلی</td>
+                                            <td class="num-font" data-i18n="stock_r1_in">۵ عدد</td>
+                                            <td class="num-font" data-i18n="stock_r1_out">۲ عدد</td>
+                                            <td data-i18n="stock_r1_bal">۳ عدد موجود</td>
                                         </tr>
                                         <tr>
-                                            <td class="num-font">GLD-M-۱۱۰</td>
-                                            <td>طلای آبشده ذوب شده ری‌گیری شده (آزمایشگاه ۱۱۰)</td>
-                                            <td class="num-font">۱,۵۰۰.۲۵ گرم</td>
-                                            <td class="num-font">۴۵۰.۰۰ گرم</td>
-                                            <td>۱,۰۵۰.۲۵ گرم موجود</td>
+                                            <td class="num-font" data-i18n="stock_r2_code">GLD-M-۱۱۰</td>
+                                            <td data-i18n="stock_r2_desc">طلای آبشده ذوب شده ری‌گیری شده (آزمایشگاه ۱۱۰)</td>
+                                            <td class="num-font" data-i18n="stock_r2_in">۱,۵۰۰.۲۵ گرم</td>
+                                            <td class="num-font" data-i18n="stock_r2_out">۴۵۰.۰۰ گرم</td>
+                                            <td data-i18n="stock_r2_bal">۱,۰۵۰.۲۵ گرم موجود</td>
                                         </tr>
                                         <tr>
-                                            <td class="num-font">GLD-CO-۱</td>
-                                            <td>سکه امامی تمام بهار آزادی (ضرب ۸۶)</td>
-                                            <td class="num-font">۵۰ عدد</td>
-                                            <td class="num-font">۱۵ عدد</td>
-                                            <td>۳۵ عدد موجود</td>
+                                            <td class="num-font" data-i18n="stock_r3_code">GLD-CO-۱</td>
+                                            <td data-i18n="stock_r3_desc">سکه امامی تمام بهار آزادی (ضرب ۸۶)</td>
+                                            <td class="num-font" data-i18n="stock_r3_in">۵۰ عدد</td>
+                                            <td class="num-font" data-i18n="stock_r3_out">۱۵ عدد</td>
+                                            <td data-i18n="stock_r3_bal">۳۵ عدد موجود</td>
                                         </tr>
                                         <tr class="text-gold">
                                             <td>-</td>
-                                            <td>موجودی تجمیعی انبارهای گالری</td>
+                                            <td data-i18n="stock_r4_desc">موجودی تجمیعی انبارهای گالری</td>
                                             <td class="num-font">-</td>
                                             <td class="num-font">-</td>
-                                            <td>تطبیق کاردکس کالا تایید شده</td>
+                                            <td data-i18n="stock_r4_bal">تطبیق کاردکس کالا تایید شده</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -547,22 +575,22 @@
                 <div class="mini-grid">
                     <!-- Left: Description and bullets -->
                     <div class="mini-card-intro">
-                        <span class="mini-badge"><i class="fa-solid fa-bolt"></i> سبک، آفلاین، بی‌نیاز از اینترنت</span>
-                        <h2>مینی اپلیکیشن محاسبات و فروش <br><span class="gradient-text-gold">گلدکس مینی (GoldEx Mini)</span></h2>
-                        <p>گلدکس مینی یک نسخه فوق‌العاده سریع و متمرکز است که به صورت ۱۰۰٪ آفلاین بر روی مرورگر، ویندوز و گوشی هوشمند شما اجرا می‌شود. تمامی داده‌ها بدون ارسال به سرور، در حافظه محلی خود دیوایس (Local Storage) شما ذخیره شده و حریم خصوصی مطلق را به ارمغان می‌آورد.</p>
+                        <span class="mini-badge"><i class="fa-solid fa-bolt"></i> <span data-i18n="mini_title">سبک، آفلاین، بی‌نیاز از اینترنت</span></span>
+                        <h2 data-i18n="mini_subtitle">مینی اپلیکیشن محاسبات و فروش <br><span class="gradient-text-gold">گلدکس مینی (GoldEx Mini)</span></h2>
+                        <p data-i18n="mini_desc">گلدکس مینی یک نسخه فوق‌العاده سریع و متمرکز است که به صورت ۱۰۰٪ آفلاین بر روی مرورگر، ویندوز و گوشی هوشمند شما اجرا می‌شود. تمامی داده‌ها بدون ارسال به سرور، در حافظه محلی خود دیوایس (Local Storage) شما ذخیره شده و حریم خصوصی مطلق را به ارمغان می‌آورد.</p>
                         
                         <ul class="mini-bullets">
                             <li>
                                 <svg class="text-gold" width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                                <span><strong>حفظ حریم خصوصی:</strong> داده‌های حسابداری گالری شما هرگز از دستگاه شخصی شما خارج نخواهد شد.</span>
+                                <span data-i18n="mini_bullet1"><strong>حفظ حریم خصوصی:</strong> داده‌های حسابداری گالری شما هرگز از دستگاه شخصی شما خارج نخواهد شد.</span>
                             </li>
                             <li>
                                 <svg class="text-gold" width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                                <span><strong>فاکتوردهی سریع و فوری:</strong> با سرعت بالا اقلام طلای فروش رفته را ثبت، جمع کل را محاسبه و چاپ کنید.</span>
+                                <span data-i18n="mini_bullet2"><strong>فاکتوردهی سریع و فوری:</strong> با سرعت بالا اقلام طلای فروش رفته را ثبت، جمع کل را محاسبه و چاپ کنید.</span>
                             </li>
                             <li>
                                 <svg class="text-gold" width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                                <span><strong>بهینه‌سازی چاپ افقی A5:</strong> فاکتور چاپی نهایی منطبق بر استانداردهای اتحادیه طلا در ابعاد A5 افقی طراحی شده است.</span>
+                                <span data-i18n="mini_bullet3"><strong>بهینه‌سازی چاپ افقی A5:</strong> فاکتور چاپی نهایی منطبق بر استانداردهای اتحادیه طلا در ابعاد A5 افقی طراحی شده است.</span>
                             </li>
                         </ul>
                     </div>
@@ -570,40 +598,40 @@
                     <!-- Right: Quick Invoice Builder Workspace -->
                     <div class="calc-card glass-panel invoice-workspace">
                         <div class="workspace-header">
-                            <h3 style="margin-bottom: 0; font-size: 1.35rem;"><i class="fa-solid fa-receipt text-gold"></i> شبیه‌ساز فاکتور سریع گلدکس مینی</h3>
-                            <span class="num-font" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;">OFFLINE PREVIEW</span>
+                            <h3 style="margin-bottom: 0; font-size: 1.35rem;" data-i18n="workspace_title"><i class="fa-solid fa-receipt text-gold"></i> شبیه‌ساز فاکتور سریع گلدکس مینی</h3>
+                            <span class="num-font" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700;" data-i18n="workspace_subtitle">OFFLINE PREVIEW</span>
                         </div>
                         
                         <!-- Form to add items to invoice -->
                         <div class="invoice-builder-form">
                             <div class="form-group" style="margin-bottom: 0;">
-                                <label style="font-size: 0.8rem;">نوع قلم فاکتور</label>
+                                <label style="font-size: 0.8rem;" data-i18n="workspace_label_type">نوع قلم فاکتور</label>
                                 <select id="invoice-item-type" style="padding: 0.6rem 0.8rem; font-size: 0.9rem;">
-                                    <option value="طلا ۱۸ عیار">دستبند / زنجیر طلای ۱۸ عیار</option>
-                                    <option value="طلای کهنه">خرید طلای کهنه از مشتری</option>
-                                    <option value="سکه امامی">سکه تمام بهار آزادی</option>
-                                    <option value="طلای آبشده">طلای آبشده (مظنه)</option>
+                                    <option value="طلا ۱۸ عیار" data-i18n="workspace_option_gold18">دستبند / زنجیر طلای ۱۸ عیار</option>
+                                    <option value="طلای کهنه" data-i18n="workspace_option_used">خرید طلای کهنه از مشتری</option>
+                                    <option value="سکه امامی" data-i18n="workspace_option_coin">سکه تمام بهار آزادی</option>
+                                    <option value="طلای آبشده" data-i18n="workspace_option_melt">طلای آبشده (مظنه)</option>
                                 </select>
                             </div>
                             
                             <div class="form-group" style="margin-bottom: 0;">
-                                <label style="font-size: 0.8rem;">وزن (گرم) / تعداد</label>
+                                <label style="font-size: 0.8rem;" data-i18n="workspace_label_weight">وزن (گرم) / تعداد</label>
                                 <div class="input-wrapper">
                                     <input type="number" id="invoice-item-weight" value="4.25" step="0.01" style="padding: 0.6rem 0.8rem; font-size: 0.9rem;">
-                                    <span class="input-unit" style="left:8px;">گرم</span>
+                                    <span class="input-unit" style="left:8px;" data-i18n="workspace_unit_grams">گرم</span>
                                 </div>
                             </div>
                             
-                            <button class="btn-add-item" id="btn-add-invoice-item"><i class="fa-solid fa-plus"></i> ثبت</button>
+                            <button class="btn-add-item" id="btn-add-invoice-item" data-i18n="workspace_btn_add"><i class="fa-solid fa-plus"></i> ثبت</button>
                         </div>
                         
                         <!-- Added items container -->
                         <div class="invoice-items-list">
                             <div class="invoice-list-header">
-                                <span>شرح کالا</span>
-                                <span style="text-align: center;">وزن/تعداد</span>
-                                <span style="text-align: center;">اجرت+سود</span>
-                                <span style="text-align: left;">مبلغ کل (تومان)</span>
+                                <span data-i18n="workspace_th_desc">شرح کالا</span>
+                                <span style="text-align: center;" data-i18n="workspace_th_qty">وزن/تعداد</span>
+                                <span style="text-align: center;" data-i18n="workspace_th_markup">اجرت+سود</span>
+                                <span style="text-align: left;" data-i18n="workspace_th_total">مبلغ کل (تومان)</span>
                                 <span></span>
                             </div>
                             
@@ -631,10 +659,10 @@
                         <!-- Summary and Print -->
                         <div class="invoice-summary-row">
                             <div>
-                                <span style="font-size: 0.85rem; color: var(--text-secondary);">جمع کل فاکتور سریع:</span>
-                                <div class="invoice-total-glow"><span id="invoice-cart-total" class="num-font">۶۲,۰۵۳,۰۰۰</span> <span style="font-size: 0.85rem; font-weight: 700;">تومان</span></div>
+                                <span style="font-size: 0.85rem; color: var(--text-secondary);" data-i18n="workspace_cart_total">جمع کل فاکتور سریع:</span>
+                                <div class="invoice-total-glow"><span id="invoice-cart-total" class="num-font">۶۲,۰۵۳,۰۰۰</span> <span style="font-size: 0.85rem; font-weight: 700;" class="currency-label">تومان</span></div>
                             </div>
-                            <button class="btn-print" id="btn-trigger-print-modal"><i class="fa-solid fa-print"></i> چاپ فاکتور A5 افقی</button>
+                            <button class="btn-print" id="btn-trigger-print-modal" data-i18n="workspace_btn_print"><i class="fa-solid fa-print"></i> چاپ فاکتور A5 افقی</button>
                         </div>
                     </div>
                 </div>
@@ -645,76 +673,76 @@
         <section class="pricing-section" id="pricing">
             <div class="container">
                 <div class="section-header">
-                    <h2><i class="fa-solid fa-tags text-gold"></i> تعرفه‌ها و طرح‌های هوشمند طلا و جواهر</h2>
-                    <p>انتخاب آگاهانه اشتراک بهینه‌سازی شده متناسب با نیازهای مدیریت طلافروشی شما</p>
+                    <h2 data-i18n="pricing_title"><i class="fa-solid fa-tags text-gold"></i> تعرفه‌ها و طرح‌های هوشمند طلا و جواهر</h2>
+                    <p data-i18n="pricing_subtitle">انتخاب آگاهانه اشتراک بهینه‌سازی شده متناسب با نیازهای مدیریت طلافروشی شما</p>
                 </div>
                 
                 <div class="pricing-grid">
                     <!-- Pricing Card 1: GoldEx Mini -->
                     <div class="pricing-card glass-panel">
                         <div>
-                            <span class="pricing-badge">آفلاین & سبک</span>
-                            <h3><i class="fa-solid fa-receipt text-gold"></i> گلدکس مینی (GoldEx Mini)</h3>
-                            <p class="price-subtitle">مخصوص فاکتوردهی و محاسبات عیار سریع طلا بدون محدودیت مکانی</p>
+                            <span class="pricing-badge" data-i18n="price_mini_badge">آفلاین & سبک</span>
+                            <h3 data-i18n="price_mini_title"><i class="fa-solid fa-receipt text-gold"></i> گلدکس مینی (GoldEx Mini)</h3>
+                            <p class="price-subtitle" data-i18n="price_mini_subtitle">مخصوص فاکتوردهی و محاسبات عیار سریع طلا بدون محدودیت مکانی</p>
                             
                             <div class="price-box">
-                                <span class="strike-price">۵,۰۰۰,۰۰۰ تومان</span>
-                                <span class="price-value">۳,۰۰۰,۰۰۰</span>
-                                <span class="price-period">تومان / خرید مادام‌العمر</span>
+                                <span class="strike-price num-font" id="home-price-mini-strike" data-i18n="price_mini_strike">۵,۰۰۰,۰۰۰ تومان</span>
+                                <span class="price-value num-font" id="home-price-mini-val" data-i18n="price_mini_amount">۳,۰۰۰,۰۰۰</span>
+                                <span class="price-period" id="home-price-mini-period" data-i18n="price_mini_period">تومان / خرید مادام‌العمر</span>
                             </div>
                             
                             <ul class="pricing-features-list">
                                 <li>
                                     <svg width="18" height="18" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                    <span><strong>دامنه سراسری و همگانی:</strong> بدون نیاز به دامنه اختصاصی، فقط با کلمه کاربری و رمز شخصی</span>
+                                    <span data-i18n="price_mini_f1"><strong>دامنه سراسری و همگانی:</strong> بدون نیاز به دامنه اختصاصی، فقط با کلمه کاربری و رمز شخصی</span>
                                 </li>
                                 <li>
                                     <svg width="18" height="18" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                    <span><strong>پشتیبانی کامل از PWA:</strong> نصب آسان به صورت اپلیکیشن روی گوشی و ویندوز</span>
+                                    <span data-i18n="price_mini_f2"><strong>پشتیبانی کامل از PWA:</strong> نصب آسان به صورت اپلیکیشن روی گوشی و ویندوز</span>
                                 </li>
                                 <li>
                                     <svg width="18" height="18" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                    <span>کارکرد کاملاً آفلاین و ایمن بدون نیاز به اینترنت و بدون خروج داده</span>
+                                    <span data-i18n="price_mini_f3">کارکرد کاملاً آفلاین و ایمن بدون نیاز به اینترنت و بدون خروج داده</span>
                                 </li>
                             </ul>
                         </div>
-                        <a href="pricing.html" class="btn-secondary" style="text-align: center; display: block; width: 100%;">مشاهده جزئیات و خرید</a>
+                        <a href="pricing.html" class="btn-secondary" style="text-align: center; display: block; width: 100%;" data-i18n="price_mini_btn">مشاهده جزئیات و خرید</a>
                     </div>
                     
                     <!-- Pricing Card 2: GoldEx SaaS Cloud -->
                     <div class="pricing-card glass-panel featured">
                         <div>
-                            <span class="pricing-badge">طرح ویژه آنلاین</span>
-                            <h3><i class="fa-solid fa-cloud text-gold"></i> گلدکس ابری (GoldEx Online SaaS)</h3>
-                            <p class="price-subtitle">پلتفرم حسابداری هوشمند طلا، انبارداری توزیع‌شده و اتصال به درگاه‌های مدرن</p>
+                            <span class="pricing-badge" data-i18n="price_cloud_badge">طرح ویژه آنلاین</span>
+                            <h3 data-i18n="price_cloud_title"><i class="fa-solid fa-cloud text-gold"></i> گلدکس ابری (GoldEx Online SaaS)</h3>
+                            <p class="price-subtitle" data-i18n="price_cloud_subtitle">پلتفرم حسابداری هوشمند طلا، انبارداری توزیع‌شده و اتصال به درگاه‌های مدرن</p>
                             
                             <div class="price-box">
-                                <span style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 700; margin-bottom: 0.35rem; display: block;">مدیریت کامل سرور و نسخه پشتیبان خودکار</span>
-                                <span class="price-value">۷۹,۰۰۰,۰۰۰</span>
-                                <span class="price-period">تومان / لایسنس پایه ابری</span>
+                                <span style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 700; margin-bottom: 0.35rem; display: block;" data-i18n="price_cloud_server_note">مدیریت کامل سرور و نسخه پشتیبان خودکار</span>
+                                <span class="price-value num-font" id="home-price-cloud-val" data-i18n="price_cloud_amount">۷۹,۰۰۰,۰۰۰</span>
+                                <span class="price-period" id="home-price-cloud-period" data-i18n="price_cloud_period">تومان / لایسنس پایه ابری</span>
                             </div>
                             
                             <ul class="pricing-features-list">
                                 <li>
                                     <svg width="18" height="18" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                    <span><strong>زیردامنه و دامنه دلخواه:</strong> اتصال آسان به دامنه یا ساب‌دامنه دلخواه گالری شما</span>
+                                    <span data-i18n="price_cloud_f1"><strong>زیردامنه و دامنه دلخواه:</strong> اتصال آسان به دامنه یا ساب‌دامنه دلخواه گالری شما</span>
                                 </li>
                                 <li>
                                     <svg width="18" height="18" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                    <span><strong>سرور و پشتیبان خودکار:</strong> پشتیبان‌گیری تمام اتوماتیک ابری و مدیریت کامل سرور توسط ما</span>
+                                    <span data-i18n="price_cloud_f2"><strong>سرور و پشتیبان خودکار:</strong> پشتیبان‌گیری تمام اتوماتیک ابری و مدیریت کامل سرور توسط ما</span>
                                 </li>
                                 <li>
                                     <svg width="18" height="18" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                    <span>دسترسی چندکاربره ابری، دفاتر حسابرسی اتوماتیک، چک‌های دیجیتالی و احراز هویت زیستی</span>
+                                    <span data-i18n="price_cloud_f3">دسترسی چندکاربره ابری، دفاتر حسابرسی اتوماتیک، چک‌های دیجیتالی و احراز هویت زیستی</span>
                                 </li>
                             </ul>
                         </div>
-                        <a href="pricing.html" class="btn-primary" style="text-align: center; display: block; width: 100%;">جزئیات طرح ابری و نصب محلی</a>
+                        <a href="pricing.html" class="btn-primary" style="text-align: center; display: block; width: 100%;" data-i18n="price_cloud_btn">جزئیات طرح ابری و نصب محلی</a>
                     </div>
                 </div>
                 
                 <div style="text-align: center; margin-top: 2rem;">
-                    <a href="pricing.html" class="btn-secondary" style="padding: 0.75rem 2.5rem; font-weight: 700;"><i class="fa-solid fa-arrow-right-long" style="margin-left: 8px;"></i> مقایسه دقیق و جدول کامل اشتراک‌ها</a>
+                    <a href="pricing.html" class="btn-secondary" style="padding: 0.75rem 2.5rem; font-weight: 700;" data-i18n="pricing_compare_btn"><i class="fa-solid fa-arrow-right-long" style="margin-left: 8px;"></i> مقایسه دقیق و جدول کامل اشتراک‌ها</a>
                 </div>
             </div>
         </section>
@@ -723,54 +751,54 @@
         <section class="compare-section" id="comparison">
             <div class="container">
                 <div class="section-header">
-                    <h2><i class="fa-solid fa-arrow-down-up-lock text-gold"></i> جدول مقایسه نسخه‌های GoldEx و GoldEx Mini</h2>
-                    <p>انتخاب بهترین نسخه نرم‌افزاری بر اساس نیازهای گالری تک‌شعبه‌ای یا بنکداری‌های چند‌شعبه‌ای</p>
+                    <h2 data-i18n="comparison_title"><i class="fa-solid fa-arrow-down-up-lock text-gold"></i> جدول مقایسه نسخه‌های GoldEx و GoldEx Mini</h2>
+                    <p data-i18n="comparison_subtitle">انتخاب بهترین نسخه نرم‌افزاری بر اساس نیازهای گالری تک‌شعبه‌ای یا بنکداری‌های چند‌شعبه‌ای</p>
                 </div>
                 
                 <div class="compare-table-wrapper glass-panel">
                     <table class="compare-table">
                         <thead>
                             <tr>
-                                <th>نام ویژگی / قابلیت نرم‌افزاری</th>
-                                <th>نسخه جامع (GoldEx Enterprise)</th>
-                                <th>نسخه مینی (GoldEx Mini)</th>
+                                <th data-i18n="comp_th_feature">نام ویژگی / قابلیت نرم‌افزاری</th>
+                                <th data-i18n="comp_th_enterprise">نسخه جامع (GoldEx Enterprise)</th>
+                                <th data-i18n="comp_th_mini">نسخه مینی (GoldEx Mini)</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>نیاز به اتصال فعال اینترنت</td>
-                                <td>بله <span style="font-size:0.8rem; color:var(--text-muted);">(جهت دریافت نرخ آنلاین و همگام‌سازی ابری)</span></td>
-                                <td>خیر <span style="font-size:0.8rem; color:var(--text-muted);">(کاملاً آفلاین و کارکرد محلی بدون شبکه)</span></td>
+                                <td data-i18n="comp_f1_name">نیاز به اتصال فعال اینترنت</td>
+                                <td data-i18n="comp_f1_ent">بله <span style="font-size:0.8rem; color:var(--text-muted);">(جهت دریافت نرخ آنلاین و همگام‌سازی ابری)</span></td>
+                                <td data-i18n="comp_f1_mini">خیر <span style="font-size:0.8rem; color:var(--text-muted);">(کاملاً آفلاین و کارکرد محلی بدون شبکه)</span></td>
                             </tr>
                             <tr>
-                                <td>محل ذخیره سازی اسناد مالی و فاکتورها</td>
-                                <td>پایگاه داده ابری امن مرکزی / دسترسی چندکاربره</td>
-                                <td>حافظه داخلی مرورگر و دستگاه شخص کاربر <span class="num-font">(LocalStorage)</span></td>
+                                <td data-i18n="comp_f2_name">محل ذخیره سازی اسناد مالی و فاکتورها</td>
+                                <td data-i18n="comp_f2_ent">پایگاه داده ابری امن مرکزی / دسترسی چندکاربره</td>
+                                <td data-i18n="comp_f2_mini">حافظه داخلی مرورگر و دستگاه شخص کاربر <span class="num-font">(LocalStorage)</span></td>
                             </tr>
                             <tr>
-                                <td>ماشین حساب و محاسبات طلا</td>
-                                <td>پیشرفته و چندارزی همراه با اسکن بارکد اجناس</td>
-                                <td>جامع <span style="font-size:0.8rem; color:var(--text-muted);">(آبشده، طلا کهنه، تبدیل مستقیم نقدینگی به طلا)</span></td>
+                                <td data-i18n="comp_f3_name">ماشین حساب و محاسبات طلا</td>
+                                <td data-i18n="comp_f3_ent">پیشرفته و چندارزی همراه با اسکن بارکد اجناس</td>
+                                <td data-i18n="comp_f3_mini">جامع <span style="font-size:0.8rem; color:var(--text-muted);">(آبشده، طلا کهنه، تبدیل مستقیم نقدینگی به طلا)</span></td>
                             </tr>
                             <tr>
-                                <td>حسابداری دوطرفه و تراز معین طلا و ریال</td>
-                                <td class="check-icon"><i class="fa-solid fa-check"></i> <span style="font-size:0.85rem; font-weight:500; color:var(--text-secondary);">بله (کاملاً خودکار و هوشمند)</span></td>
-                                <td class="times-icon"><i class="fa-solid fa-xmark"></i> <span style="font-size:0.85rem; font-weight:500; color:var(--text-secondary);">خیر (فقط محاسبات فروش و صدور فاکتور سریع)</span></td>
+                                <td data-i18n="comp_f4_name">حسابداری دوطرفه و تراز معین طلا و ریال</td>
+                                <td class="check-icon"><i class="fa-solid fa-check"></i> <span style="font-size:0.85rem; font-weight:500; color:var(--text-secondary);" data-i18n="comp_f4_ent">بله (کاملاً خودکار و هوشمند)</span></td>
+                                <td class="times-icon"><i class="fa-solid fa-xmark"></i> <span style="font-size:0.85rem; font-weight:500; color:var(--text-secondary);" data-i18n="comp_f4_mini">خیر (فقط محاسبات فروش و صدور فاکتور سریع)</span></td>
                             </tr>
                             <tr>
-                                <td>انبارداری، موجودی ویترین و عملیات ذوب</td>
-                                <td class="check-icon"><i class="fa-solid fa-check"></i> <span style="font-size:0.85rem; font-weight:500; color:var(--text-secondary);">بله (پیشرفته همراه با کاردکس کالا)</span></td>
-                                <td class="times-icon"><i class="fa-solid fa-xmark"></i> <span style="font-size:0.85rem; font-weight:500; color:var(--text-secondary);">خیر</span></td>
+                                <td data-i18n="comp_f5_name">انبارداری، موجودی ویترین و عملیات ذوب</td>
+                                <td class="check-icon"><i class="fa-solid fa-check"></i> <span style="font-size:0.85rem; font-weight:500; color:var(--text-secondary);" data-i18n="comp_f5_ent">بله (پیشرفته همراه با کاردکس کالا)</span></td>
+                                <td class="times-icon"><i class="fa-solid fa-xmark"></i> <span style="font-size:0.85rem; font-weight:500; color:var(--text-secondary);" data-i18n="comp_f5_mini">خیر</span></td>
                             </tr>
                             <tr>
-                                <td>ابعاد چاپ فاکتور استاندارد مشتری</td>
-                                <td>انواع قالب‌های سفارشی چاپی با آرم و برند گالری</td>
-                                <td>بهینه‌سازی شده در سایز استاندارد A5 به صورت افقی</td>
+                                <td data-i18n="comp_f6_name">ابعاد چاپ فاکتور استاندارد مشتری</td>
+                                <td data-i18n="comp_f6_ent">انواع قالب‌های سفارشی چاپی با آرم و برند گالری</td>
+                                <td data-i18n="comp_f6_mini">بهینه‌سازی شده در سایز استاندارد A5 به صورت افقی</td>
                             </tr>
                             <tr>
-                                <td>سیستم ورود و احراز هویت (Authentication)</td>
-                                <td>بیومتریک <span class="num-font">(Passkey)</span>، رمز عبور، پیامک <span class="num-font">2FA</span>، گوگل</td>
-                                <td>سیستم محلی ساده مبتنی بر نام کاربری و رمز عبور رمزگذاری شده</td>
+                                <td data-i18n="comp_f7_name">سیستم ورود و احراز هویت (Authentication)</td>
+                                <td data-i18n="comp_f7_ent">بیومتریک <span class="num-font">(Passkey)</span>، رمز عبور، پیامک <span class="num-font">2FA</span>، گوگل</td>
+                                <td data-i18n="comp_f7_mini">سیستم محلی ساده مبتنی بر نام کاربری و رمز عبور رمزگذاری شده</td>
                             </tr>
                         </tbody>
                     </table>
@@ -782,33 +810,33 @@
         <section class="tech-section" id="tech">
             <div class="container">
                 <div class="section-header">
-                    <h2><i class="fa-solid fa-microchip text-gold"></i> معماری فنی و فناوری‌های توسعه</h2>
-                    <p>بهره‌گیری از به‌روزترین تکنولوژی‌های توسعه نرم‌افزار جهت پایداری، سرعت و امنیت داده‌ها</p>
+                    <h2><i class="fa-solid fa-microchip text-gold"></i> <span data-i18n="tech_title">معماری فنی و فناوری‌های توسعه</span></h2>
+                    <p data-i18n="tech_subtitle">بهره‌گیری از به‌روزترین تکنولوژی‌های توسعه نرم‌افزار جهت پایداری، سرعت و امنیت داده‌ها</p>
                 </div>
                 
                 <div class="tech-grid">
                     <div class="tech-card glass-panel">
                         <div class="tech-icon-container"><i class="fa-solid fa-code"></i></div>
-                        <h3>Blazor WebAssembly</h3>
-                        <p>طراحی شده با فریمورک قدرتمند مایکروسافت دات‌نت (.NET) در حالت Auto Render Mode و MudBlazor جهت رندر فوق‌العاده سریع رابط کاربری.</p>
+                        <h3 data-i18n="tech_c1_title">Blazor WebAssembly</h3>
+                        <p data-i18n="tech_c1_desc">طراحی شده با فریمورک قدرتمند مایکروسافت دات‌نت (.NET) در حالت Auto Render Mode و MudBlazor جهت رندر فوق‌العاده سریع رابط کاربری.</p>
                     </div>
                     
                     <div class="tech-card glass-panel">
                         <div class="tech-icon-container"><i class="fa-solid fa-mobile-screen-button"></i></div>
-                        <h3>پشتیبانی کامل از PWA</h3>
-                        <p>قابلیت نصب آسان به عنوان Progressive Web App بر روی انواع سیستم‌عامل‌های ویندوز، مک، اندروید و iOS بدون نیاز به استورها.</p>
+                        <h3 data-i18n="tech_c2_title">پشتیبانی کامل از PWA</h3>
+                        <p data-i18n="tech_c2_desc">قابلیت نصب آسان به عنوان Progressive Web App بر روی انواع سیستم‌عامل‌های ویندوز، مک، اندروید و iOS بدون نیاز به استورها.</p>
                     </div>
                     
                     <div class="tech-card glass-panel">
                         <div class="tech-icon-container"><i class="fa-solid fa-key"></i></div>
-                        <h3>کلیدهای بیومتریک Passkey</h3>
-                        <p>احراز هویت پیشرفته سازمانی و ورود امن بدون نیاز به وارد کردن کلمه عبور با استفاده از حسگر اثر انگشت یا تشخیص چهره دستگاه.</p>
+                        <h3 data-i18n="tech_c3_title">کلیدهای بیومتریک Passkey</h3>
+                        <p data-i18n="tech_c3_desc">احراز هویت پیشرفته سازمانی و ورود امن بدون نیاز به وارد کردن کلمه عبور با استفاده از حسگر اثر انگشت یا تشخیص چهره دستگاه.</p>
                     </div>
                     
                     <div class="tech-card glass-panel">
                         <div class="tech-icon-container"><i class="fa-solid fa-database"></i></div>
-                        <h3>ذخیره‌سازی توزیع‌شده داده‌ها</h3>
-                        <p>همگام‌سازی لحظه‌ای داده‌ها با سرورهای ابری امن با مکانیسم آفلاین‌لاین‌فرست در صورت قطعی موقت شبکه بدون ریسک از دست رفتن داده.</p>
+                        <h3 data-i18n="tech_c4_title">ذخیره‌سازی توزیع‌شده داده‌ها</h3>
+                        <p data-i18n="tech_c4_desc">همگام‌سازی لحظه‌ای داده‌ها با سرورهای ابری امن با مکانیسم آفلاین‌لاین‌فرست در صورت قطعی موقت شبکه بدون ریسک از دست رفتن داده.</p>
                     </div>
                 </div>
             </div>
@@ -824,51 +852,51 @@
                         <img src="assets/goldex-logo.png" alt="GoldEx Logo">
                         <span class="gradient-text-gold">GoldEx</span>
                     </a>
-                    <p>سامانه هوشمند گلدکس به عنوان راهکاری خلاقانه جهت تسهیل فاکتورنویسی، حسابداری دقیق طلا و نقره، و انبارداری زنجیره تامین صنف طلا و جواهر در بازارهای سنتی و نوین کشور ایجاد شده است.</p>
+                    <p data-i18n="footer_desc">سامانه هوشمند گلدکس به عنوان راهکاری خلاقانه جهت تسهیل فاکتورنویسی، حسابداری دقیق طلا و نقره، و انبارداری زنجیره تامین صنف طلا و جواهر در بازارهای سنتی و نوین کشور ایجاد شده است.</p>
                 </div>
                 
                 <div class="footer-column">
-                    <h4>دسترسی سریع</h4>
+                    <h4 data-i18n="footer_col_links">دسترسی سریع</h4>
                     <ul class="footer-links">
-                        <li><a href="#home">خانه</a></li>
-                        <li><a href="#rates">نرخ‌های آنلاین بازار</a></li>
-                        <li><a href="#calculators">ماشین حساب طلا</a></li>
-                        <li><a href="#features">امکانات پلتفرم جامع</a></li>
+                        <li><a href="#home" data-i18n="nav_home">خانه</a></li>
+                        <li><a href="#rates" data-i18n="nav_rates">نرخ‌های آنلاین بازار</a></li>
+                        <li><a href="#calculators" data-i18n="nav_calculators">ماشین حساب طلا</a></li>
+                        <li><a href="#features" data-i18n="nav_features">امکانات پلتفرم جامع</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h4>ویژگی‌ها</h4>
+                    <h4 data-i18n="footer_col_features">ویژگی‌ها</h4>
                     <ul class="footer-links">
-                        <li><a href="#mini">گلدکس مینی آفلاین</a></li>
-                        <li><a href="#comparison">جدول مقایسه نسخه‌ها</a></li>
-                        <li><a href="#tech">پشتیبانی PWA و بلزور</a></li>
-                        <li><a href="#calculators">اسکنر بارکد اجناس</a></li>
+                        <li><a href="#mini" data-i18n="nav_mini">گلدکس مینی آفلاین</a></li>
+                        <li><a href="#comparison" data-i18n="nav_comparison">جدول مقایسه نسخه‌ها</a></li>
+                        <li><a href="#tech" data-i18n="footer_link_tech">پشتیبانی PWA و بلزور</a></li>
+                        <li><a href="#calculators" data-i18n="footer_link_scanner">اسکنر بارکد اجناس</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h4>تماس با ما</h4>
+                    <h4 data-i18n="footer_col_contact">تماس با ما</h4>
                     <div class="footer-contact-info">
                         <div class="footer-contact-item">
                             <i class="fa-solid fa-envelope text-gold"></i>
-                            <span>info@goldex-platform.ir</span>
+                            <span data-i18n="footer_contact_email">info@goldex-platform.ir</span>
                         </div>
                         <div class="footer-contact-item">
                             <i class="fa-solid fa-phone text-gold"></i>
-                            <span class="num-font" style="direction: ltr;">+۹۸ ۲۱ ۸۸۸۸ ۴۴۴۴</span>
+                            <span class="num-font" style="direction: ltr;" data-i18n="footer_contact_phone">+۹۸ ۲۱ ۸۸۸۸ ۴۴۴۴</span>
                         </div>
                         <div class="footer-contact-item">
                             <i class="fa-solid fa-location-dot text-gold"></i>
-                            <span>تهران، بازار بزرگ، سرای طلا و جواهر، پلاک ۱۱۰</span>
+                            <span data-i18n="footer_address_val">تهران، بازار بزرگ، سرای طلا و جواهر، پلاک ۱۱۰</span>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>© ۱۴۰۵ سامانه هوشمند گلدکس. تمامی حقوق مادی و معنوی محفوظ است.</p>
-                <p>قدرت گرفته از فناوری <span class="num-font">MudBlazor / PWA</span></p>
+                <p data-i18n="footer_rights">© ۱۴۰۵ سامانه هوشمند گلدکس. تمامی حقوق مادی و معنوی محفوظ است.</p>
+                <p data-i18n="footer_tech">قدرت گرفته از فناوری <span class="num-font">MudBlazor / PWA</span></p>
             </div>
         </div>
     </footer>
@@ -877,7 +905,7 @@
     <div class="modal-overlay" id="receipt-modal-container">
         <div class="receipt-modal">
             <div class="modal-header-bar">
-                <span style="font-weight: 700;"><i class="fa-solid fa-eye text-gold"></i> پیش‌نمایش فاکتور استاندارد A5 (افقی)</span>
+                <span style="font-weight: 700;" data-i18n="modal_title"><i class="fa-solid fa-eye text-gold"></i> پیش‌نمایش فاکتور استاندارد A5 (افقی)</span>
                 <button class="modal-close" id="btn-close-print-modal"><i class="fa-solid fa-xmark"></i></button>
             </div>
             
@@ -888,40 +916,40 @@
                         <div class="a5-shop-info">
                             <img src="assets/goldex-logo.png" alt="Logo" class="a5-shop-logo">
                             <div class="a5-shop-title">
-                                <h2>گالری طلا و جواهر نمونه</h2>
-                                <p>تحت پوشش شبکه حسابداری هوشمند گلدکس (GoldEx)</p>
+                                <h2 data-i18n="modal_shop_name">گالری طلا و جواهر نمونه</h2>
+                                <p data-i18n="modal_shop_sub">تحت پوشش شبکه حسابداری هوشمند گلدکس (GoldEx)</p>
                             </div>
                         </div>
                         <div style="text-align: center;">
-                            <h1 style="font-size: 15px; font-weight: 900; border: 1px solid #000; padding: 4px 15px; border-radius: 4px; background: #f9f9f9; display: inline-block;">فاکتور فروش رسمی طلا و مسکوکات</h1>
+                            <h1 style="font-size: 15px; font-weight: 900; border: 1px solid #000; padding: 4px 15px; border-radius: 4px; background: #f9f9f9; display: inline-block;" data-i18n="modal_preview_title">فاکتور فروش رسمی طلا و مسکوکات</h1>
                         </div>
                         <div class="a5-meta-info">
                             <div>
-                                <p>شماره فاکتور: <span class="num-font">#GXM-۱۴۰۵-۱۸۲</span></p>
-                                <p>تاریخ فاکتور: <span class="num-font" id="invoice-date-today">۱۴۰۵/۰۲/۳۰</span></p>
+                                <p><span data-i18n="modal_invoice_num">شماره فاکتور:</span> <span class="num-font">#GXM-۱۴۰۵-۱۸۲</span></p>
+                                <p><span data-i18n="modal_date">تاریخ فاکتور:</span> <span class="num-font" id="invoice-date-today">۱۴۰۵/۰۲/۳۰</span></p>
                             </div>
                             <div style="text-align: left;">
-                                <p>ساعت صدور: <span class="num-font" id="invoice-time-today">۲۳:۵۲</span></p>
-                                <p>نوع تسویه: <span>آفلاین (محلی)</span></p>
+                                <p><span data-i18n="modal_time">ساعت صدور:</span> <span class="num-font" id="invoice-time-today">۲۳:۵۲</span></p>
+                                <p><span data-i18n="modal_settlement_label">نوع تسویه:</span> <span data-i18n="modal_settlement_val">آفلاین (محلی)</span></p>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Customer info bar -->
                     <div style="display: flex; justify-content: space-between; border: 1px solid #000; border-radius: 4px; padding: 6px 12px; margin-bottom: 12px; background: #fafafa; font-size: 10px;">
-                        <p>خریدار محترم: <strong>مشتری عمومی گالری (صنف طلا)</strong></p>
-                        <p>کد ملی / شناسه مالی: <span class="num-font">***</span></p>
-                        <p>تلفن همراه: <span class="num-font">***</span></p>
+                        <p><span data-i18n="modal_buyer_label">خریدار محترم:</span> <strong data-i18n="modal_buyer_val">مشتری عمومی گالری (صنف طلا)</strong></p>
+                        <p><span data-i18n="modal_national_id">کد ملی / شناسه مالی:</span> <span class="num-font">***</span></p>
+                        <p><span data-i18n="modal_mobile">تلفن همراه:</span> <span class="num-font">***</span></p>
                     </div>
                     
                     <table class="a5-table">
                         <thead>
                             <tr>
-                                <th style="width: 5%;">ردیف</th>
-                                <th style="width: 45%; text-align: right;">شرح طلا و مسکوکات</th>
-                                <th style="width: 15%;">وزن (گرم) / تعداد</th>
-                                <th style="width: 15%;">اجرت و سود (%)</th>
-                                <th style="width: 20%; text-align: left;">مبلغ کل ردیف (تومان)</th>
+                                <th style="width: 5%;" data-i18n="modal_table_idx">ردیف</th>
+                                <th style="width: 45%; text-align: right;" data-i18n="modal_table_desc">شرح طلا و مسکوکات</th>
+                                <th style="width: 15%;" data-i18n="modal_table_qty">وزن (گرم) / تعداد</th>
+                                <th style="width: 15%;" data-i18n="modal_table_markup">اجرت و سود (%)</th>
+                                <th style="width: 20%; text-align: left;" data-i18n="modal_table_total">مبلغ کل ردیف (تومان)</th>
                             </tr>
                         </thead>
                         <tbody id="a5-table-rows">
@@ -945,42 +973,42 @@
                     
                     <div class="a5-totals-grid">
                         <div class="a5-payment-info">
-                            <h4>شیوه‌های پرداخت و توضیحات فاکتور</h4>
-                            <p>۱. تسویه کامل فاکتور به صورت نقدی / کارت‌خوان محلی انجام گردید.</p>
-                            <p style="margin-top: 4px;">۲. عیار تمامی طلاهای مندرج در این فاکتور ۱۸ عیار (۷۵۰ استاندارد) و سکه‌ها به صورت پلمپ بانکی تضمین می‌شود.</p>
+                            <h4 data-i18n="modal_payment_terms">شیوه‌های پرداخت و توضیحات فاکتور</h4>
+                            <p data-i18n="modal_payment_terms_text">۱. تسویه کامل فاکتور به صورت نقدی / کارت‌خوان محلی انجام گردید. ۲. عیار تمامی طلاهای مندرج در این فاکتور ۱۸ عیار (۷۵۰ استاندارد) و سکه‌ها به صورت پلمپ بانکی تضمین می‌شود.</p>
                         </div>
                         
                         <div class="a5-totals-summary">
                             <div class="a5-total-row">
-                                <span>جمع وزن طلاهای ۱۸ عیار:</span>
-                                <span class="num-font"><span id="a5-total-weight-display">۴.۲۵</span> گرم</span>
+                                <span data-i18n="modal_weight_summary">جمع وزن طلاهای ۱۸ عیار:</span>
+                                <span class="num-font"><span id="a5-total-weight-display">۴.۲۵</span> <span data-i18n="workspace_unit_grams">گرم</span></span>
                             </div>
                             <div class="a5-total-row">
-                                <span>نرخ مبنای طلای ۱۸ عیار امروز:</span>
-                                <span class="num-font"><span id="a5-today-gold-rate">۳,۷۲۰,۰۰۰</span> تومان</span>
+                                <span data-i18n="modal_rate_gold">نرخ مبنای طلای ۱۸ عیار امروز:</span>
+                                <span class="num-font"><span id="a5-today-gold-rate">۳,۷۲۰,۰۰۰</span> <span class="currency-label">تومان</span></span>
                             </div>
                             <div class="a5-total-row grand-total">
-                                <span>مبلغ کل نهایی فاکتور (با احتساب مالیات):</span>
-                                <span class="num-font"><span id="a5-grand-total-display">۶۲,۰۵۳,۰۰۰</span> تومان</span>
+                                <span data-i18n="modal_grand_total">مبلغ کل نهایی فاکتور (با احتساب مالیات):</span>
+                                <span class="num-font"><span id="a5-grand-total-display">۶۲,۰۵۳,۰۰۰</span> <span class="currency-label">تومان</span></span>
                             </div>
                         </div>
                     </div>
                     
                     <div class="a5-footer-note">
-                        <p>نشانی: تهران، بازار بزرگ، سرای طلا و جواهر، پلاک ۱۱۰ | تلفن: ۲۱۸۸۸۸۴۴۴۴ - با تشکر از خرید شما</p>
+                        <p data-i18n="modal_address_text">نشانی: تهران، بازار بزرگ، سرای طلا و جواهر، پلاک ۱۱۰ | تلفن: ۲۱۸۸۸۸۴۴۴۴ - با تشکر از خرید شما</p>
                     </div>
                 </div>
             </div>
             
             
             <div class="modal-actions-bar">
-                <button class="btn-secondary" id="btn-modal-close-secondary">انصراف</button>
-                <button class="btn-print-real" id="btn-modal-print-real"><i class="fa-solid fa-print"></i> پرینت فاکتور (A5 افقی)</button>
+                <button class="btn-secondary" id="btn-modal-close-secondary" data-i18n="modal_btn_close">انصراف</button>
+                <button class="btn-print-real" id="btn-modal-print-real" data-i18n="modal_btn_print"><i class="fa-solid fa-print"></i> پرینت فاکتور (A5 افقی)</button>
             </div>
         </div>
     </div>
 
-    <!-- Active JavaScript file -->
+    <!-- Active JavaScript files -->
+    <script src="i18n.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

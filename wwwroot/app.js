@@ -1,4 +1,7 @@
 // --- GLOBAL STATES & CONSTANTS ---
+// currentLang is declared globally in i18n.js
+
+// Exchange rates will be reset/fetched depending on currency
 let liveRates = {
     gold18: 3720000,
     goldMelt: 16115000,
@@ -10,13 +13,17 @@ let liveRates = {
 };
 
 let invoiceCart = [
-    { id: 'item-default-1', desc: 'دستبند / زنجیر طلای ۱۸ عیار', qtyText: '۴.۲۵ گرم', rateText: '۱۹٪', total: 19203000, rawWeight: 4.25 },
-    { id: 'item-default-2', desc: 'سکه تمام بهار آزادی', qtyText: '۱ عدد', rateText: '-', total: 42850000, rawWeight: 0 }
+    { id: 'item-default-1', type: 'طلا ۱۸ عیار', desc: 'دستبند / زنجیر طلای ۱۸ عیار', qtyText: '۴.۲۵ گرم', rateText: '۱۹٪', total: 19203000, rawWeight: 4.25 },
+    { id: 'item-default-2', type: 'سکه امامی', desc: 'سکه تمام بهار آزادی', qtyText: '۱ عدد', rateText: '-', total: 42850000, rawWeight: 1 }
 ];
 
 // Formatting helper: Add commas to numbers
 function formatNum(num) {
     return Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function formatNumWithDecimals(num, decimals) {
+    return parseFloat(num).toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 // Convert numbers to Persian digits (for beautiful localized display)
@@ -27,14 +34,196 @@ function toPersianDigits(str) {
     });
 }
 
-// Format currency to Persian localized string
-function formatPersianCurrency(val) {
-    return toPersianDigits(formatNum(val));
+// Format currency to localized string depending on language
+function formatCurrencyVal(val) {
+    if (currentLang === "fa") {
+        return toPersianDigits(formatNum(val));
+    }
+    // For smaller values in USD/TRY, show two decimals
+    if (val < 1000) {
+        return formatNumWithDecimals(val, 2);
+    }
+    return formatNum(val);
 }
+
+function formatCurrency(val) {
+    const formatted = formatCurrencyVal(val);
+    if (currentLang === "fa") {
+        return formatted + " تومان";
+    } else if (currentLang === "tr") {
+        return "₺" + formatted;
+    } else {
+        return "$" + formatted;
+    }
+}
+
+function formatDecimal(val, decimals = 2) {
+    const formatted = parseFloat(val).toFixed(decimals);
+    return currentLang === "fa" ? toPersianDigits(formatted) : formatted;
+}
+
+function formatInt(val) {
+    return currentLang === "fa" ? toPersianDigits(val) : val;
+}
+
+// Centralized dynamic cart recalculation and translation
+function recalculateCartTotals() {
+    invoiceCart.forEach(item => {
+        if (item.type === "طلا ۱۸ عیار") {
+            item.desc = currentLang === "fa" ? "دستبند / زنجیر طلای ۱۸ عیار" : (currentLang === "tr" ? "18 Ayar Altın Bileklik / Zincir" : "18K Gold Bracelet / Chain");
+            item.qtyText = currentLang === "fa" ? item.rawWeight.toFixed(2) + " گرم" : item.rawWeight.toFixed(2) + " g";
+            item.rateText = currentLang === "fa" ? "۱۹٪" : "19%";
+            const basePrice = item.rawWeight * liveRates.gold18;
+            const markupPrice = basePrice * 0.19; // wage + profit
+            item.total = Math.round(basePrice + markupPrice + (markupPrice * 0.09)); // tax
+        } else if (item.type === "طلای کهنه") {
+            item.desc = currentLang === "fa" ? "خرید طلای مستعمل از مشتری" : (currentLang === "tr" ? "Hurda Altın Alımı" : "Scrap Gold Purchase");
+            item.qtyText = currentLang === "fa" ? item.rawWeight.toFixed(2) + " گرم" : item.rawWeight.toFixed(2) + " g";
+            item.rateText = "-";
+            const scrapDiscount = currentLang === "fa" ? 60000 : (currentLang === "tr" ? 30 : 1);
+            item.total = Math.round(item.rawWeight * Math.max(liveRates.gold18 - scrapDiscount, 0.01));
+        } else if (item.type === "سکه امامی") {
+            item.desc = currentLang === "fa" ? "سکه تمام بهار آزادی (امامی)" : (currentLang === "tr" ? "Bahar Azadi Altın Para" : "Bahar Azadi Gold Coin");
+            const qty = Math.round(item.rawWeight);
+            item.qtyText = currentLang === "fa" ? qty + " عدد" : qty + " qty";
+            item.rateText = "-";
+            item.total = Math.round(qty * liveRates.coinEmami);
+        } else if (item.type === "طلای آبشده") {
+            item.desc = currentLang === "fa" ? "طلای آبشده خام" : (currentLang === "tr" ? "Has Altın (Ham)" : "Melted Gold (Raw)");
+            item.qtyText = currentLang === "fa" ? item.rawWeight.toFixed(2) + " گرم" : item.rawWeight.toFixed(2) + " g";
+            item.rateText = "-";
+            item.total = Math.round(item.rawWeight * (liveRates.goldMelt / 4.608));
+        }
+    });
+}
+
+// Centralized dynamic pricing matrix and cards updates based on live exchange rates
+function updatePricingDisplay() {
+    const usdRate = liveRates.usd > 0 ? liveRates.usd : 61500;
+    const tryRate = usdRate / 33;
+
+    const prices = {
+        miniStrike: 5000000,
+        miniActive: 3000000,
+        cloudActive: 79000000
+    };
+
+    let currency = "تومان";
+    let formatted = {
+        miniStrike: "",
+        miniActive: "",
+        cloudActive: ""
+    };
+
+    if (currentLang === "fa") {
+        formatted.miniStrike = toPersianDigits(formatNum(prices.miniStrike)) + " تومان";
+        formatted.miniActive = toPersianDigits(formatNum(prices.miniActive));
+        formatted.cloudActive = toPersianDigits(formatNum(prices.cloudActive));
+    } else if (currentLang === "tr") {
+        formatted.miniStrike = "₺" + formatNum(Math.round(prices.miniStrike / tryRate));
+        formatted.miniActive = formatNum(Math.round(prices.miniActive / tryRate));
+        formatted.cloudActive = formatNum(Math.round(prices.cloudActive / tryRate));
+        currency = "TL";
+    } else { // en
+        formatted.miniStrike = "$" + formatNum(Math.round(prices.miniStrike / usdRate));
+        formatted.miniActive = formatNum(Math.round(prices.miniActive / usdRate));
+        formatted.cloudActive = formatNum(Math.round(prices.cloudActive / usdRate));
+        currency = "$";
+    }
+
+    // Homepage Mini
+    const hmStrike = document.getElementById("home-price-mini-strike");
+    if (hmStrike) hmStrike.innerText = formatted.miniStrike;
+    const hmActive = document.getElementById("home-price-mini-val");
+    if (hmActive) hmActive.innerText = formatted.miniActive;
+    const hmPeriod = document.getElementById("home-price-mini-period");
+    if (hmPeriod) {
+        if (currentLang === "fa") hmPeriod.innerText = "تومان / خرید مادام‌العمر";
+        else if (currentLang === "tr") hmPeriod.innerText = "TL / Ömür Boyu Lisans";
+        else hmPeriod.innerText = "$ / Lifetime License";
+    }
+
+    // Homepage Cloud
+    const hcActive = document.getElementById("home-price-cloud-val");
+    if (hcActive) hcActive.innerText = formatted.cloudActive;
+    const hcPeriod = document.getElementById("home-price-cloud-period");
+    if (hcPeriod) {
+        if (currentLang === "fa") hcPeriod.innerText = "تومان / لایسنس پایه ابری";
+        else if (currentLang === "tr") hcPeriod.innerText = "TL / Temel Bulut Lisansı";
+        else hcPeriod.innerText = "$ / Base Cloud License";
+    }
+
+    // Pricing Page Mini
+    const pmStrike = document.getElementById("pricing-price-mini-strike");
+    if (pmStrike) pmStrike.innerText = formatted.miniStrike;
+    const pmActive = document.getElementById("pricing-price-mini-val");
+    if (pmActive) {
+        pmActive.innerHTML = `${formatted.miniActive} <span>${currency}</span>`;
+    }
+
+    // Pricing Page Cloud
+    const pcActive = document.getElementById("pricing-price-cloud-val");
+    if (pcActive) {
+        pcActive.innerHTML = `${formatted.cloudActive} <span>${currency}</span>`;
+    }
+
+    // Comparison Table Prices
+    const tmPrice = document.getElementById("table-price-mini");
+    if (tmPrice) {
+        if (currentLang === "fa") tmPrice.innerText = formatted.miniActive + " تومان";
+        else if (currentLang === "tr") tmPrice.innerText = "₺" + formatted.miniActive;
+        else tmPrice.innerText = "$" + formatted.miniActive;
+    }
+
+    const tcPrice = document.getElementById("table-price-cloud");
+    if (tcPrice) {
+        if (currentLang === "fa") tcPrice.innerText = formatted.cloudActive + " تومان";
+        else if (currentLang === "tr") tcPrice.innerText = "₺" + formatted.cloudActive;
+        else tcPrice.innerText = "$" + formatted.cloudActive;
+    }
+}
+
+// Subscribe to language change events from i18n.js
+document.addEventListener("langChanged", (e) => {
+    currentLang = e.detail.lang;
+    
+    // Reset/update elements that need translations or text changes
+    updateDateTime();
+    fetchRates();
+    
+    // Update currency labels throughout the page
+    const currencySymbols = { fa: "تومان", en: "$", tr: "TL" };
+    const symbol = currencySymbols[currentLang] || "تومان";
+    document.querySelectorAll(".currency-label").forEach(elem => {
+        elem.innerText = symbol;
+    });
+
+    // Update percent symbol representations globally
+    const percentSymbol = currentLang === "fa" ? "٪" : "%";
+    document.querySelectorAll(".percent-label").forEach(elem => {
+        elem.innerText = percentSymbol;
+    });
+
+    // Trigger gold type text display update
+    const goldTypeSelect = document.getElementById("calc-gold-type");
+    if (goldTypeSelect) {
+        goldTypeSelect.dispatchEvent(new Event("change"));
+    }
+    
+    recalculateCartTotals();
+    renderInvoiceCart();
+    updatePricingDisplay();
+});
 
 // --- INITIALIZATION ---
 document.addEventListener("DOMContentLoaded", () => {
     initTheme();
+    initLangSelector();
+    
+    // Initialize default language
+    const savedLang = localStorage.getItem("goldex-lang") || "fa";
+    updateLanguage(savedLang);
+    
     initRatesTicker();
     initCalculators();
     initReports();
@@ -50,20 +239,31 @@ document.addEventListener("DOMContentLoaded", () => {
 // --- DATE & TIME UPDATE ---
 function updateDateTime() {
     const today = new Date();
-    
-    // Simulating Persian Solar Date for absolute realism (e.g. 1405/03/01)
-    // 2026 May 21st is approximately Solar Hijri 1405/03/01 (Khordad)
     const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-    const timeString = today.toLocaleTimeString('fa-IR', options);
+    
+    let timeString, dateString;
+    if (currentLang === "fa") {
+        timeString = toPersianDigits(today.toLocaleTimeString('fa-IR', options));
+        dateString = "۱۴۰۵/۰۳/۰۱"; // Simulated Persian solar date
+    } else {
+        timeString = today.toLocaleTimeString('en-US', options);
+        dateString = "2026/05/21"; // Simulated Gregorian date
+    }
     
     const lastUpdateElem = document.getElementById("last-update-time");
     if (lastUpdateElem) lastUpdateElem.innerText = timeString;
     
     const invoiceTimeElem = document.getElementById("invoice-time-today");
-    if (invoiceTimeElem) invoiceTimeElem.innerText = today.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit', hour12: false });
+    if (invoiceTimeElem) {
+        if (currentLang === "fa") {
+            invoiceTimeElem.innerText = toPersianDigits(today.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit', hour12: false }));
+        } else {
+            invoiceTimeElem.innerText = today.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+        }
+    }
     
     const invoiceDateElem = document.getElementById("invoice-date-today");
-    if (invoiceDateElem) invoiceDateElem.innerText = "۱۴۰۵/۰۳/۰۱"; // Perfect Persian Date simulation matching current simulated time (2026 May)
+    if (invoiceDateElem) invoiceDateElem.innerText = dateString;
 }
 
 // --- THEME TOGGLE (Luxury Dark / Elegant Pearl) ---
@@ -76,24 +276,27 @@ function initTheme() {
     body.setAttribute("data-theme", savedTheme);
     updateThemeIcon(savedTheme);
     
-    themeBtn.addEventListener("click", () => {
-        const currentTheme = body.getAttribute("data-theme");
-        const newTheme = currentTheme === "dark" ? "light" : "dark";
-        
-        body.setAttribute("data-theme", newTheme);
-        localStorage.setItem("goldex-theme", newTheme);
-        updateThemeIcon(newTheme);
-    });
+    if (themeBtn) {
+        themeBtn.addEventListener("click", () => {
+            const currentTheme = body.getAttribute("data-theme");
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+            
+            body.setAttribute("data-theme", newTheme);
+            localStorage.setItem("goldex-theme", newTheme);
+            updateThemeIcon(newTheme);
+        });
+    }
 }
 
 function updateThemeIcon(theme) {
     const themeBtn = document.getElementById("theme-toggle-btn");
+    if (!themeBtn) return;
     if (theme === "dark") {
         themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-        themeBtn.setAttribute("title", "تغییر به پوسته مروارید روشن");
+        themeBtn.setAttribute("title", currentLang === "fa" ? "تغییر به پوسته مروارید روشن" : "Switch to Pearl Light Mode");
     } else {
         themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-        themeBtn.setAttribute("title", "تغییر به پوسته لوکس تیره");
+        themeBtn.setAttribute("title", currentLang === "fa" ? "تغییر به پوسته لوکس تیره" : "Switch to Luxury Dark Mode");
     }
 }
 
@@ -107,7 +310,8 @@ function initRatesTicker() {
 
 async function fetchRates() {
     try {
-        const response = await fetch('/api/rates');
+        const url = currentLang === "fa" ? '/api/rates' : `/api/rates?currency=${currentLang === "tr" ? "try" : "usd"}`;
+        const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -135,6 +339,9 @@ async function fetchRates() {
         // Trigger calculations sync with rate updates
         recalculateGold();
         recalculateReverseBudget();
+        recalculateCartTotals();
+        renderInvoiceCart();
+        updatePricingDisplay();
         updateDateTime();
     } catch (err) {
         console.error("Failed to fetch live rates from server:", err);
@@ -143,7 +350,7 @@ async function fetchRates() {
 
 function updateRateItem(key, diff, priceElemId, trendElemId, percentDecimals, unitText) {
     const oldVal = liveRates[key];
-    const newVal = Math.max(oldVal + diff, 1000); // ensure positive
+    const newVal = Math.max(oldVal + diff, 0.01); // ensure positive
     liveRates[key] = newVal;
     
     const priceElem = document.getElementById(priceElemId);
@@ -161,17 +368,18 @@ function updateRateItem(key, diff, priceElemId, trendElemId, percentDecimals, un
     }
     
     // Update text
-    priceElem.innerText = toPersianDigits(formatNum(newVal));
+    priceElem.innerText = formatCurrencyVal(newVal);
     
     // Update trend indicator if exists
     if (trendElemId) {
         const trendElem = document.getElementById(trendElemId);
         if (trendElem) {
-            const percentChange = (diff / oldVal) * 100;
+            const percentChange = oldVal > 0 ? (diff / oldVal) * 100 : 0;
             const absolutePercent = Math.abs(percentChange).toFixed(percentDecimals);
             
             trendElem.className = isUp ? "rate-trend up" : "rate-trend down";
-            trendElem.innerHTML = `${isUp ? '<i class="fa-solid fa-caret-up"></i>' : '<i class="fa-solid fa-caret-down"></i>'} <span class="num-font">${toPersianDigits(absolutePercent)}٪</span>`;
+            const formattedPercent = currentLang === 'fa' ? toPersianDigits(absolutePercent) : absolutePercent;
+            trendElem.innerHTML = `${isUp ? '<i class="fa-solid fa-caret-up"></i>' : '<i class="fa-solid fa-caret-down"></i>'} <span class="num-font">${formattedPercent}%</span>`;
         }
     }
 }
@@ -183,30 +391,47 @@ function initCalculators() {
     const wageSlider = document.getElementById("calc-wage");
     const profitSlider = document.getElementById("calc-profit");
     
+    if (!goldType || !weightSlider || !wageSlider || !profitSlider) return;
+    
     // Synchronize Display Text
     weightSlider.addEventListener("input", (e) => {
-        document.getElementById("display-weight").innerText = toPersianDigits(parseFloat(e.target.value).toFixed(2));
+        document.getElementById("display-weight").innerText = formatDecimal(e.target.value);
         recalculateGold();
     });
     
     wageSlider.addEventListener("input", (e) => {
-        document.getElementById("display-wage").innerText = toPersianDigits(e.target.value);
+        document.getElementById("display-wage").innerText = formatInt(e.target.value);
         recalculateGold();
     });
     
     profitSlider.addEventListener("input", (e) => {
-        document.getElementById("display-profit").innerText = toPersianDigits(e.target.value);
+        document.getElementById("display-profit").innerText = formatInt(e.target.value);
         recalculateGold();
     });
     
     goldType.addEventListener("change", () => {
         const typeTexts = {
-            "18": "طلای ۱۸ عیار",
-            "24": "طلای ۲۴ عیار",
-            "melted": "طلای آبشده",
-            "used": "طلای کهنه / مستعمل"
+            fa: {
+                "18": "طلای ۱۸ عیار",
+                "24": "طلای ۲۴ عیار",
+                "melted": "طلای آبشده",
+                "used": "طلای کهنه / مستعمل"
+            },
+            en: {
+                "18": "18K Gold (750)",
+                "24": "24K Gold (999)",
+                "melted": "Melted Gold (Mithqal)",
+                "used": "Scrap / Used Gold"
+            },
+            tr: {
+                "18": "18 Ayar Altın (750)",
+                "24": "24 Ayar Altın (999)",
+                "melted": "Has Altın (Miskal)",
+                "used": "Hurda / Kullanılmış Altın"
+            }
         };
-        document.getElementById("display-gold-type").innerText = typeTexts[goldType.value];
+        const activeDict = typeTexts[currentLang] || typeTexts.fa;
+        document.getElementById("display-gold-type").innerText = activeDict[goldType.value];
         recalculateGold();
     });
     
@@ -214,19 +439,21 @@ function initCalculators() {
     const budgetInput = document.getElementById("calc-budget");
     const budgetSlider = document.getElementById("calc-budget-slider");
     
-    budgetInput.addEventListener("input", (e) => {
-        let val = parseFloat(e.target.value) || 0;
-        budgetSlider.value = Math.min(val, 500000000); // clip slider max
-        document.getElementById("display-budget-formatted").innerText = formatPersianCurrency(val) + " تومان";
-        recalculateReverseBudget();
-    });
-    
-    budgetSlider.addEventListener("input", (e) => {
-        let val = parseFloat(e.target.value);
-        budgetInput.value = val;
-        document.getElementById("display-budget-formatted").innerText = formatPersianCurrency(val) + " تومان";
-        recalculateReverseBudget();
-    });
+    if (budgetInput && budgetSlider) {
+        budgetInput.addEventListener("input", (e) => {
+            let val = parseFloat(e.target.value) || 0;
+            budgetSlider.value = Math.min(val, 500000000); // clip slider max
+            document.getElementById("display-budget-formatted").innerText = formatCurrency(val);
+            recalculateReverseBudget();
+        });
+        
+        budgetSlider.addEventListener("input", (e) => {
+            let val = parseFloat(e.target.value);
+            budgetInput.value = val;
+            document.getElementById("display-budget-formatted").innerText = formatCurrency(val);
+            recalculateReverseBudget();
+        });
+    }
     
     // Initial run
     recalculateGold();
@@ -234,7 +461,9 @@ function initCalculators() {
 }
 
 function recalculateGold() {
-    const goldType = document.getElementById("calc-gold-type").value;
+    const goldTypeElem = document.getElementById("calc-gold-type");
+    if (!goldTypeElem) return;
+    const goldType = goldTypeElem.value;
     const weight = parseFloat(document.getElementById("calc-weight").value);
     const wagePercent = parseFloat(document.getElementById("calc-wage").value);
     const profitPercent = parseFloat(document.getElementById("calc-profit").value);
@@ -247,7 +476,9 @@ function recalculateGold() {
         // derived from melted rate (مظنه)
         baseGramRate = liveRates.goldMelt / 4.608;
     } else if (goldType === "used") {
-        baseGramRate = liveRates.gold18 - 60000; // scrap gold is bought at a discount
+        // scrap gold is bought at a discount
+        const scrapDiscount = currentLang === "fa" ? 60000 : (currentLang === "tr" ? 30 : 1);
+        baseGramRate = Math.max(liveRates.gold18 - scrapDiscount, 0.01);
     }
     
     // Formula calculations
@@ -258,28 +489,30 @@ function recalculateGold() {
     const totalPrice = basePrice + wagePrice + profitPrice + taxPrice;
     
     // Render outputs
-    document.getElementById("res-base-price").innerText = toPersianDigits(formatNum(basePrice));
-    document.getElementById("res-wage-price").innerText = toPersianDigits(formatNum(wagePrice));
-    document.getElementById("res-profit-price").innerText = toPersianDigits(formatNum(profitPrice));
-    document.getElementById("res-tax-price").innerText = toPersianDigits(formatNum(taxPrice));
-    document.getElementById("res-total-price").innerText = toPersianDigits(formatNum(totalPrice));
+    document.getElementById("res-base-price").innerText = formatCurrencyVal(basePrice);
+    document.getElementById("res-wage-price").innerText = formatCurrencyVal(wagePrice);
+    document.getElementById("res-profit-price").innerText = formatCurrencyVal(profitPrice);
+    document.getElementById("res-tax-price").innerText = formatCurrencyVal(taxPrice);
+    document.getElementById("res-total-price").innerText = formatCurrencyVal(totalPrice);
 }
 
 function recalculateReverseBudget() {
-    const budget = parseFloat(document.getElementById("calc-budget").value) || 0;
+    const budgetElem = document.getElementById("calc-budget");
+    if (!budgetElem) return;
+    const budget = parseFloat(budgetElem.value) || 0;
     
     // Calculations based on live active prices
     const rate18 = liveRates.gold18;
     const coinRate = liveRates.coinEmami;
     const quarterRate = liveRates.coinQuarter;
     
-    const buyGoldGrams = budget / rate18;
-    const buyCoins = budget / coinRate;
-    const buyQuarters = budget / quarterRate;
+    const buyGoldGrams = rate18 > 0 ? budget / rate18 : 0;
+    const buyCoins = coinRate > 0 ? budget / coinRate : 0;
+    const buyQuarters = quarterRate > 0 ? budget / quarterRate : 0;
     
-    document.getElementById("res-buy-gold").innerText = toPersianDigits(buyGoldGrams.toFixed(3));
-    document.getElementById("res-buy-coin").innerText = toPersianDigits(buyCoins.toFixed(2));
-    document.getElementById("res-buy-quarter").innerText = toPersianDigits(buyQuarters.toFixed(2));
+    document.getElementById("res-buy-gold").innerText = formatDecimal(buyGoldGrams, 3);
+    document.getElementById("res-buy-coin").innerText = formatDecimal(buyCoins, 2);
+    document.getElementById("res-buy-quarter").innerText = formatDecimal(buyQuarters, 2);
 }
 
 // --- BARCODE SCANNER MOCKUP ---
@@ -287,20 +520,21 @@ function initBarcodeScanner() {
     const btnScan = document.getElementById("btn-simulate-scan");
     const scanResult = document.getElementById("scan-result-display");
     
+    if (!btnScan || !scanResult) return;
+    
     btnScan.addEventListener("click", () => {
         // Trigger scanning effect
         const laser = document.querySelector(".scan-laser");
-        laser.style.animationPlayState = "running";
+        if (laser) laser.style.animationPlayState = "running";
         
         btnScan.disabled = true;
-        btnScan.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> در حال اسکن بارکد...';
+        btnScan.innerHTML = currentLang === "fa" ? '<i class="fa-solid fa-spinner fa-spin"></i> در حال اسکن بارکد...' : (currentLang === "tr" ? '<i class="fa-solid fa-spinner fa-spin"></i> Barkod taranıyor...' : '<i class="fa-solid fa-spinner fa-spin"></i> Scanning barcode...');
         
         setTimeout(() => {
             // Pick selected item details
             const itemSelect = document.getElementById("scan-item-select");
             const selectedOption = itemSelect.options[itemSelect.selectedIndex];
             
-            const desc = selectedOption.getAttribute("data-desc");
             const weight = parseFloat(selectedOption.getAttribute("data-weight"));
             const wage = parseFloat(selectedOption.getAttribute("data-wage"));
             const profit = parseFloat(selectedOption.getAttribute("data-profit"));
@@ -313,16 +547,33 @@ function initBarcodeScanner() {
             const taxPrice = (wagePrice + profitPrice) * 0.09;
             const totalPrice = basePrice + wagePrice + profitPrice + taxPrice;
             
+            // Handle translated names for the scanned items
+            let desc = selectedOption.text;
+            if (currentLang !== "fa") {
+                const itemIndex = itemSelect.selectedIndex;
+                const enNames = [
+                    "18K Gold Link Chain Bracelet",
+                    "Fancy Diamond Flower Ring",
+                    "Damas Yellow Gold Bangle"
+                ];
+                const trNames = [
+                    "18 Ayar Altın Zincir Bileklik",
+                    "Fantezi Pırlanta Çiçek Yüzük",
+                    "Damas Sarı Altın Kelepçe"
+                ];
+                desc = currentLang === "tr" ? trNames[itemIndex] : enNames[itemIndex];
+            }
+            
             // Update scanning UI
             document.getElementById("scan-res-desc").innerText = desc;
-            document.getElementById("scan-res-weight").innerText = toPersianDigits(weight.toFixed(2));
-            document.getElementById("scan-res-wage").innerText = toPersianDigits(wage) + "٪";
-            document.getElementById("scan-res-total").innerText = toPersianDigits(formatNum(totalPrice));
+            document.getElementById("scan-res-weight").innerText = formatDecimal(weight);
+            document.getElementById("scan-res-wage").innerText = formatInt(wage) + "%";
+            document.getElementById("scan-res-total").innerText = formatCurrencyVal(totalPrice);
             
-            scanResult.style.display = "block";
+            if (scanResult) scanResult.style.display = "block";
             
             btnScan.disabled = false;
-            btnScan.innerHTML = '<i class="fa-solid fa-expand"></i> اسکن مجدد بارکد کالا';
+            btnScan.innerHTML = currentLang === "fa" ? '<i class="fa-solid fa-expand"></i> اسکن مجدد بارکد کالا' : (currentLang === "tr" ? '<i class="fa-solid fa-expand"></i> Barkodu Tekrar Tara' : '<i class="fa-solid fa-expand"></i> Scan Barcode Again');
         }, 1200);
     });
 }
@@ -368,65 +619,48 @@ function initInvoiceCart() {
     const btnAddItem = document.getElementById("btn-add-invoice-item");
     const btnPrint = document.getElementById("btn-trigger-print-modal");
     
-    btnAddItem.addEventListener("click", () => {
-        const itemType = document.getElementById("invoice-item-type").value;
-        const weightOrQty = parseFloat(document.getElementById("invoice-item-weight").value) || 0;
+    if (btnAddItem && btnPrint) {
+        btnAddItem.addEventListener("click", () => {
+            const itemType = document.getElementById("invoice-item-type").value;
+            const weightOrQty = parseFloat(document.getElementById("invoice-item-weight").value) || 0;
+            
+            if (weightOrQty <= 0) return;
+            
+            let rateText = "-";
+            if (itemType === "طلا ۱۸ عیار") {
+                rateText = "19%";
+            }
+            
+            const newItem = {
+                id: 'item-' + Date.now(),
+                type: itemType,
+                rateText: rateText,
+                rawWeight: weightOrQty
+            };
+            
+            invoiceCart.push(newItem);
+            recalculateCartTotals();
+            renderInvoiceCart();
+        });
         
-        if (weightOrQty <= 0) return;
-        
-        let desc = "";
-        let qtyText = "";
-        let rateText = "-";
-        let totalVal = 0;
-        
-        // Calculate price based on item type
-        if (itemType === "طلا ۱۸ عیار") {
-            desc = "دستبند / زنجیر طلای ۱۸ عیار";
-            qtyText = weightOrQty.toFixed(2) + " گرم";
-            rateText = "۱۹٪"; // default markup
-            const basePrice = weightOrQty * liveRates.gold18;
-            const markupPrice = basePrice * 0.19; // wage + profit
-            totalVal = basePrice + markupPrice + (markupPrice * 0.09); // tax
-        } else if (itemType === "طلای کهنه") {
-            desc = "خرید طلای مستعمل از مشتری";
-            qtyText = weightOrQty.toFixed(2) + " گرم";
-            totalVal = weightOrQty * (liveRates.gold18 - 60000);
-        } else if (itemType === "سکه امامی") {
-            desc = "سکه تمام بهار آزادی (امامی)";
-            qtyText = Math.round(weightOrQty) + " عدد";
-            totalVal = Math.round(weightOrQty) * liveRates.coinEmami;
-        } else if (itemType === "طلای آبشده") {
-            desc = "طلای آبشده خام";
-            qtyText = weightOrQty.toFixed(2) + " گرم";
-            totalVal = weightOrQty * (liveRates.goldMelt / 4.608);
-        }
-        
-        const newItem = {
-            id: 'item-' + Date.now(),
-            desc: desc,
-            qtyText: qtyText,
-            rateText: rateText,
-            total: Math.round(totalVal),
-            rawWeight: itemType === "سکه امامی" ? 0 : weightOrQty
-        };
-        
-        invoiceCart.push(newItem);
-        renderInvoiceCart();
-    });
+        btnPrint.addEventListener("click", () => {
+            prepareInvoicePrint();
+            togglePrintModal();
+        });
+    }
     
     // Modal Close
-    document.getElementById("btn-close-print-modal").addEventListener("click", togglePrintModal);
-    document.getElementById("btn-modal-close-secondary").addEventListener("click", togglePrintModal);
+    const btnCloseModal = document.getElementById("btn-close-print-modal");
+    if (btnCloseModal) btnCloseModal.addEventListener("click", togglePrintModal);
+    const btnCloseSecondary = document.getElementById("btn-modal-close-secondary");
+    if (btnCloseSecondary) btnCloseSecondary.addEventListener("click", togglePrintModal);
     
-    // Print triggers
-    btnPrint.addEventListener("click", () => {
-        prepareInvoicePrint();
-        togglePrintModal();
-    });
-    
-    document.getElementById("btn-modal-print-real").addEventListener("click", () => {
-        window.print();
-    });
+    const btnPrintReal = document.getElementById("btn-modal-print-real");
+    if (btnPrintReal) {
+        btnPrintReal.addEventListener("click", () => {
+            window.print();
+        });
+    }
     
     // Initial Render
     renderInvoiceCart();
@@ -452,22 +686,29 @@ function renderInvoiceCart() {
         
         const row = document.createElement("div");
         row.className = "invoice-item-row";
+        
+        const qtyDisplay = currentLang === "fa" ? toPersianDigits(item.qtyText) : item.qtyText;
+        const rateDisplay = currentLang === "fa" ? toPersianDigits(item.rateText) : item.rateText;
+        const totalDisplay = formatCurrencyVal(item.total);
+        
         row.innerHTML = `
             <span>${item.desc}</span>
-            <span style="text-align: center;" class="num-font">${toPersianDigits(item.qtyText)}</span>
-            <span style="text-align: center;" class="num-font">${toPersianDigits(item.rateText)}</span>
-            <span style="text-align: left;" class="num-font">${toPersianDigits(formatNum(item.total))}</span>
+            <span style="text-align: center;" class="num-font">${qtyDisplay}</span>
+            <span style="text-align: center;" class="num-font">${rateDisplay}</span>
+            <span style="text-align: left;" class="num-font">${totalDisplay}</span>
             <button class="btn-remove-item" onclick="removeInvoiceItem('${item.id}')"><i class="fa-solid fa-trash-can"></i></button>
         `;
         container.appendChild(row);
     });
     
-    document.getElementById("invoice-cart-total").innerText = toPersianDigits(formatNum(grandTotal));
+    const totalElem = document.getElementById("invoice-cart-total");
+    if (totalElem) totalElem.innerText = formatCurrencyVal(grandTotal);
 }
 
 // --- PRINT PREPARE & MODAL OVERLAY ---
 function togglePrintModal() {
     const modal = document.getElementById("receipt-modal-container");
+    if (!modal) return;
     const isActive = modal.classList.contains("active");
     
     if (isActive) {
@@ -481,6 +722,7 @@ function togglePrintModal() {
 
 function prepareInvoicePrint() {
     const tbody = document.getElementById("a5-table-rows");
+    if (!tbody) return;
     tbody.innerHTML = "";
     
     let grandTotal = 0;
@@ -492,20 +734,28 @@ function prepareInvoicePrint() {
         totalWeight += item.rawWeight;
         
         const tr = document.createElement("tr");
+        const idxDisplay = formatInt(idx++);
+        const qtyDisplay = currentLang === "fa" ? toPersianDigits(item.qtyText) : item.qtyText;
+        const rateDisplay = currentLang === "fa" ? toPersianDigits(item.rateText) : item.rateText;
+        const totalDisplay = formatCurrencyVal(item.total);
+        
         tr.innerHTML = `
-            <td class="num-font">${toPersianDigits(idx++)}</td>
+            <td class="num-font">${idxDisplay}</td>
             <td style="text-align: right;">${item.desc}</td>
-            <td class="num-font">${toPersianDigits(item.qtyText)}</td>
-            <td class="num-font">${toPersianDigits(item.rateText)}</td>
-            <td class="num-font" style="text-align: left;">${toPersianDigits(formatNum(item.total))}</td>
+            <td class="num-font">${qtyDisplay}</td>
+            <td class="num-font">${rateDisplay}</td>
+            <td class="num-font" style="text-align: left;">${totalDisplay}</td>
         `;
         tbody.appendChild(tr);
     });
     
     // Injections to A5 Form Summary
-    document.getElementById("a5-total-weight-display").innerText = toPersianDigits(totalWeight.toFixed(2));
-    document.getElementById("a5-today-gold-rate").innerText = toPersianDigits(formatNum(liveRates.gold18));
-    document.getElementById("a5-grand-total-display").innerText = toPersianDigits(formatNum(grandTotal));
+    const weightDisplay = document.getElementById("a5-total-weight-display");
+    if (weightDisplay) weightDisplay.innerText = formatDecimal(totalWeight);
+    const rateDisplay = document.getElementById("a5-today-gold-rate");
+    if (rateDisplay) rateDisplay.innerText = formatCurrencyVal(liveRates.gold18);
+    const grandTotalDisplay = document.getElementById("a5-grand-total-display");
+    if (grandTotalDisplay) grandTotalDisplay.innerText = formatCurrencyVal(grandTotal);
 }
 
 // --- MOBILE HAMBURGER MENU TOGGLE ---

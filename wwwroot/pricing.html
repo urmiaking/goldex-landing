@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تعرفه‌ها و طرح‌های هوشمند گلدکس (GoldEx) | حسابداری و فروش طلا</title>
-    <meta name="description" content="جدول تعرفه مقایسه‌ای و طرح‌های اشتراک پلتفرم هوشمند حسابداری طلا و جواهر گلدکس و نرم‌افزار گلدکس مینی. مقایسه مدل‌های ابری آنلاین و نصب محلی آفلاین.">
+    <title data-i18n="pricing_page_title">تعرفه‌ها و طرح‌های هوشمند گلدکس (GoldEx) | حسابداری و فروش طلا</title>
+    <meta name="description" content="جدول تعرفه مقایسه‌ای و طرح‌های اشتراک پلتفرم هوشمند حسابداری طلا و جواهر گلدکس و نرم‌افزار گلدکس مینی. مقایسه مدل‌های ابری آنلاین و نصب محلی آفلاین." data-i18n="pricing_page_desc">
     <link rel="icon" type="image/png" href="assets/goldex-logo.png">
     
     <!-- Custom CSS Styles inherited from parent -->
@@ -209,7 +209,29 @@
                 </a>
                 
                 <div class="nav-actions">
-                    <a href="index.html" class="btn-secondary" style="border-radius: 30px;"><i class="fa-solid fa-arrow-left" style="margin-left: 8px;"></i> بازگشت به صفحه اصلی</a>
+                    <!-- Modern custom language selector with emoji flags -->
+                    <div class="lang-selector">
+                        <button class="lang-btn" id="lang-select-btn" title="تغییر زبان / Change Language">
+                            <span class="flag-icon">🇮🇷</span>
+                            <span class="lang-code">FA</span>
+                        </button>
+                        <div class="lang-dropdown" id="lang-dropdown-menu">
+                            <div class="lang-option active" data-lang="fa">
+                                <span class="flag-icon">🇮🇷</span>
+                                <span>فارسی</span>
+                            </div>
+                            <div class="lang-option" data-lang="en">
+                                <span class="flag-icon">🇬🇧</span>
+                                <span>English</span>
+                            </div>
+                            <div class="lang-option" data-lang="tr">
+                                <span class="flag-icon">🇹🇷</span>
+                                <span>Türkçe</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="index.html" class="btn-secondary" style="border-radius: 30px;" data-i18n="btn_back_home"><i class="fa-solid fa-arrow-left" style="margin-left: 8px;"></i> بازگشت به صفحه اصلی</a>
                 </div>
             </nav>
         </div>
@@ -219,9 +241,9 @@
         <!-- PRICING HERO SECTION -->
         <section class="pricing-hero">
             <div class="container">
-                <span class="hero-tag"><i class="fa-solid fa-hand-holding-dollar"></i> بررسی و مقایسه شفاف قیمت‌ها</span>
-                <h1 class="gradient-text-gold">تعرفه‌ها و طرح‌های هوشمند لایسنس گلدکس</h1>
-                <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 0 auto;">توسعه یافته بر پایه دو پلتفرم مجزا جهت تطابق ۱۰۰ درصدی با نیازهای بنکداری‌های ابری و طلا‌فروشی‌های تک شعبه‌ای سنتی</p>
+                <span class="hero-tag" data-i18n="pricing_hero_tag"><i class="fa-solid fa-hand-holding-dollar"></i> بررسی و مقایسه شفاف قیمت‌ها</span>
+                <h1 class="gradient-text-gold" data-i18n="pricing_hero_title">تعرفه‌ها و طرح‌های هوشمند لایسنس گلدکس</h1>
+                <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 0 auto;" data-i18n="pricing_hero_desc">توسعه یافته بر پایه دو پلتفرم مجزا جهت تطابق ۱۰۰ درصدی با نیازهای بنکداری‌های ابری و طلا‌فروشی‌های تک شعبه‌ای سنتی</p>
             </div>
         </section>
 
@@ -233,165 +255,165 @@
                     <!-- Card 1: GoldEx Mini -->
                     <div class="price-detail-card glass-panel">
                         <div class="price-header">
-                            <h3><i class="fa-solid fa-receipt text-gold"></i> گلدکس مینی (Mini)</h3>
-                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">سیستم فاکتوردهی و فروش سریع آفلاین</p>
+                            <h3 data-i18n="price_card_mini_title"><i class="fa-solid fa-receipt text-gold"></i> گلدکس مینی (Mini)</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;" data-i18n="price_card_mini_sub">سیستم فاکتوردهی و فروش سریع آفلاین</p>
                             <div style="margin-top: 1.5rem;">
-                                <span class="strike-through">۵,۰۰۰,۰۰۰ تومان</span>
-                                <div class="price-amount">۳,۰۰۰,۰۰۰ <span>تومان</span></div>
-                                <span style="font-size:0.8rem; background: rgba(239, 68, 68, 0.15); color: var(--accent-red); padding: 2px 8px; border-radius: 4px; font-weight: 700;">تخفیف ویژه جشنواره محدود</span>
+                                <span class="strike-through num-font" id="pricing-price-mini-strike" data-i18n="price_mini_strike">۵,۰۰۰,۰۰۰ تومان</span>
+                                <div class="price-amount num-font" id="pricing-price-mini-val" data-i18n="price_mini_amount">۳,۰۰۰,۰۰۰ <span>تومان</span></div>
+                                <span style="font-size:0.8rem; background: rgba(239, 68, 68, 0.15); color: var(--accent-red); padding: 2px 8px; border-radius: 4px; font-weight: 700;" data-i18n="price_card_mini_discount">تخفیف ویژه جشنواره محدود</span>
                             </div>
                         </div>
                         
-                        <div class="price-notes">
+                        <div class="price-notes" data-i18n="price_card_mini_notes">
                             این پلتفرم بر روی یک دامنه سراسری و همگانی ابری بارگذاری شده است. کاربران با ثبت‌نام می‌توانند نام کاربری و کلمه عبور اختصاصی خود را دریافت کرده و به صورت نامحدود و مادام‌العمر از اپلیکیشن بهره‌مند شوند.
                         </div>
                         
                         <ul class="details-list">
-                            <li><i class="fa-solid fa-circle-check"></i> <span>فاکتوردهی سریع، طلا ۱۸ عیار، آبشده، سکه و طلا کهنه</span></li>
-                            <li><i class="fa-solid fa-circle-check"></i> <span>امکان نصب به صورت لایت PWA روی ویندوز و موبایل</span></li>
-                            <li><i class="fa-solid fa-circle-check"></i> <span>خروجی استاندارد فاکتور A5 افقی مورد تایید اتحادیه</span></li>
-                            <li><i class="fa-solid fa-circle-check"></i> <span>ذخیره ۱۰۰٪ آفلاین داده‌ها در مرورگر دستگاه شخصی شما</span></li>
-                            <li><i class="fa-solid fa-circle-check"></i> <span>پشتیبانی فنی لایسنس مادام‌العمر بدون شارژ ماهیانه</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="price_card_mini_bullet1">فاکتوردهی سریع، طلا ۱۸ عیار، آبشده، سکه و طلا کهنه</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="price_card_mini_bullet2">امکان نصب به صورت لایت PWA روی ویندوز و موبایل</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="price_card_mini_bullet3">خروجی استاندارد فاکتور A5 افقی مورد تایید اتحادیه</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="price_card_mini_bullet4">ذخیره ۱۰۰٪ آفلاین داده‌ها در مرورگر دستگاه شخصی شما</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="price_card_mini_bullet5">پشتیبانی فنی لایسنس مادام‌العمر بدون شارژ ماهیانه</span></li>
                         </ul>
                         
-                        <a href="index.html#mini" class="btn-secondary" style="text-align: center; font-weight: 700; width: 100%;">ثبت‌نام و دموی آفلاین مینی</a>
+                        <a href="index.html#mini" class="btn-secondary" style="text-align: center; font-weight: 700; width: 100%;" data-i18n="price_card_mini_btn">ثبت‌نام و دموی آفلاین مینی</a>
                     </div>
                     
                     <!-- Card 2: GoldEx SaaS Online -->
                     <div class="price-detail-card glass-panel featured">
-                        <span class="badge-premium">پیشنهاد برگزیده - کاملاً مدیریت شده</span>
+                        <span class="badge-premium" data-i18n="price_cloud_badge">پیشنهاد برگزیده - کاملاً مدیریت شده</span>
                         <div class="price-header">
-                            <h3><i class="fa-solid fa-cloud text-gold"></i> گلدکس ابری (Online SaaS)</h3>
-                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">مدیریت کامل حسابداری، انبارداری و زنجیره شعب</p>
+                            <h3 data-i18n="price_card_cloud_title"><i class="fa-solid fa-cloud text-gold"></i> گلدکس ابری (Online SaaS)</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;" data-i18n="price_card_cloud_sub">مدیریت کامل حسابداری، انبارداری و زنجیره شعب</p>
                             <div style="margin-top: 1.5rem;">
-                                <div class="price-amount">۷۹,۰۰۰,۰۰۰ <span>تومان</span></div>
-                                <span style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 700;">لایسنس پایه ابری پلتفرم سازمانی</span>
+                                <div class="price-amount num-font" id="pricing-price-cloud-val" data-i18n="price_cloud_amount">۷۹,۰۰۰,۰۰۰ <span>تومان</span></div>
+                                <span style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 700;" data-i18n="price_cloud_period">لایسنس پایه ابری پلتفرم سازمانی</span>
                             </div>
                         </div>
                         
-                        <div class="price-notes" style="border-right-color: var(--accent-blue);">
+                        <div class="price-notes" style="border-right-color: var(--accent-blue);" data-i18n="price_card_cloud_notes">
                             <strong>مدیریت سرور، دیتابیس و امنیت کاملاً با ماست.</strong> علاوه بر لایسنس پایه، کاربران می‌توانند شارژ پشتیبان‌گیری و نگهداری سرور را به انتخاب خود به صورت ماهیانه، ۳ ماهه، ۶ ماهه یا سالیانه تهیه کنند.
                         </div>
                         
                         <ul class="details-list">
-                            <li><i class="fa-solid fa-circle-check"></i> <span><strong>دامنه اختصاصی:</strong> اتصال ساب‌دامنه دلخواه یا دامنه شخصی گالری</span></li>
-                            <li><i class="fa-solid fa-circle-check"></i> <span><strong>بکاپ اتوماتیک:</strong> تهیه نسخه پشتیبان زمان‌بندی شده و ابری خودکار</span></li>
-                            <li><i class="fa-solid fa-circle-check"></i> <span><strong>مدیریت سرور:</strong> مانیتورینگ منابع سرور و ارتقای سخت‌افزاری توسط ما</span></li>
-                            <li><i class="fa-solid fa-circle-check"></i> <span>کاردکس کالا، عملیات ذوب و آزمایشگاه ریگیری طلا</span></li>
-                            <li><i class="fa-solid fa-circle-check"></i> <span>ورود فوق امن بیومتریک Passkey و پیامک‌های ۲ مرحله‌ای خودکار</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="price_card_cloud_bullet1"><strong>دامنه اختصاصی:</strong> اتصال ساب‌دامنه دلخواه یا دامنه شخصی گالری</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="price_card_cloud_bullet2"><strong>بکاپ اتوماتیک:</strong> تهیه نسخه پشتیبان زمان‌بندی شده و ابری خودکار</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="price_card_cloud_bullet3"><strong>مدیریت سرور:</strong> مانیتورینگ منابع سرور و ارتقای سخت‌افزاری توسط ما</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="price_card_cloud_bullet4">کاردکس کالا، عملیات ذوب و آزمایشگاه ریگیری طلا</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="price_card_cloud_bullet5">ورود فوق امن بیومتریک Passkey و پیامک‌های ۲ مرحله‌ای خودکار</span></li>
                         </ul>
                         
-                        <a href="index.html#calculators" class="btn-primary" style="text-align: center; font-weight: 800; width: 100%; color: #000 !important;">خرید لایسنس ابری آنلاین</a>
+                        <a href="index.html#calculators" class="btn-primary" style="text-align: center; font-weight: 800; width: 100%; color: #000 !important;" data-i18n="price_card_cloud_btn">خرید لایسنس ابری آنلاین</a>
                     </div>
                     
                     <!-- Card 3: GoldEx Offline Local Server -->
                     <div class="price-detail-card glass-panel">
                         <div class="price-header">
-                            <h3><i class="fa-solid fa-server text-gold"></i> گلدکس آفلاین (Local PC)</h3>
-                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">نصب سیستم به عنوان سرور لوکال فیزیکی</p>
+                            <h3 data-i18n="price_card_local_title"><i class="fa-solid fa-server text-gold"></i> گلدکس آفلاین (Local PC)</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;" data-i18n="price_card_local_sub">نصب سیستم به عنوان سرور لوکال فیزیکی</p>
                             <div style="margin-top: 1.5rem;">
-                                <span style="font-size: 0.95rem; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 0.25rem;">نصب فیزیکی در محل مشتری</span>
-                                <div class="price-amount" style="font-size:2.1rem; margin: 0.5rem 0;">بدون اجاره سرور</div>
-                                <span style="font-size:0.8rem; background: rgba(16, 185, 129, 0.15); color: var(--accent-green); padding: 2px 8px; border-radius: 4px; font-weight: 700;">خرید یک‌باره نرم‌افزار لوکال</span>
+                                <span style="font-size: 0.95rem; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 0.25rem;" data-i18n="price_card_local_label">نصب فیزیکی در محل مشتری</span>
+                                <div class="price-amount" style="font-size:2.1rem; margin: 0.5rem 0;" data-i18n="price_card_local_amount">بدون اجاره سرور</div>
+                                <span style="font-size:0.8rem; background: rgba(16, 185, 129, 0.15); color: var(--accent-green); padding: 2px 8px; border-radius: 4px; font-weight: 700;" data-i18n="price_card_local_badge">خرید یک‌باره نرم‌افزار لوکال</span>
                             </div>
                         </div>
                         
-                        <div class="price-notes">
+                        <div class="price-notes" data-i18n="price_card_local_notes">
                             پلتفرم به عنوان یک سرور وب محلی بر روی رایانه شخصی مشتری نصب می‌گردد. هیچ‌گونه هزینه اجاره ماهیانه سرور ابری وجود ندارد، اما به دلیل دشواری به‌روزرسانی‌ها و عدم وجود مکانیسم CI/CD ابری خودکار، هزینه نگهداری و پشتیبانی سالیانه آن نسبت به نسخه ابری بالاتر است.
                         </div>
                         
                         <ul class="details-list">
-                            <li><i class="fa-solid fa-circle-check"></i> <span>نصب دیتابیس لوکال قدرتمند بر روی سیستم شخصی مشتری</span></li>
-                            <li><i class="fa-solid fa-circle-check"></i> <span>عدم وابستگی مطلق به شبکه و اتصال مستمر اینترنت</span></li>
-                            <li><i class="fa-solid fa-circle-check"></i> <span>عدم پرداخت هزینه‌های تمدید منابع سخت‌افزاری ابری</span></li>
-                            <li><i class="fa-solid fa-circle-check"></i> <span>پشتیبان‌گیری دستی توسط متصدی گالری روی هارد فیزیکی</span></li>
-                            <li><i class="fa-solid fa-circle-check"></i> <span>خدمات پشتیبانی فنی فیزیکی و دورکاری به صورت سالیانه</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="price_card_local_bullet1">نصب دیتابیس لوکال قدرتمند بر روی سیستم شخصی مشتری</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="price_card_local_bullet2">عدم وابستگی مطلق به شبکه و اتصال مستمر اینترنت</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="price_card_local_bullet3">عدم پرداخت هزینه‌های تمدید منابع سخت‌افزاری ابری</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="price_card_local_bullet4">پشتیبان‌گیری دستی توسط متصدی گالری روی هارد فیزیکی</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span data-i18n="price_card_local_bullet5">خدمات پشتیبانی فنی فیزیکی و دورکاری به صورت سالیانه</span></li>
                         </ul>
                         
-                        <a href="index.html#calculators" class="btn-secondary" style="text-align: center; font-weight: 700; width: 100%;">درخواست استعلام نسخه محلی</a>
+                        <a href="index.html#calculators" class="btn-secondary" style="text-align: center; font-weight: 700; width: 100%;" data-i18n="price_card_local_btn">درخواست استعلام نسخه محلی</a>
                     </div>
                 </div>
 
                 <!-- FEATURE COMPARE TABLE -->
                 <div class="feature-compare-section">
                     <div class="section-header">
-                        <h2><i class="fa-solid fa-list-check text-gold"></i> ماتریس مقایسه‌ای کامل امکانات و تعرفه پشتیبانی</h2>
-                        <p>جدول مقایسه دقیق ماژول‌های فنی، امنیت و تعرفه‌های نگهداری سالیانه</p>
+                        <h2 data-i18n="detailed_matrix_title"><i class="fa-solid fa-list-check text-gold"></i> ماتریس مقایسه‌ای کامل امکانات و تعرفه پشتیبانی</h2>
+                        <p data-i18n="detailed_matrix_subtitle">جدول مقایسه دقیق ماژول‌های فنی, امنیت و تعرفه‌های نگهداری سالیانه</p>
                     </div>
                     
                     <div class="compare-table-wrapper glass-panel">
                         <table class="compare-table">
                             <thead>
                                 <tr class="compare-header-row">
-                                    <th style="width: 30%;">ویژگی و خدمات نگهداری</th>
-                                    <th style="width: 23%;">گلدکس مینی آفلاین</th>
-                                    <th style="width: 24%;">گلدکس آنلاین (ابری SaaS)</th>
-                                    <th style="width: 23%;">گلدکس آفلاین (سرور محلی)</th>
+                                    <th style="width: 30%;" data-i18n="matrix_th_service">ویژگی و خدمات نگهداری</th>
+                                    <th style="width: 23%;" data-i18n="matrix_th_mini">گلدکس مینی آفلاین</th>
+                                    <th style="width: 24%;" data-i18n="matrix_th_cloud">گلدکس آنلاین (ابری SaaS)</th>
+                                    <th style="width: 23%;" data-i18n="matrix_th_local">گلدکس آفلاین (سرور محلی)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- Group 1: Pricing & Licenses -->
                                 <tr>
-                                    <td class="compare-group-title" colspan="4">تعرفه‌های لایسنس و اشتراک سرور</td>
+                                    <td class="compare-group-title" colspan="4" data-i18n="matrix_g1">تعرفه‌های لایسنس و اشتراک سرور</td>
                                 </tr>
                                 <tr>
-                                    <td>مبلغ خرید اولیه لایسنس نرم‌افزار</td>
-                                    <td class="num-font text-gold">۳,۰۰۰,۰۰۰ تومان</td>
-                                    <td class="num-font text-gold">۷۹,۰۰۰,۰۰۰ تومان</td>
-                                    <td class="num-font text-gold">استعلام قیمت روز</td>
+                                    <td data-i18n="matrix_r1">مبلغ خرید اولیه لایسنس نرم‌افزار</td>
+                                    <td class="num-font text-gold" id="table-price-mini">۳,۰۰۰,۰۰۰ تومان</td>
+                                    <td class="num-font text-gold" id="table-price-cloud">۷۹,۰۰۰,۰۰۰ تومان</td>
+                                    <td class="num-font text-gold" data-i18n="matrix_r1_val">استعلام قیمت روز</td>
                                 </tr>
                                 <tr>
-                                    <td>پرداخت اجاره یا منابع سخت‌افزاری ابری</td>
-                                    <td class="times-icon"><i class="fa-solid fa-xmark"></i> بدون سرور</td>
-                                    <td class="check-icon"><i class="fa-solid fa-check"></i> شامل نگهداری منابع ابری</td>
-                                    <td class="times-icon"><i class="fa-solid fa-xmark"></i> بدون اجاره سرور</td>
+                                    <td data-i18n="matrix_r2">پرداخت اجاره یا منابع سخت‌افزاری ابری</td>
+                                    <td class="times-icon"><i class="fa-solid fa-xmark"></i> <span data-i18n="matrix_r2_no_server">بدون سرور</span></td>
+                                    <td class="check-icon"><i class="fa-solid fa-check"></i> <span data-i18n="matrix_r2_included">شامل نگهداری منابع ابری</span></td>
+                                    <td class="times-icon"><i class="fa-solid fa-xmark"></i> <span data-i18n="matrix_r2_no_rent">بدون اجاره سرور</span></td>
                                 </tr>
                                 <tr>
-                                    <td>دوره‌های خرید اشتراک نگهداری سرور</td>
-                                    <td>ندارد (مادام‌العمر)</td>
-                                    <td>ماهانه، ۳ ماهه، ۶ ماهه و سالانه</td>
-                                    <td>سالیانه (فقط شارژ پشتیبانی)</td>
+                                    <td data-i18n="matrix_r3">دوره‌های خرید اشتراک نگهداری سرور</td>
+                                    <td data-i18n="price_mini_period">ندارد (مادام‌العمر)</td>
+                                    <td data-i18n="matrix_r3_val">ماهانه، ۳ ماهه، ۶ ماهه و سالانه</td>
+                                    <td data-i18n="matrix_r3_local">سالیانه (فقط شارژ پشتیبانی)</td>
                                 </tr>
                                 <tr>
-                                    <td>خدمات نگهداری و تمدید امنیت سرور</td>
-                                    <td class="times-icon"><i class="fa-solid fa-xmark"></i> بر عهده کاربر</td>
-                                    <td><span class="check-icon"><i class="fa-solid fa-check"></i> شامل خدمات سرور</span> (ابری)</td>
-                                    <td class="times-icon"><i class="fa-solid fa-xmark"></i> بر عهده کاربر در دیتابیس لوکال</td>
+                                    <td data-i18n="matrix_r4">خدمات نگهداری و تمدید امنیت سرور</td>
+                                    <td class="times-icon"><i class="fa-solid fa-xmark"></i> <span data-i18n="matrix_r4_user">بر عهده کاربر</span></td>
+                                    <td class="check-icon"><i class="fa-solid fa-check"></i> <span data-i18n="matrix_r4_managed">شامل خدمات سرور (ابری)</span></td>
+                                    <td class="times-icon"><i class="fa-solid fa-xmark"></i> <span data-i18n="matrix_r4_local">بر عهده کاربر در دیتابیس لوکال</span></td>
                                 </tr>
                                 
                                 <!-- Group 2: Deployments & Technical features -->
                                 <tr>
-                                    <td class="compare-group-title" colspan="4">مشخصات استقرار و به‌روزرسانی فنی</td>
+                                    <td class="compare-group-title" colspan="4" data-i18n="matrix_g2">مشخصات استقرار و به‌روزرسانی فنی</td>
                                 </tr>
                                 <tr>
-                                    <td>مدل استقرار دیتابیس (Database Deploy)</td>
-                                    <td>حافظه داخلی مرورگر (LocalStorage)</td>
-                                    <td>سرورهای امن و مقیاس‌پذیر ابری</td>
-                                    <td>رایانه مرکزی گالری مشتری (لوکال)</td>
+                                    <td data-i18n="matrix_r5">مدل استقرار دیتابیس (Database Deploy)</td>
+                                    <td data-i18n="matrix_r5_val">حافظه داخلی مرورگر (LocalStorage)</td>
+                                    <td data-i18n="matrix_r5_cloud">سرورهای امن و مقیاس‌پذیر ابری</td>
+                                    <td data-i18n="matrix_r5_local">رایانه مرکزی گالری مشتری (لوکال)</td>
                                 </tr>
                                 <tr>
-                                    <td>نوع دامنه و زیردامنه (Domain Options)</td>
-                                    <td>دامنه عمومی و سراسری گلدکس</td>
-                                    <td><strong>ساب‌دامنه رایگان یا دامنه اختصاصی</strong></td>
-                                    <td>شبکه داخلی (Intranet) محلی</td>
+                                    <td data-i18n="matrix_r6">نوع دامنه و زیردامنه (Domain Options)</td>
+                                    <td data-i18n="matrix_r6_val">دامنه عمومی و سراسری گلدکس</td>
+                                    <td data-i18n="matrix_r6_cloud"><strong>ساب‌دامنه رایگان یا دامنه اختصاصی</strong></td>
+                                    <td data-i18n="matrix_r6_local">شبکه داخلی (Intranet) محلی</td>
                                 </tr>
                                 <tr>
-                                    <td>مکانیسم به‌روزرسانی خودکار (CI/CD Updates)</td>
-                                    <td class="check-icon"><i class="fa-solid fa-check"></i> خودکار از دامنه سراسری</td>
-                                    <td class="check-icon"><i class="fa-solid fa-check"></i> خودکار (بدون قطعی سرور)</td>
-                                    <td class="times-icon"><i class="fa-solid fa-xmark"></i> نیازمند حضور کارشناس یا ریموت</td>
+                                    <td data-i18n="matrix_r7">مکانیسم به‌روزرسانی خودکار (CI/CD Updates)</td>
+                                    <td class="check-icon"><i class="fa-solid fa-check"></i> <span data-i18n="matrix_r7_val">خودکار از دامنه سراسری</span></td>
+                                    <td class="check-icon"><i class="fa-solid fa-check"></i> <span data-i18n="matrix_r7_cloud">خودکار (بدون قطعی سرور)</span></td>
+                                    <td class="times-icon"><i class="fa-solid fa-xmark"></i> <span data-i18n="matrix_r7_local">نیازمند حضور کارشناس یا ریموت</span></td>
                                 </tr>
                                 <tr>
-                                    <td>نسخه پشتیبان از فاکتورها (Auto Backups)</td>
-                                    <td class="times-icon"><i class="fa-solid fa-xmark"></i> دستی توسط طلافروش</td>
-                                    <td class="check-icon"><i class="fa-solid fa-check"></i> <strong>تمام خودکار چندنقطه‌ای ابری</strong></td>
-                                    <td class="times-icon"><i class="fa-solid fa-xmark"></i> دستی و نیازمند هارد اکسترنال</td>
+                                    <td data-i18n="matrix_r8">نسخه پشتیبان از فاکتورها (Auto Backups)</td>
+                                    <td class="times-icon"><i class="fa-solid fa-xmark"></i> <span data-i18n="matrix_r8_val">دستی توسط طلافروش</span></td>
+                                    <td class="check-icon"><i class="fa-solid fa-check"></i> <strong data-i18n="matrix_r8_cloud">تمام خودکار چندنقطه‌ای ابری</strong></td>
+                                    <td class="times-icon"><i class="fa-solid fa-xmark"></i> <span data-i18n="matrix_r8_local">دستی و نیازمند هارد اکسترنال</span></td>
                                 </tr>
                                 <tr>
-                                    <td>تعرفه تمدید پشتیبانی سالانه فنی</td>
-                                    <td class="check-icon"><i class="fa-solid fa-check"></i> کاملاً رایگان</td>
-                                    <td>پایین و بهینه‌سازی شده (ابری)</td>
-                                    <td style="color: var(--accent-red); font-weight: 700;">بالاتر (به دلیل سختی نگهداری لوکال)</td>
+                                    <td data-i18n="matrix_r9">تعرفه تمدید پشتیبانی سالانه فنی</td>
+                                    <td class="check-icon"><i class="fa-solid fa-check"></i> <span data-i18n="matrix_r9_free">کاملاً رایگان</span></td>
+                                    <td data-i18n="matrix_r9_cloud">پایین و بهینه‌سازی شده (ابری)</td>
+                                    <td style="color: var(--accent-red); font-weight: 700;" data-i18n="matrix_r9_local">بالاتر (به دلیل سختی نگهداری لوکال)</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -401,29 +423,29 @@
                 <!-- FAQ SECTION -->
                 <div class="pricing-faq-section">
                     <div class="section-header">
-                        <h2><i class="fa-solid fa-circle-question text-gold"></i> پرسش‌های متداول مشتریان درباره تعرفه‌ها</h2>
-                        <p>پاسخ به سوالات فنی پیرامون هزینه‌های سرور، نحوه تمدیدها و پشتیبانی نسخه‌های مختلف گلدکس</p>
+                        <h2 data-i18n="faq_title"><i class="fa-solid fa-circle-question text-gold"></i> پرسش‌های متداول مشتریان درباره تعرفه‌ها</h2>
+                        <p data-i18n="faq_subtitle">پاسخ به سوالات فنی پیرامون هزینه‌های سرور, نحوه تمدیدها و پشتیبانی نسخه‌های مختلف گلدکس</p>
                     </div>
                     
                     <div class="faq-grid">
                         <div class="faq-item glass-panel">
-                            <h4><i class="fa-solid fa-circle-info"></i> چرا تعرفه پشتیبانی سالانه نسخه آفلاین لوکال بالاتر است؟</h4>
-                            <p>در نسخه آنلاین (ابری)، تمامی فرآیندهای به‌روزرسانی کدها، اصلاح بانک‌های اطلاعاتی و بکاپ‌ها به صورت خودکار و از طریق سرور یکپارچه (CI/CD) انجام می‌گیرد. اما در نسخه لوکال، کارشناسان ما مجبورند به صورت فیزیکی یا از راه دور (ریموت دسکتاپ) تک‌تک رایانه‌های مشتری را به‌روزرسانی و عیب‌یابی کنند که زمان‌بر و هزینه‌بر است.</p>
+                            <h4><i class="fa-solid fa-circle-info"></i> <span data-i18n="q1">چرا تعرفه پشتیبانی سالانه نسخه آفلاین لوکال بالاتر است؟</span></h4>
+                            <p data-i18n="a1">در نسخه آنلاین (ابری)، تمامی فرآیندهای به‌روزرسانی کدها، اصلاح بانک‌های اطلاعاتی و بکاپ‌ها به صورت خودکار و از طریق سرور یکپارچه (CI/CD) انجام می‌گیرد. اما در نسخه لوکال، کارشناسان ما مجبورند به صورت فیزیکی یا از راه دور (ریموت دسکتاپ) تک‌تک رایانه‌های مشتری را به‌روزرسانی و عیب‌یابی کنند که زمان‌بر و هزینه‌بر است.</p>
                         </div>
                         
                         <div class="faq-item glass-panel">
-                            <h4><i class="fa-solid fa-shield-halved"></i> آیا نسخه ابری نیاز به اینترنت پرسرعت دارد؟</h4>
-                            <p>خیر. پلتفرم گلدکس آنلاین به صورت Progressive Web App (PWA) طراحی شده و حجم بسته‌های داده ارسالی و دریافتی آن فوق‌العاده ناچیز است. در صورت قطعی موقت اینترنت نیز داده‌ها در حافظه موقت سیستم نگهداری شده و پس از اتصال مجدد، همگام‌سازی می‌شوند.</p>
+                            <h4><i class="fa-solid fa-shield-halved"></i> <span data-i18n="q2">آیا نسخه ابری نیاز به اینترنت پرسرعت دارد؟</span></h4>
+                            <p data-i18n="a2">خیر. پلتفرم گلدکس آنلاین به صورت Progressive Web App (PWA) طراحی شده و حجم بسته‌های داده ارسالی و دریافتی آن فوق‌العاده ناچیز است. در صورت قطعی موقت اینترنت نیز داده‌ها در حافظه موقت سیستم نگهداری شده و پس از اتصال مجدد، همگام‌سازی می‌شوند.</p>
                         </div>
                         
                         <div class="faq-item glass-panel">
-                            <h4><i class="fa-solid fa-rotate-left"></i> نحوه تمدید نگهداری سرور در گلدکس ابری چگونه است؟</h4>
-                            <p>پس از خرید لایسنس پایه ۷۹ میلیون تومانی، فاکتورهای دوره‌ای نگهداری سرور و امنیت بر اساس تمایل شما در پورتال مشتریان صادر می‌شود. کاربران می‌توانند اشتراک خود را به صورت ماهانه، ۳ ماهه، ۶ ماهه یا سالانه با تعرفه‌های متنوع تمدید کنند.</p>
+                            <h4><i class="fa-solid fa-rotate-left"></i> <span data-i18n="q3">نحوه تمدید نگهداری سرور در گلدکس ابری چگونه است؟</span></h4>
+                            <p data-i18n="a3">پس از خرید لایسنس پایه ۷۹ میلیون تومانی، فاکتورهای دوره‌ای نگهداری سرور و امنیت بر اساس تمایل شما در پورتال مشتریان صادر می‌شود. کاربران می‌توانند اشتراک خود را به صورت ماهانه، ۳ ماهه، ۶ ماهه یا سالانه با تعرفه‌های متنوع تمدید کنند.</p>
                         </div>
                         
                         <div class="faq-item glass-panel">
-                            <h4><i class="fa-solid fa-cloud-arrow-up"></i> نسخه مینی مادام‌العمر به چه صورت تمدید می‌شود؟</h4>
-                            <p>گلدکس مینی برای فاکتوردهی و کارهای محاسباتی سریع گالری‌ها ایده‌آل است. این نسخه بر روی دامنه سراسری ما مستقر شده و تمام اطلاعات در هارد دیسک مرورگر شخصی شما ذخیره می‌گردد. پس از پرداخت مبلغ خرید اولیه ۳ میلیون تومان، هیچ هزینه دیگری به صورت سالیانه یا ماهیانه از شما دریافت نخواهد شد.</p>
+                            <h4><i class="fa-solid fa-cloud-arrow-up"></i> <span data-i18n="q4">نسخه مینی مادام‌العمر به چه صورت تمدید می‌شود؟</span></h4>
+                            <p data-i18n="a4">گلدکس مینی برای فاکتوردهی و کارهای محاسباتی سریع گالری‌ها ایده‌آل است. این نسخه بر روی دامنه سراسری ما مستقر شده و تمام اطلاعات در هارد دیسک مرورگر شخصی شما ذخیره می‌گردد. پس از پرداخت مبلغ خرید اولیه ۳ میلیون تومان، هیچ هزینه دیگری به صورت سالیانه یا ماهیانه از شما دریافت نخواهد شد.</p>
                         </div>
                     </div>
                 </div>
@@ -439,15 +461,18 @@
                     <img src="assets/goldex-logo.png" alt="GoldEx Logo">
                     <span class="gradient-text-gold" style="font-size: 1.75rem;">GoldEx</span>
                 </a>
-                <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto; font-size: 0.92rem; line-height: 1.7;">سامانه هوشمند مدیریت مالی و فروش طلا و جواهر گلدکس. انتخاب حرفه‌ای‌ها برای رشد کسب‌وکار طلا در بازارهای ابری و سنتی.</p>
+                <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto; font-size: 0.92rem; line-height: 1.7;" data-i18n="footer_desc">سامانه هوشمند مدیریت مالی و فروش طلا و جواهر گلدکس. انتخاب حرفه‌ای‌ها برای رشد کسب‌وکار طلا در بازارهای ابری و سنتی.</p>
             </div>
             
             <div style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem; color: var(--text-muted); font-size: 0.88rem; flex-wrap: wrap; gap: 1rem;">
-                <p>© ۱۴۰۵ سامانه هوشمند گلدکس. تمامی حقوق مادی و معنوی محفوظ است.</p>
-                <p>طراحی مدرن بر پایه فناوری <span class="num-font">PWA / Cloud</span></p>
+                <p data-i18n="footer_rights">© ۱۴۰۵ سامانه هوشمند گلدکس. تمامی حقوق مادی و معنوی محفوظ است.</p>
+                <p data-i18n="footer_tech">طراحی مدرن بر پایه فناوری <span class="num-font">PWA / Cloud</span></p>
             </div>
         </div>
     </footer>
 
+    <!-- Active JavaScript files -->
+    <script src="i18n.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

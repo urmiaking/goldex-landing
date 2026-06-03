@@ -63,7 +63,6 @@ body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     font-family: 'Vazirmatn', sans-serif;
-    direction: rtl;
     line-height: 1.6;
     overflow-x: hidden;
     transition: background-color 0.4s ease, color 0.4s ease;
@@ -71,12 +70,12 @@ body {
 
 /* For beautiful English text or specific numbers */
 .num-font {
-    font-family: 'Vazirmatn', sans-serif;
+    font-family: inherit;
 }
 
-/* Force unified Persian Vazirmatn font on all form elements */
+/* Force unified font inheritance on all form elements */
 input, select, button, textarea, option {
-    font-family: 'Vazirmatn', sans-serif !important;
+    font-family: inherit !important;
 }
 
 /* High contrast dropdown options in both Light and Dark mode */
@@ -1039,6 +1038,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.9rem;
+    min-width: 650px;
 }
 
 .ledger-table-sim th, .ledger-table-sim td {
@@ -1787,6 +1787,136 @@ footer {
     flex-shrink: 0;
 }
 
+/* --- CUSTOM LANGUAGE SELECTOR & LTR OVERRIDES --- */
+.lang-selector {
+    position: relative;
+    display: inline-block;
+}
+
+.lang-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.5rem 0.8rem;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+    box-shadow: 0 0 10px rgba(241, 184, 45, 0.2);
+}
+
+.lang-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: 12px;
+    padding: 0.5rem;
+    box-shadow: var(--shadow-lg);
+    display: none;
+    flex-direction: column;
+    gap: 0.25rem;
+    z-index: 150;
+    min-width: 130px;
+}
+
+.lang-dropdown.show {
+    display: flex;
+}
+
+.lang-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+    text-align: right;
+}
+
+.lang-option:hover, .lang-option.active {
+    background: rgba(241, 184, 45, 0.08);
+    color: var(--text-primary);
+}
+
+/* LTR layout overrides */
+[dir="ltr"] .compare-table th, 
+[dir="ltr"] .compare-table td,
+[dir="ltr"] .ledger-table-sim th, 
+[dir="ltr"] .ledger-table-sim td,
+[dir="ltr"] .faq-item,
+[dir="ltr"] .mini-card-intro,
+[dir="ltr"] .rate-price-row {
+    text-align: left !important;
+}
+
+[dir="ltr"] .compare-table th:first-child, 
+[dir="ltr"] .compare-table td:first-child {
+    text-align: left !important;
+}
+
+[dir="ltr"] .price-notes {
+    border-right: none !important;
+    padding-right: 0 !important;
+    border-left: 2px solid var(--accent-gold) !important;
+    padding-left: 10px !important;
+}
+
+[dir="ltr"] .price-detail-card.featured .price-notes {
+    border-left-color: var(--accent-blue) !important;
+}
+
+[dir="ltr"] .a5-meta-info {
+    text-align: right !important;
+}
+
+[dir="ltr"] .a5-table th:nth-child(2), 
+[dir="ltr"] .a5-table td:nth-child(2) {
+    text-align: left !important;
+}
+
+[dir="ltr"] .a5-table th:nth-child(5), 
+[dir="ltr"] .a5-table td:nth-child(5) {
+    text-align: right !important;
+}
+
+[dir="ltr"] .a5-invoice-layout {
+    direction: ltr !important;
+    font-family: 'Outfit', sans-serif !important;
+}
+
+[dir="ltr"] .a5-meta-info p span {
+    font-family: 'Outfit', sans-serif !important;
+}
+
+[dir="ltr"] .lang-dropdown {
+    right: auto !important;
+    left: 0 !important;
+}
+
+[dir="ltr"] .lang-option {
+    text-align: left !important;
+}
+
+[dir="ltr"] .rates-meta {
+    flex-direction: row-reverse !important;
+}
+
 /* --- RESPONSIVE BREAKPOINTS --- */
 @media (max-width: 1024px) {
     .container {
@@ -1797,9 +1927,17 @@ footer {
         top: 0;
     }
     
+    header .container {
+        padding: 0 !important;
+        max-width: 100% !important;
+    }
+    
     .nav-container {
         border-radius: 0;
         padding: 0.75rem 1.25rem;
+        border-left: none;
+        border-right: none;
+        border-top: none;
     }
     
     .hamburger-btn {
@@ -1814,14 +1952,15 @@ footer {
         display: flex;
         flex-direction: column;
         position: absolute;
-        top: 75px;
-        left: 1.25rem;
-        right: 1.25rem;
+        top: 100%;
+        left: 0;
+        right: 0;
         background: var(--card-bg);
-        border: 1px solid var(--border-color);
+        border: none;
+        border-bottom: 1px solid var(--border-color);
         backdrop-filter: var(--glass-blur);
         -webkit-backdrop-filter: var(--glass-blur);
-        border-radius: 16px;
+        border-radius: 0;
         padding: 1.5rem;
         gap: 0.75rem;
         box-shadow: var(--shadow-lg);
@@ -1830,6 +1969,7 @@ footer {
         pointer-events: none;
         transition: all 0.3s ease;
         z-index: 99;
+        margin: 0;
     }
     
     .nav-links.active {
