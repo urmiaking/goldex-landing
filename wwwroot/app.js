@@ -1,6 +1,17 @@
 // --- GLOBAL STATES & CONSTANTS ---
 // currentLang is declared globally in i18n.js
 
+// Base reference rates (in Tomans)
+let baseRates = {
+    gold18: 3720000,
+    goldMelt: 16115000,
+    coinEmami: 42850000,
+    coinHalf: 24100000,
+    coinQuarter: 14550000,
+    usd: 61500,
+    aed: 16750
+};
+
 // Exchange rates will be reset/fetched depending on currency
 let liveRates = {
     gold18: 3720000,
@@ -300,52 +311,89 @@ function updateThemeIcon(theme) {
     }
 }
 
-// --- LIVE RATES TICKER FROM BACKEND ---
+// --- LIVE RATES TICKER (CLIENT-SIDE SIMULATOR) ---
 function initRatesTicker() {
-    // Initial fetch
-    fetchRates();
-    // Periodically poll rates from backend
-    setInterval(fetchRates, 4500);
+    // Initial update without extra fluctuation
+    fetchRates(false);
+    // Periodically fluctuate and update rates
+    setInterval(() => fetchRates(true), 4500);
 }
 
-async function fetchRates() {
-    try {
-        const url = currentLang === "fa" ? '/api/rates' : `/api/rates?currency=${currentLang === "tr" ? "try" : "usd"}`;
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        
-        // Calculate difference relative to current UI state to trigger the flash animations correctly
-        const gold18Diff = data.gold18 - liveRates.gold18;
-        const goldMeltDiff = data.goldMelt - liveRates.goldMelt;
-        const coinEmamiDiff = data.coinEmami - liveRates.coinEmami;
-        const coinHalfDiff = data.coinHalf - liveRates.coinHalf;
-        const coinQuarterDiff = data.coinQuarter - liveRates.coinQuarter;
-        const usdDiff = data.usd - liveRates.usd;
-        const aedDiff = data.aed - liveRates.aed;
-        
-        // Update rates and apply UI visual flash cues
-        updateRateItem("gold18", gold18Diff, "price-gold-18", "trend-gold-18", 1, "گرم");
-        updateRateItem("goldMelt", goldMeltDiff, "price-gold-melt", null, 0, "");
-        updateRateItem("coinEmami", coinEmamiDiff, "price-coin-emami", "trend-coin-emami", 1, "سکه");
-        updateRateItem("coinHalf", coinHalfDiff, "price-coin-half", null, 0, "");
-        // coinQuarter and others are updated in local state too via updateRateItem:
-        updateRateItem("coinQuarter", coinQuarterDiff, null, null, 0, "");
-        updateRateItem("usd", usdDiff, "price-usd", "trend-usd", 1, "دلار");
-        updateRateItem("aed", aedDiff, "price-aed", null, 0, "");
-        
-        // Trigger calculations sync with rate updates
-        recalculateGold();
-        recalculateReverseBudget();
-        recalculateCartTotals();
-        renderInvoiceCart();
-        updatePricingDisplay();
-        updateDateTime();
-    } catch (err) {
-        console.error("Failed to fetch live rates from server:", err);
+function fetchRates(shouldFluctuate = true) {
+    if (shouldFluctuate) {
+        // Random fluctuations matching mock server logic
+        const gold18Diff = (Math.random() - 0.48) * 12000;
+        const goldMeltDiff = gold18Diff * 4.608 * 0.95;
+        const coinEmamiDiff = (Math.random() - 0.5) * 80000;
+        const halfCoinDiff = coinEmamiDiff * 0.55;
+        const coinQuarterDiff = coinEmamiDiff * 0.33;
+        const usdDiff = (Math.random() - 0.5) * 150;
+        const aedDiff = usdDiff / 3.67;
+
+        baseRates.gold18 = Math.max(baseRates.gold18 + gold18Diff, 1000);
+        baseRates.goldMelt = Math.max(baseRates.goldMelt + goldMeltDiff, 1000);
+        baseRates.coinEmami = Math.max(baseRates.coinEmami + coinEmamiDiff, 1000);
+        baseRates.coinHalf = Math.max(baseRates.coinHalf + halfCoinDiff, 1000);
+        baseRates.coinQuarter = Math.max(baseRates.coinQuarter + coinQuarterDiff, 1000);
+        baseRates.usd = Math.max(baseRates.usd + usdDiff, 1000);
+        baseRates.aed = Math.max(baseRates.aed + aedDiff, 1000);
     }
+
+    // Convert base rates according to active language/currency
+    let data;
+    if (currentLang === "fa") {
+        data = { ...baseRates };
+    } else if (currentLang === "tr") {
+        const usdRate = baseRates.usd > 0 ? baseRates.usd : 61500;
+        const tryToUsd = 33.00; // simulated Lira per USD rate
+        const tryRate = usdRate / tryToUsd; // Toman per Lira
+        data = {
+            gold18: Number((baseRates.gold18 / tryRate).toFixed(2)),
+            goldMelt: Number((baseRates.goldMelt / tryRate).toFixed(2)),
+            coinEmami: Number((baseRates.coinEmami / tryRate).toFixed(2)),
+            coinHalf: Number((baseRates.coinHalf / tryRate).toFixed(2)),
+            coinQuarter: Number((baseRates.coinQuarter / tryRate).toFixed(2)),
+            usd: tryToUsd,
+            aed: Number((baseRates.aed / tryRate).toFixed(2))
+        };
+    } else {
+        const usdRate = baseRates.usd > 0 ? baseRates.usd : 61500;
+        data = {
+            gold18: Number((baseRates.gold18 / usdRate).toFixed(2)),
+            goldMelt: Number((baseRates.goldMelt / usdRate).toFixed(2)),
+            coinEmami: Number((baseRates.coinEmami / usdRate).toFixed(2)),
+            coinHalf: Number((baseRates.coinHalf / usdRate).toFixed(2)),
+            coinQuarter: Number((baseRates.coinQuarter / usdRate).toFixed(2)),
+            usd: 1.00,
+            aed: Number((baseRates.aed / usdRate).toFixed(2))
+        };
+    }
+
+    // Calculate difference relative to current UI state to trigger the flash animations correctly
+    const gold18Diff = data.gold18 - liveRates.gold18;
+    const goldMeltDiff = data.goldMelt - liveRates.goldMelt;
+    const coinEmamiDiff = data.coinEmami - liveRates.coinEmami;
+    const coinHalfDiff = data.coinHalf - liveRates.coinHalf;
+    const coinQuarterDiff = data.coinQuarter - liveRates.coinQuarter;
+    const usdDiff = data.usd - liveRates.usd;
+    const aedDiff = data.aed - liveRates.aed;
+
+    // Update rates and apply UI visual flash cues
+    updateRateItem("gold18", gold18Diff, "price-gold-18", "trend-gold-18", 1, "گرم");
+    updateRateItem("goldMelt", goldMeltDiff, "price-gold-melt", null, 0, "");
+    updateRateItem("coinEmami", coinEmamiDiff, "price-coin-emami", "trend-coin-emami", 1, "سکه");
+    updateRateItem("coinHalf", coinHalfDiff, "price-coin-half", null, 0, "");
+    updateRateItem("coinQuarter", coinQuarterDiff, null, null, 0, "");
+    updateRateItem("usd", usdDiff, "price-usd", "trend-usd", 1, "دلار");
+    updateRateItem("aed", aedDiff, "price-aed", null, 0, "");
+
+    // Trigger calculations sync with rate updates
+    recalculateGold();
+    recalculateReverseBudget();
+    recalculateCartTotals();
+    renderInvoiceCart();
+    updatePricingDisplay();
+    updateDateTime();
 }
 
 function updateRateItem(key, diff, priceElemId, trendElemId, percentDecimals, unitText) {

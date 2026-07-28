@@ -2,8 +2,8 @@ version: '3.8'
 
 services:
   goldex-landing:
-    image: localhost:5000/goldex-landing:latest
+    image: goldex-landing:latest
     container_name: goldex-landing
     restart: always
     ports:
-      - "8080:8080"
+      - "8081:80"
