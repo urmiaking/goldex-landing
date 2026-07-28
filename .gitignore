@@ -1,4 +1,12 @@
-## Ignore Visual Studio temporary files, build results, and user settings
+## Ignore Visual Studio / .NET temporary files, build results, and user settings
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+[Pp]ublish/
+[Tt]est[Rr]esults/
 
 # User-specific files
 *.rsuser
@@ -6,59 +14,42 @@
 *.user
 *.userosscache
 *.sln.docstates
-
-# User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
 # Mono auto-generated files
 mono_crash.*
 
-# Build results
-[Dd]ebug/
-[Dd]ebugPS/
-[Rr]elease/
-[Rr]eleasePS/
-x64/
-x86/
-[Aa]rm/
-[Aa]rm64/
-bld/
-[Bb]in/
-[Oo]bj/
-[Log]/
-[Ll]og/
-
-# Tooling
-_ReSharper*/
-*.[Re]Sharper.user
-*.DotSettings.user
-
-# Visual Studio Code
-.vscode/
+# IDEs & Tooling
+.vs/
+.idea/
+.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 *.code-workspace
-
-# Visual Studio Family
-.vs/
-
-# Rider
-.idea/
+*.DotSettings.user
+*.[Re]Sharper.user
+_ReSharper*/
+*.sln.iml
 
 # OS metadata
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# ASP.NET Core
+# ASP.NET Core secrets and environment settings
 appsettings.Development.json
-# Often, we don't ignore appsettings.json unless it contains secrets, but we can keep it unignored by default.
-# Secrets manager
+appsettings.*.local.json
 secrets.json
 
-# Rider
-*.sln.iml
-/bin/Debug/net10.0
-/GoldEx.Tests/obj
-/GoldEx.Tests/bin/Debug/net10.0
+# NuGet
+*.nupkg
+*.snupkg
+**/packages/
+project.lock.json
+project.assets.json
+
+# Local environment
+.env.local
+.env.development.local
