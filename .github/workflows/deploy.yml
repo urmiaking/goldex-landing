@@ -1,0 +1,38 @@
+name: Docker Build & Deploy
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+  workflow_dispatch:
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: '1'
+  DOTNET_NOLOGO: 'true'
+  Version: "1.0.${{ github.run_number }}"
+
+jobs:
+  docker-image:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build and Push Docker Image
+        run: |
+          echo "Building Docker image for GoldEx Landing with version ${{ env.Version }}"
+          docker build --push \
+            -t localhost:5000/goldex-landing:latest \
+            -t localhost:5000/goldex-landing:${{ env.Version }} \
+            -f Dockerfile \
+            .
+          echo "Docker image for GoldEx Landing with version ${{ env.Version }} built and pushed successfully"
+
+      - name: Run Initialization Script
+        run: |
+          echo "Running initialization script on server"
+          sudo chmod +x /home/user/docker/goldex-landing/initialize.sh
+          sudo /home/user/docker/goldex-landing/initialize.sh
