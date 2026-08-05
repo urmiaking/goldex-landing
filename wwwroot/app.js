@@ -8,8 +8,8 @@ let baseRates = {
     coinEmami: 42850000,
     coinHalf: 24100000,
     coinQuarter: 14550000,
-    usd: 61500,
-    aed: 16750
+    usd: 191000,
+    aed: 52000
 };
 
 // Exchange rates will be reset/fetched depending on currency
@@ -19,8 +19,8 @@ let liveRates = {
     coinEmami: 42850000,
     coinHalf: 24100000,
     coinQuarter: 14550000,
-    usd: 61500,
-    aed: 16750
+    usd: 191000,
+    aed: 52000
 };
 
 let invoiceCart = [
@@ -110,34 +110,39 @@ function recalculateCartTotals() {
 
 // Centralized dynamic pricing matrix and cards updates based on live exchange rates
 function updatePricingDisplay() {
-    const usdRate = liveRates.usd > 0 ? liveRates.usd : 61500;
-    const tryRate = usdRate / 33;
+    const usdRate = liveRates.usd > 0 ? liveRates.usd : 191000;
+    const tryRate = usdRate / 47.75; // 4,000 Toman per Lira
 
     const prices = {
-        miniStrike: 5000000,
-        miniActive: 3000000,
-        cloudActive: 79000000
+        miniStrike: 15000000,
+        miniActive: 5000000,
+        cloudStrike: 200000000,
+        cloudActive: 179000000
     };
 
     let currency = "تومان";
     let formatted = {
         miniStrike: "",
         miniActive: "",
+        cloudStrike: "",
         cloudActive: ""
     };
 
     if (currentLang === "fa") {
         formatted.miniStrike = toPersianDigits(formatNum(prices.miniStrike)) + " تومان";
         formatted.miniActive = toPersianDigits(formatNum(prices.miniActive));
+        formatted.cloudStrike = toPersianDigits(formatNum(prices.cloudStrike)) + " تومان";
         formatted.cloudActive = toPersianDigits(formatNum(prices.cloudActive));
     } else if (currentLang === "tr") {
         formatted.miniStrike = "₺" + formatNum(Math.round(prices.miniStrike / tryRate));
         formatted.miniActive = formatNum(Math.round(prices.miniActive / tryRate));
+        formatted.cloudStrike = "₺" + formatNum(Math.round(prices.cloudStrike / tryRate));
         formatted.cloudActive = formatNum(Math.round(prices.cloudActive / tryRate));
         currency = "TL";
     } else { // en
         formatted.miniStrike = "$" + formatNum(Math.round(prices.miniStrike / usdRate));
         formatted.miniActive = formatNum(Math.round(prices.miniActive / usdRate));
+        formatted.cloudStrike = "$" + formatNum(Math.round(prices.cloudStrike / usdRate));
         formatted.cloudActive = formatNum(Math.round(prices.cloudActive / usdRate));
         currency = "$";
     }
@@ -155,6 +160,8 @@ function updatePricingDisplay() {
     }
 
     // Homepage Cloud
+    const hcStrike = document.getElementById("home-price-cloud-strike");
+    if (hcStrike) hcStrike.innerText = formatted.cloudStrike;
     const hcActive = document.getElementById("home-price-cloud-val");
     if (hcActive) hcActive.innerText = formatted.cloudActive;
     const hcPeriod = document.getElementById("home-price-cloud-period");
@@ -173,6 +180,8 @@ function updatePricingDisplay() {
     }
 
     // Pricing Page Cloud
+    const pcStrike = document.getElementById("pricing-price-cloud-strike");
+    if (pcStrike) pcStrike.innerText = formatted.cloudStrike;
     const pcActive = document.getElementById("pricing-price-cloud-val");
     if (pcActive) {
         pcActive.innerHTML = `${formatted.cloudActive} <span>${currency}</span>`;
@@ -344,8 +353,8 @@ function fetchRates(shouldFluctuate = true) {
     if (currentLang === "fa") {
         data = { ...baseRates };
     } else if (currentLang === "tr") {
-        const usdRate = baseRates.usd > 0 ? baseRates.usd : 61500;
-        const tryToUsd = 33.00; // simulated Lira per USD rate
+        const usdRate = baseRates.usd > 0 ? baseRates.usd : 191000;
+        const tryToUsd = 47.75; // Lira per USD rate (191,000 / 47.75 = 4,000 Toman per Lira)
         const tryRate = usdRate / tryToUsd; // Toman per Lira
         data = {
             gold18: Number((baseRates.gold18 / tryRate).toFixed(2)),
@@ -357,7 +366,7 @@ function fetchRates(shouldFluctuate = true) {
             aed: Number((baseRates.aed / tryRate).toFixed(2))
         };
     } else {
-        const usdRate = baseRates.usd > 0 ? baseRates.usd : 61500;
+        const usdRate = baseRates.usd > 0 ? baseRates.usd : 191000;
         data = {
             gold18: Number((baseRates.gold18 / usdRate).toFixed(2)),
             goldMelt: Number((baseRates.goldMelt / usdRate).toFixed(2)),
