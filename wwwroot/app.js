@@ -233,6 +233,8 @@ document.addEventListener("langChanged", (e) => {
     recalculateCartTotals();
     renderInvoiceCart();
     updatePricingDisplay();
+    updateVitrinePrices();
+
 });
 
 // --- INITIALIZATION ---
@@ -245,6 +247,9 @@ document.addEventListener("DOMContentLoaded", () => {
     updateLanguage(savedLang);
     
     initRatesTicker();
+    initAiChatSimulator();
+    initVitrineShowcase();
+
     initCalculators();
     initReports();
     initInvoiceCart();
@@ -402,6 +407,8 @@ function fetchRates(shouldFluctuate = true) {
     recalculateCartTotals();
     renderInvoiceCart();
     updatePricingDisplay();
+    updateVitrinePrices();
+
     updateDateTime();
 }
 
@@ -835,4 +842,360 @@ function initMobileMenu() {
             });
         });
     }
+}
+
+
+// --- AI CHAT SIMULATOR ENGINE ---
+function initAiChatSimulator() {
+    const chatBody = document.getElementById("ai-chat-body");
+    const promptBtns = document.querySelectorAll(".prompt-btn");
+    const userInput = document.getElementById("ai-user-input");
+    const sendBtn = document.getElementById("btn-ai-send");
+    
+    if (!chatBody) return;
+
+    function appendUserMessage(text) {
+        const msgDiv = document.createElement("div");
+        msgDiv.className = "chat-msg user";
+        msgDiv.innerHTML = `
+            <div class="chat-avatar-mini user-icon"><i class="fa-solid fa-user"></i></div>
+            <div class="msg-bubble"><p>${text}</p></div>
+        `;
+        chatBody.appendChild(msgDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function appendBotTyping() {
+        const typingDiv = document.createElement("div");
+        typingDiv.className = "chat-msg bot typing-indicator";
+        typingDiv.id = "ai-typing-msg";
+        typingDiv.innerHTML = `
+            <div class="chat-avatar-mini bot-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <div class="msg-bubble">
+                <div class="typing-dots">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            </div>
+        `;
+        chatBody.appendChild(typingDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function removeBotTyping() {
+        const typingDiv = document.getElementById("ai-typing-msg");
+        if (typingDiv) typingDiv.remove();
+    }
+
+    function appendBotMessage(htmlContent) {
+        removeBotTyping();
+        const msgDiv = document.createElement("div");
+        msgDiv.className = "chat-msg bot";
+        msgDiv.innerHTML = `
+            <div class="chat-avatar-mini bot-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <div class="msg-bubble">${htmlContent}</div>
+        `;
+        chatBody.appendChild(msgDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    
+    function triggerAiResponse(type) {
+        appendBotTyping();
+        
+        setTimeout(() => {
+            const currentGoldRate = liveRates.gold18;
+            const isFa = currentLang === "fa";
+            const isTr = currentLang === "tr";
+            const currSymbol = isFa ? "تومان" : (isTr ? "TL" : "$");
+            const gramUnit = isFa ? "گرم" : (isTr ? "gram" : "g");
+            
+            if (type === "invoice") {
+                const weight = 5.80;
+                const basePrice = Math.round(weight * currentGoldRate);
+                const wageAmt = Math.round(basePrice * 0.16);
+                const profitAmt = Math.round(basePrice * 0.07);
+                const taxAmt = Math.round((wageAmt + profitAmt) * 0.09);
+                const total = basePrice + wageAmt + profitAmt + taxAmt;
+
+                let title = isFa ? "✅ <strong>فاکتور رسمی فروش طلا با موفقیت در سیستم ثبت گردید:</strong>" :
+                            (isTr ? "✅ <strong>Resmi altın satış faturası sisteme başarıyla kaydedildi:</strong>" :
+                            "✅ <strong>Official gold sales invoice successfully generated:</strong>");
+                
+                let buyerLabel = isFa ? "خریدار:" : (isTr ? "Müşteri:" : "Buyer:");
+                let buyerVal = isFa ? "خانم دکتر کریمی" : (isTr ? "Dr. Kerimi" : "Dr. Karimi");
+                let itemLabel = isFa ? "شرح کالا:" : (isTr ? "Ürün:" : "Item:");
+                let itemVal = isFa ? "دستبند کارتیه لوکس ۱۸ عیار (۷۵۰)" : (isTr ? "Cartier Lüks Füzyon Bileklik 18K" : "Cartier Luxury Fusion Bracelet 18K (750)");
+                let weightLabel = isFa ? "وزن خالص طلا:" : (isTr ? "Net Altın Ağırlığı:" : "Net Gold Weight:");
+                let rateLabel = isFa ? "نرخ لحظه‌ای طلا:" : (isTr ? "Anlık Altın Kuru:" : "Live Gold Rate:");
+                let wageLabel = isFa ? "اجرت ساخت (۱۶٪) + سود (۷٪):" : (isTr ? "İşçilik (%16) + Kâr (%7):" : "Labor (16%) + Profit (7%):");
+                let taxLabel = isFa ? "مالیات بر ارزش افزوده (۹٪):" : (isTr ? "KDV (%9):" : "VAT / Tax (9%):");
+                let totalLabel = isFa ? "مبلغ کل فاکتور:" : (isTr ? "Fatura Toplam Tutarı:" : "Grand Total:");
+                let payLabel = isFa ? "نحوه تسویه:" : (isTr ? "Ödeme Yöntemi:" : "Payment Settlement:");
+                let payVal = isFa ? "کارت‌خوان (پوز) شعبه مرکزی - تسویه کامل" : (isTr ? "Merkez Şube POS Cihazı - Tam Ödeme" : "Central POS Terminal - Fully Settled");
+                let btnText = isFa ? "مشاهده و چاپ مستقیم PDF فاکتور" : (isTr ? "PDF Faturayı Gör ve Yazdır" : "View & Print Official PDF Invoice");
+
+                const responseHtml = `
+                    <p>${title}</p>
+                    <div class="ai-invoice-card">
+                        <div class="ai-invoice-row">
+                            <span>${buyerLabel}</span>
+                            <strong>${buyerVal}</strong>
+                        </div>
+                        <div class="ai-invoice-row">
+                            <span>${itemLabel}</span>
+                            <span>${itemVal}</span>
+                        </div>
+                        <div class="ai-invoice-row">
+                            <span>${weightLabel}</span>
+                            <span class="num-font">${formatDecimal(weight)} ${gramUnit}</span>
+                        </div>
+                        <div class="ai-invoice-row">
+                            <span>${rateLabel}</span>
+                            <span class="num-font">${formatCurrencyVal(currentGoldRate)} ${currSymbol}</span>
+                        </div>
+                        <div class="ai-invoice-row">
+                            <span>${wageLabel}</span>
+                            <span class="num-font">${formatCurrencyVal(wageAmt + profitAmt)} ${currSymbol}</span>
+                        </div>
+                        <div class="ai-invoice-row">
+                            <span>${taxLabel}</span>
+                            <span class="num-font">${formatCurrencyVal(taxAmt)} ${currSymbol}</span>
+                        </div>
+                        <div class="ai-invoice-row ai-invoice-total">
+                            <span>${totalLabel}</span>
+                            <span class="num-font">${formatCurrencyVal(total)} ${currSymbol}</span>
+                        </div>
+                        <div class="ai-invoice-row" style="color: var(--accent-green); font-weight:700;">
+                            <span>${payLabel}</span>
+                            <span>${payVal}</span>
+                        </div>
+                    </div>
+                    <div class="ai-card-actions">
+                        <button class="btn-ai-action" onclick="togglePrintModal()"><i class="fa-solid fa-file-pdf"></i> ${btnText}</button>
+                    </div>
+                `;
+                appendBotMessage(responseHtml);
+            } else if (type === "balance") {
+                let title = isFa ? "📊 <strong>استعلام لحظه‌ای وضعیت حساب مشتری:</strong>" :
+                            (isTr ? "📊 <strong>Anlık müşteri cari bakiye sorgusu:</strong>" :
+                            "📊 <strong>Real-time customer account balance statement:</strong>");
+                let nameLabel = isFa ? "نام طرف حساب:" : (isTr ? "Cari Ünvanı:" : "Account Name:");
+                let nameVal = isFa ? "جناب آقای رضایی (همکار صنف طلا)" : (isTr ? "Rezai Kuyumculuk (Kapalıçarşı)" : "Mr. Rezaei (Jewelry Market Partner)");
+                let goldBalLabel = isFa ? "تراز وزن طلای ۱۸ عیار:" : (isTr ? "18K Altın Bakiyesi:" : "18K Gold Balance:");
+                let goldBalVal = isFa ? "۳۲۰.۲۵۰ گرم (بستانکار)" : (isTr ? "320.250 g (Alacaklı)" : "320.250 g (Creditor)");
+                let cashBalLabel = isFa ? "تراز حساب ریالی:" : (isTr ? "Nakit Para Bakiyesi:" : "Cash Balance:");
+                let cashBalVal = isFa ? "۴۵,۰۰۰,۰۰۰ تومان (بدهکار)" : (isTr ? "45.000.000 TL (Borçlu)" : "$45,000 (Debtor)");
+                let txLabel = isFa ? "آخرین تراکنش:" : (isTr ? "Son İşlem:" : "Latest Transaction:");
+                let txVal = isFa ? "حواله بین مشتریان مورخ دیروز - سند #TR-۸۹۲" : (isTr ? "Müşteriler Arası Havale Dün - Fiş #TR-892" : "Customer Remittance Yesterday - #TR-892");
+                let credLabel = isFa ? "وضعیت اعتباری:" : (isTr ? "Kredi Durumu:" : "Credit Standing:");
+                let credVal = isFa ? "معتبر و خوش‌حساب" : (isTr ? "Güvenilir & Yüksek Kredi" : "Excellent & Highly Trusted");
+                let btnText = isFa ? "دریافت ریز گردش حساب" : (isTr ? "Hesap Ekstresini İndir" : "Download Detailed Statement");
+                let alertText = isFa ? "صورتحساب کامل مشتری استخراج شد." : (isTr ? "Müşteri hesap ekstresi hazırlandı." : "Client statement generated successfully.");
+
+                const responseHtml = `
+                    <p>${title}</p>
+                    <div class="ai-invoice-card">
+                        <div class="ai-invoice-row">
+                            <span>${nameLabel}</span>
+                            <strong>${nameVal}</strong>
+                        </div>
+                        <div class="ai-invoice-row">
+                            <span>${goldBalLabel}</span>
+                            <span class="num-font text-gold" style="font-weight:800;">${goldBalVal}</span>
+                        </div>
+                        <div class="ai-invoice-row">
+                            <span>${cashBalLabel}</span>
+                            <span class="num-font" style="color: var(--accent-red); font-weight:800;">${cashBalVal}</span>
+                        </div>
+                        <div class="ai-invoice-row">
+                            <span>${txLabel}</span>
+                            <span>${txVal}</span>
+                        </div>
+                        <div class="ai-invoice-row">
+                            <span>${credLabel}</span>
+                            <span style="color: var(--accent-green); font-weight:700;">${credVal}</span>
+                        </div>
+                    </div>
+                    <div class="ai-card-actions">
+                        <button class="btn-ai-action" onclick="alert('${alertText}')"><i class="fa-solid fa-list-check"></i> ${btnText}</button>
+                    </div>
+                `;
+                appendBotMessage(responseHtml);
+            } else if (type === "growth") {
+                let title = isFa ? "📈 <strong>تحلیل هوشمند مقایسه‌ای عملکرد فروش گالری:</strong>" :
+                            (isTr ? "📈 <strong>Galeri satış performansı yapay zeka analizi:</strong>" :
+                            "📈 <strong>AI Comparative Gallery Sales Growth Analysis:</strong>");
+                let gLabel = isFa ? "رشد کل فروش ماه جاری:" : (isTr ? "Bu Ayki Toplam Satış Büyümesi:" : "Current Month Total Growth:");
+                let wtLabel = isFa ? "وزن کل طلای فروخته‌شده:" : (isTr ? "Satılan Toplam Altın Ağırlığı:" : "Total Sold Gold Weight:");
+                let wtVal = isFa ? "۳,۴۲۰ گرم (۵۲۰ گرم بیشتر از ماه قبل)" : (isTr ? "3.420 g (Geçen aya göre +520 g)" : "3,420 g (+520 g compared to last month)");
+                let invCountLabel = isFa ? "تعداد کل فاکتورها:" : (isTr ? "Toplam Fatura Sayısı:" : "Total Invoices Issued:");
+                let invCountVal = isFa ? "۱۴۸ فقره (میانگین هر فاکتور: ۲۳.۱ گرم)" : (isTr ? "148 adet (Fatura ortalaması: 23.1 g)" : "148 invoices (Avg: 23.1 g per invoice)");
+                let topLabel = isFa ? "پرفروش‌ترین رده محصولات:" : (isTr ? "En Çok Satan Kategori:" : "Top Performing Category:");
+                let topVal = isFa ? "النگو و دستبندهای سبک فیوژن (زیر ۱۰ گرم)" : (isTr ? "Hafif Füzyon Bilezik ve Kelepçeler (<10g)" : "Lightweight Fusion Bangles (<10g)");
+                let tip = isFa ? "💡 <strong>پیشنهاد هوشمند:</strong> تقاضا برای کارهای سبک بدون اجرت بالا در حال افزایش است؛ پیشنهاد می‌شود موجودی کالکشن‌های ۵ تا ۸ گرمی را شارژ نمایید." :
+                         (isTr ? "💡 <strong>Akıllı Öneri:</strong> Düşük işçilikli hafif takılara olan talep artışta; 5-8 gramlık koleksiyon stoklarını artırmanız tavsiye edilir." :
+                         "💡 <strong>Smart Insight:</strong> Demand for lightweight collections is surging (+22%); we recommend restocking 5-8g fashion pieces.");
+
+                const responseHtml = `
+                    <p>${title}</p>
+                    <div class="ai-invoice-card">
+                        <div class="ai-invoice-row">
+                            <span>${gLabel}</span>
+                            <span class="num-font" style="color: var(--accent-green); font-weight:800;">+28.4% 🚀</span>
+                        </div>
+                        <div class="ai-invoice-row">
+                            <span>${wtLabel}</span>
+                            <span class="num-font">${wtVal}</span>
+                        </div>
+                        <div class="ai-invoice-row">
+                            <span>${invCountLabel}</span>
+                            <span class="num-font">${invCountVal}</span>
+                        </div>
+                        <div class="ai-invoice-row">
+                            <span>${topLabel}</span>
+                            <span>${topVal}</span>
+                        </div>
+                    </div>
+                    <p style="margin-top: 8px; font-size: 0.88rem; color: var(--accent-gold);">
+                        ${tip}
+                    </p>
+                `;
+                appendBotMessage(responseHtml);
+            } else if (type === "melt") {
+                const weightRaw = 120.0;
+                const assay = 740;
+                const equivalent750 = (weightRaw * assay) / 750;
+                const mithqalPrice = liveRates.goldMelt;
+                const totalMeltVal = Math.round(equivalent750 * (mithqalPrice / 4.608));
+
+                let title = isFa ? "🔥 <strong>محاسبه دقیق آزمایشگاهی و ارزش‌گذاری طلای آب‌شده:</strong>" :
+                            (isTr ? "🔥 <strong>Has altın ramat ve ayar hesaplama raporu:</strong>" :
+                            "🔥 <strong>Melted Gold Assay & 750 Standard Valuation:</strong>");
+                let rawLabel = isFa ? "وزن طلای ورودی به کوره:" : (isTr ? "Eritmeye Giren Ham Altın:" : "Input Gold Weight:");
+                let assayLabel = isFa ? "عیار ری‌گیری آزمایشگاه:" : (isTr ? "Laboratuvar Ayarı (Ramat):" : "Laboratory Assay Fineness:");
+                let eqLabel = isFa ? "معادل استاندارد ۱۸ عیار (۷۵۰):" : (isTr ? "Standart 18 Ayar (750) Karşılığı:" : "Standard 18K (750) Equivalent:");
+                let rateLabel = isFa ? "مظنه مثقال آبشده مبنا:" : (isTr ? "Baz Has Altın Fiyatı:" : "Base Melt Gold Rate:");
+                let totalLabel = isFa ? "ارزش ریالی نهایی شمش آبشده:" : (isTr ? "Nihai Külçe Toplam Değeri:" : "Total Valuation Value:");
+
+                const responseHtml = `
+                    <p>${title}</p>
+                    <div class="ai-invoice-card">
+                        <div class="ai-invoice-row">
+                            <span>${rawLabel}</span>
+                            <span class="num-font">${formatDecimal(weightRaw)} ${gramUnit}</span>
+                        </div>
+                        <div class="ai-invoice-row">
+                            <span>${assayLabel}</span>
+                            <span class="num-font">${formatInt(assay)}</span>
+                        </div>
+                        <div class="ai-invoice-row">
+                            <span>${eqLabel}</span>
+                            <strong class="num-font text-gold">${formatDecimal(equivalent750)} ${gramUnit}</strong>
+                        </div>
+                        <div class="ai-invoice-row">
+                            <span>${rateLabel}</span>
+                            <span class="num-font">${formatCurrencyVal(mithqalPrice)} ${currSymbol}</span>
+                        </div>
+                        <div class="ai-invoice-row ai-invoice-total">
+                            <span>${totalLabel}</span>
+                            <span class="num-font">${formatCurrencyVal(totalMeltVal)} ${currSymbol}</span>
+                        </div>
+                    </div>
+                `;
+                appendBotMessage(responseHtml);
+            } else {
+                let genMsg = isFa ? "<p>دستور شما دریافت شد! سیستم هوشمند گلدکس به صورت خودکار با پایگاه داده گالری و نرخ زنده طلا همگام است و پردازش‌های لازم را برای شما در کسری از ثانیه انجام می‌دهد.</p>" :
+                            (isTr ? "<p>Komutunuz alındı! GoldEx yapay zeka sistemi mağaza veritabanı ve canlı altın kurları ile senkronize olarak saniyeler içinde işlemi tamamlar.</p>" :
+                            "<p>Command received! GoldEx AI is synchronized with your vault database and live rates to process requests in milliseconds.</p>");
+                appendBotMessage(genMsg);
+            }
+        }, 700);
+    }
+
+    promptBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            promptBtns.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            
+            const promptType = btn.getAttribute("data-prompt");
+            appendUserMessage(btn.innerText.replace(/^[✨💰📈🔥]\s*/, ""));
+            triggerAiResponse(promptType);
+        });
+    });
+
+    if (sendBtn && userInput) {
+        const handleSend = () => {
+            const text = userInput.value.trim();
+            if (!text) return;
+            appendUserMessage(text);
+            userInput.value = "";
+            
+            
+            const t = text.toLowerCase();
+            if (t.includes("فاکتور") || t.includes("فروش") || t.includes("خرید") || t.includes("invoice") || t.includes("sell") || t.includes("buy") || t.includes("fatura")) {
+                triggerAiResponse("invoice");
+            } else if (t.includes("مانده") || t.includes("حساب") || t.includes("طلب") || t.includes("balance") || t.includes("account") || t.includes("bakiye")) {
+                triggerAiResponse("balance");
+            } else if (t.includes("رشد") || t.includes("سود") || t.includes("گزارش") || t.includes("growth") || t.includes("sales") || t.includes("büyüme")) {
+                triggerAiResponse("growth");
+            } else if (t.includes("ذوب") || t.includes("آبشده") || t.includes("عیار") || t.includes("melt") || t.includes("assay") || t.includes("has")) {
+                triggerAiResponse("melt");
+            } else {
+                triggerAiResponse("general");
+            }
+        };
+
+        sendBtn.addEventListener("click", handleSend);
+        userInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") handleSend();
+        });
+    }
+}
+
+// --- VITRINE SHOWCASE & LIVE PRICES ---
+function updateVitrinePrices() {
+    const currentGoldRate = liveRates.gold18;
+    const cards = document.querySelectorAll(".vitrine-card");
+    
+    cards.forEach(card => {
+        const weight = parseFloat(card.getAttribute("data-weight")) || 1;
+        const wage = parseFloat(card.getAttribute("data-wage")) || 0;
+        const profit = parseFloat(card.getAttribute("data-profit")) || 7;
+        
+        const basePrice = weight * currentGoldRate;
+        const wageAmt = basePrice * (wage / 100);
+        const profitAmt = basePrice * (profit / 100);
+        const taxAmt = (wageAmt + profitAmt) * 0.09;
+        const total = Math.round(basePrice + wageAmt + profitAmt + taxAmt);
+        
+        const priceElem = card.querySelector(".v-price");
+        if (priceElem) {
+            priceElem.innerHTML = `${formatCurrencyVal(total)} <span style="font-size: 0.85rem;" class="currency-label">${currentLang === "fa" ? "تومان" : (currentLang === "tr" ? "TL" : "$")}</span>`;
+        }
+    });
+}
+
+function initVitrineShowcase() {
+    updateVitrinePrices();
+    
+    const filterBtns = document.querySelectorAll(".vitrine-filter-btn");
+    const cards = document.querySelectorAll(".vitrine-card");
+    
+    filterBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            filterBtns.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            
+            const cat = btn.getAttribute("data-cat");
+            cards.forEach(card => {
+                if (cat === "all" || card.getAttribute("data-category") === cat) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+    });
 }

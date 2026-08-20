@@ -15,6 +15,118 @@ const i18n = {
         currencyPos: "start",
         dict: {
             // Navbar
+            
+            // AI, Vitrine, Dashboard Navigation & Features
+            "nav_ai": "AI Assistant",
+            "nav_vitrine": "Online Vitrine",
+            "nav_dashboard": "Dashboard",
+            "hero_btn_ai": "<i class=\"fa-solid fa-wand-magic-sparkles\"></i> AI Assistant",
+            "hero_btn_vitrine": "<i class=\"fa-solid fa-store\"></i> Online Vitrine",
+            "ai_sec_title": "<i class=\"fa-solid fa-robot text-gold\"></i> GoldEx Voice & Chat AI Assistant",
+            "ai_sec_subtitle": "Issue invoices, query client balances & vault stock, and analyze sales with simple commands",
+            "ai_bot_name": "GoldEx AI Jewelry Assistant",
+            "ai_status_text": "Ready for voice & text commands (synced with live market rates)",
+            "ai_prompt_hint": "Quick Commands:",
+            "ai_prompt_1": "✨ Issue Gold Invoice",
+            "ai_prompt_2": "💰 Client Balance",
+            "ai_prompt_3": "📈 Sales Growth",
+            "ai_prompt_4": "🔥 Melted Gold Assay",
+            "ai_greeting": "Hello! I am your AI assistant for jewelry management and accounting. You can command me to issue invoices, check balances, or analyze sales in seconds.",
+            "ai_input_ph": "Type your command (e.g. Issue sales invoice for 2g gold)...",
+            "vitrine_sec_title": "<i class=\"fa-solid fa-store text-gold\"></i> Online Vitrine & Digital Catalog",
+            "vitrine_sec_subtitle": "24/7 luxury online storefront with your brand's unique link, live gold price calculation, and direct messaging orders",
+            "vitrine_demo_name": "Gallery Online Showcase & Catalog",
+            "vitrine_demo_desc": "Exclusive 18K gold and luxury diamond jewelry with official certified invoice",
+            "v_cat_all": "All Luxury Products",
+            "v_cat_bracelet": "Bracelets & Bangles",
+            "v_cat_ring": "Rings & Bands",
+            "v_cat_set": "Full Sets & Necklaces",
+            "v_tag_18k": "18K Gold (750)",
+            "v_tag_gem": "Diamond Gemstone",
+            "v_tag_luxury": "Luxury Bridal Set",
+            "v_p1_title": "Cartier Luxury Fusion Bracelet",
+            "v_p2_title": "Fancy Diamond Flower Ring",
+            "v_p3_title": "Damas Yellow Gold Bangle",
+            "v_p4_title": "Royal Fusion Bridal Set",
+            "v_label_weight": "Weight:",
+            "v_label_wage": "Wage:",
+            "v_label_price": "Live Price (with today's rate):",
+            "v_btn_wa": "WhatsApp",
+            "v_btn_bale": "Bale App",
+            "dash_sec_title": "<i class=\"fa-solid fa-gauge-high text-gold\"></i> Executive Dashboard & Real-Time Hub",
+            "dash_sec_subtitle": "Real-time monitoring of cashboxes, currencies, coins, raw gold, and automatic customer running balances on invoices",
+            "dash_vault_title": "Vault Assets, Multi-Currency & Cashboxes Breakdown",
+            "dash_invoices_title": "Smart Invoices with Real-Time Customer Running Balance",
+            "dash_invoices_desc": "Never miss an outstanding balance! Immediately after each invoice, the customer's total gold and currency balance is shown on that row:",
+            "dash_th_num": "Invoice #",
+            "dash_th_buyer": "Customer / Client",
+            "dash_th_desc": "Item Description",
+            "dash_th_weight": "Weight (g)",
+            "dash_th_total": "Total Amount",
+            "dash_th_bal": "Customer Balance After Invoice",
+            "comp_f_ai": "AI Voice & Chat Assistant (MCP)",
+            "comp_f_ai_ent": "Yes (Voice invoice, balances & sales growth)",
+            "comp_f_ai_mini": "No",
+            "comp_f_vitrine": "Online Vitrine & Digital Catalog",
+            "comp_f_vitrine_ent": "Yes (Custom URL, live pricing & instant ordering)",
+            "comp_f_vitrine_mini": "No",
+            "comp_f_dash": "Real-Time Dashboard with Customer Balances on Invoices",
+            "comp_f_dash_ent": "Yes (Multi-currency & running balance per invoice)",
+            "comp_f_dash_mini": "No",
+
+            
+            // Extra Localized Labels & Units
+            "page_meta_title": "GoldEx Intelligent Jewelry Platform | AI Assistant, Online Showcase & Accounting",
+            "v_badge_featured": "Featured",
+            "v_badge_certified": "Certified",
+            "v_badge_bestseller": "Best Seller",
+            "v_badge_royal": "Royal Set",
+            "unit_gram": "g",
+            "unit_qty": "qty",
+            "dash_curr_gold18": "Raw 18K Gold",
+            "dash_curr_melt": "Melted Gold (Bar)",
+            "dash_curr_coin": "Emami Gold Coin",
+            "dash_curr_usd": "US Dollar (USD)",
+            "dash_curr_eur": "Euro (EUR)",
+            "dash_curr_aed": "UAE Dirham (AED)",
+            "dash_inv_b1": "Mr. Reza Karimi (Market Partner)",
+            "dash_inv_d1": "Cartier Luxury Fusion Bracelet",
+            "dash_inv_bal1": "12,000,000 Toman (Debtor)",
+            "dash_inv_b2": "Dr. Radmanesh",
+            "dash_inv_d2": "Royal 24K Cut Set",
+            "dash_inv_bal2": "Fully Settled (Zero Balance)",
+            "dash_inv_b3": "Hosseini Wholesale Gold Gallery",
+            "dash_inv_d3": "Scrap & Melt Gold Purchase",
+            "dash_inv_bal3": "15.500 g Gold (Creditor)",
+            "calc_display_gold_18": "18K Gold",
+            "ai_btn_view_pdf": "View & Print Official PDF Invoice",
+            "ai_btn_statement": "Download Detailed Statement",
+            "ai_statement_alert": "Full client statement exported successfully.",
+
+            
+            // Extra missing keys
+            "lang_fa": "فارسی",
+            "lang_en": "English",
+            "lang_tr": "Türkçe",
+            "f7_title": "Multi-Store & Vault Management",
+            "f7_desc": "Define unlimited branches, galleries, and vaults with isolated asset and gold ledger reporting.",
+            "f8_title": "Biometric Security & Passkeys",
+            "f8_desc": "Passwordless login via FaceID, TouchID, Passkeys, and robust 2FA protection.",
+            "footer_web_val": "Modern Architecture based on PWA / Cloud",
+            "workspace_default_item1": "18K Gold Bracelet / Chain",
+            "workspace_default_item2": "Bahar Azadi Gold Coin",
+            "matrix_g_ai": "AI Innovations & Online Showcase",
+            "matrix_r_ai": "AI Voice & Chat Assistant (Invoice generation & sales analysis)",
+            "matrix_no": "No",
+            "matrix_yes_ai": "Yes (Gemini & ChatGPT integration)",
+            "matrix_yes": "Yes",
+            "matrix_r_vitrine": "Dedicated Online Vitrine with Live Rates & Custom Link",
+            "matrix_yes_vitrine": "Yes (Dedicated Gallery Website)",
+            "matrix_no_local": "Requires separate hosting",
+            "matrix_r_dash": "Real-Time Dashboard with Running Customer Balance per Invoice",
+            "matrix_r_remit": "Direct Customer-to-Customer Remittances & Settlement",
+
+            "table_scroll_hint": "Swipe left/right to view all comparison columns",
             "nav_home": "Home",
             "nav_rates": "Live Rates",
             "nav_calculators": "Calculators",
@@ -402,6 +514,118 @@ const i18n = {
         currencyPos: "end",
         dict: {
             // Navbar
+            
+            // AI, Vitrine, Dashboard Navigation & Features
+            "nav_ai": "Yapay Zeka",
+            "nav_vitrine": "Çevrimiçi Vitrin",
+            "nav_dashboard": "Yönetim Paneli",
+            "hero_btn_ai": "<i class=\"fa-solid fa-wand-magic-sparkles\"></i> Yapay Zeka",
+            "hero_btn_vitrine": "<i class=\"fa-solid fa-store\"></i> Çevrimiçi Vitrin",
+            "ai_sec_title": "<i class=\"fa-solid fa-robot text-gold\"></i> GoldEx Sesli ve Yazılı Yapay Zeka Asistanı",
+            "ai_sec_subtitle": "Fatura kesme, müşteri bakiyesi sorgulama ve satış analizlerini tek bir mesajla gerçekleştirin",
+            "ai_bot_name": "GoldEx Kuyumcu Yapay Zeka Asistanı",
+            "ai_status_text": "Sesli ve yazılı komutlar için hazır (anlık piyasa fiyatlarıyla senkronize)",
+            "ai_prompt_hint": "Hızlı Komutlar:",
+            "ai_prompt_1": "✨ Altın Faturası Kes",
+            "ai_prompt_2": "💰 Müşteri Bakiyesi",
+            "ai_prompt_3": "📈 Satış Büyümesi",
+            "ai_prompt_4": "🔥 Has Altın Hesabı",
+            "ai_greeting": "Merhaba! Kuyumcu muhasebe ve yönetim yapay zeka asistanınızım. Fatura kesmek, bakiye sorgulamak veya satış analizleri için bana yazabilirsiniz.",
+            "ai_input_ph": "Komutunuzu yazın (örn: 2g altın satış faturası kes)...",
+            "vitrine_sec_title": "<i class=\"fa-solid fa-store text-gold\"></i> Çevrimiçi Vitrin & Dijital Katalog",
+            "vitrine_sec_subtitle": "Markanıza özel bağlantı, canlı altın fiyatı hesaplama ve doğrudan mesajlaşma siparişleri ile 7/24 çevrimiçi vitrin",
+            "vitrine_demo_name": "Kuyumcu Çevrimiçi Vitrin Kataloğu",
+            "vitrine_demo_desc": "Resmi sertifikalı faturalı özel 18 ayar altın ve pırlanta takılar",
+            "v_cat_all": "Tüm Lüks Ürünler",
+            "v_cat_bracelet": "Bileklik & Bilezik",
+            "v_cat_ring": "Yüzük & Alyans",
+            "v_cat_set": "Takımlar & Kolyeler",
+            "v_tag_18k": "18 Ayar Altın (750)",
+            "v_tag_gem": "Pırlanta Taşlı",
+            "v_tag_luxury": "Lüks Gelin Seti",
+            "v_p1_title": "Cartier Lüks Füzyon Bileklik",
+            "v_p2_title": "Pırlantalı Çiçek Yüzük",
+            "v_p3_title": "Damas Sarı Altın Bilezik",
+            "v_p4_title": "Kraliyet Füzyon Gelin Seti",
+            "v_label_weight": "Ağırlık:",
+            "v_label_wage": "İşçilik:",
+            "v_label_price": "Anlık Fiyat (bugünkü kur ile):",
+            "v_btn_wa": "WhatsApp",
+            "v_btn_bale": "Bale Uygulaması",
+            "dash_sec_title": "<i class=\"fa-solid fa-gauge-high text-gold\"></i> Yönetici Paneli & Anlık Kontrol Merkezi",
+            "dash_sec_subtitle": "Kasa, döviz, altın para takibi ve faturalarda otomatik müşteri cari bakiye gösterimi",
+            "dash_vault_title": "Kasa Varlıkları, Dövizler ve Nakit Dağılımı",
+            "dash_invoices_title": "Anlık Müşteri Bakiyeli Akıllı Fatura Listesi",
+            "dash_invoices_desc": "Hiçbir alacağı unutmayın! Her faturadan sonra müşterinin toplam altın ve nakit bakiyesi anında o satırda görüntülenir:",
+            "dash_th_num": "Fatura No",
+            "dash_th_buyer": "Müşteri / Cari",
+            "dash_th_desc": "Açıklama",
+            "dash_th_weight": "Ağırlık (g)",
+            "dash_th_total": "Toplam Tutar",
+            "dash_th_bal": "Fatura Sonrası Müşteri Bakiyesi",
+            "comp_f_ai": "Yapay Zeka Sesli ve Yazılı Asistanı",
+            "comp_f_ai_ent": "Evet (Sesli fatura, bakiye ve satış büyümesi)",
+            "comp_f_ai_mini": "Hayır",
+            "comp_f_vitrine": "Çevrimiçi Vitrin & Dijital Katalog",
+            "comp_f_vitrine_ent": "Evet (Özel bağlantı, anlık fiyat ve sipariş)",
+            "comp_f_vitrine_mini": "Hayır",
+            "comp_f_dash": "Faturalarda Anlık Müşteri Bakiyeli Yönetici Paneli",
+            "comp_f_dash_ent": "Evet (Çoklu döviz ve fatura başı bakiye)",
+            "comp_f_dash_mini": "Hayır",
+
+            
+            // Extra Localized Labels & Units
+            "page_meta_title": "GoldEx Akıllı Kuyumcu Platformu | Yapay Zeka, Çevrimiçi Vitrin & Muhasebe",
+            "v_badge_featured": "Seçkin",
+            "v_badge_certified": "Sertifikalı",
+            "v_badge_bestseller": "Çok Satan",
+            "v_badge_royal": "Kraliyet Seti",
+            "unit_gram": "gram",
+            "unit_qty": "adet",
+            "dash_curr_gold18": "Ham 18 Ayar Altın",
+            "dash_curr_melt": "Has Altın (Külçe)",
+            "dash_curr_coin": "Bahar Azadi Altın Sikke",
+            "dash_curr_usd": "ABD Doları (USD)",
+            "dash_curr_eur": "Euro (EUR)",
+            "dash_curr_aed": "BAE Dirhemi (AED)",
+            "dash_inv_b1": "Rıza Kerimi (Kapalıçarşı Ortağı)",
+            "dash_inv_d1": "Cartier Lüks Füzyon Bileklik",
+            "dash_inv_bal1": "12.000.000 Tümen (Borçlu)",
+            "dash_inv_b2": "Dr. Radmanesh",
+            "dash_inv_d2": "Kraliyet 24K Kesim Seti",
+            "dash_inv_bal2": "Tamamen Kapatıldı (Sıfır Bakiye)",
+            "dash_inv_b3": "Hüseyni Toptan Altın Galerisi",
+            "dash_inv_d3": "Hurda ve Has Altın Alımı",
+            "dash_inv_bal3": "15.500 g Altın (Alacaklı)",
+            "calc_display_gold_18": "18 Ayar Altın",
+            "ai_btn_view_pdf": "Resmi PDF Faturayı Görüntüle ve Yazdır",
+            "ai_btn_statement": "Ayrıntılı Hesap Dökümünü İndir",
+            "ai_statement_alert": "Müşteri hesap dökümü başarıyla dışa aktarıldı.",
+
+            
+            // Extra missing keys
+            "lang_fa": "Farsça",
+            "lang_en": "İngilizce",
+            "lang_tr": "Türkçe",
+            "f7_title": "Çoklu Şube ve Kasa Yönetimi",
+            "f7_desc": "Sınırsız şube, galeri ve kasa tanımlama ile bağımsız nakit ve altın varlık raporlaması.",
+            "f8_title": "Biyometrik Güvenlik & Passkey",
+            "f8_desc": "Parmak izi, FaceID, Passkey ve 2FA ile güvenli parolasız giriş koruması.",
+            "footer_web_val": "PWA / Bulut Tabanlı Modern Mimari",
+            "workspace_default_item1": "18 Ayar Altın Bileklik / Zincir",
+            "workspace_default_item2": "Bahar Azadi Altın Para",
+            "matrix_g_ai": "Yapay Zeka Yenilikleri & Çevrimiçi Vitrin",
+            "matrix_r_ai": "Yapay Zeka Sesli ve Yazılı Asistanı (Fatura kesme ve satış analizi)",
+            "matrix_no": "Hayır",
+            "matrix_yes_ai": "Evet (Gemini & ChatGPT entegrasyonu)",
+            "matrix_yes": "Evet",
+            "matrix_r_vitrine": "Canlı Fiyatlı ve Özel Bağlantılı Çevrimiçi Vitrin",
+            "matrix_yes_vitrine": "Evet (Özel Galeri Web Sitesi)",
+            "matrix_no_local": "Ayrı barındırma gerektirir",
+            "matrix_r_dash": "Faturalarda Anlık Müşteri Bakiyeli Yönetici Paneli",
+            "matrix_r_remit": "Müşteriler Arası Havale ve Hesap Kapatma",
+
+            "table_scroll_hint": "Tüm sütunları görmek için tabloyu sağa/sola kaydırın",
             "nav_home": "Ana Sayfa",
             "nav_rates": "Canlı Kurlar",
             "nav_calculators": "Hesaplayıcılar",
@@ -786,6 +1010,34 @@ const i18n = {
 
 let currentLang = localStorage.getItem("goldex-lang") || "fa";
 
+
+function convertDigitsInText(text, toPersian) {
+    if (typeof text !== "string") text = String(text);
+    const faDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    const enDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    if (toPersian) {
+        return text.replace(/[0-9]/g, w => faDigits[+w]);
+    } else {
+        return text.replace(/[۰-۹]/g, w => enDigits[faDigits.indexOf(w)]);
+    }
+}
+
+function localizeAllDomNumbers(lang) {
+    const isFa = lang === "fa";
+    const selector = ".num-font, .currency-pill-amount, .val-display, .balance-tag, .stat-value, .ticker-val, .ticker-diff, .v-price, .v-weight, .price-amount, .strike-price, .price-val, .badge, .ai-invoice-card span, .ai-invoice-card strong, table td, table th, p, span, strong";
+    
+    document.querySelectorAll(selector).forEach(elem => {
+        // Skip elements that have data-i18n since updateLanguage already translates them
+        if (elem.hasAttribute("data-i18n")) return;
+        
+        elem.childNodes.forEach(node => {
+            if (node.nodeType === Node.TEXT_NODE && node.nodeValue.trim()) {
+                node.nodeValue = convertDigitsInText(node.nodeValue, isFa);
+            }
+        });
+    });
+}
+
 function updateLanguage(lang) {
     currentLang = lang;
     localStorage.setItem("goldex-lang", lang);
@@ -799,10 +1051,10 @@ function updateLanguage(lang) {
     // Set direction class on body for simple custom styles
     if (config.dir === "ltr") {
         document.body.classList.add("ltr-layout");
-        document.body.style.fontFamily = "'Outfit', sans-serif";
+        document.body.style.fontFamily = "'Outfit', -apple-system, sans-serif";
     } else {
         document.body.classList.remove("ltr-layout");
-        document.body.style.fontFamily = "'Vazirmatn', sans-serif";
+        document.body.style.fontFamily = "'Vazirmatn', -apple-system, sans-serif";
     }
 
     // Apply translations for elements with [data-i18n] attribute
@@ -856,6 +1108,9 @@ function updateLanguage(lang) {
         btn.querySelector(".lang-code").innerText = lang.toUpperCase();
     }
     
+    // Localize all raw numeric nodes across DOM
+    localizeAllDomNumbers(lang);
+
     // Dispatch custom event to notify app.js that language has changed
     const event = new CustomEvent("langChanged", { detail: { lang: lang } });
     document.dispatchEvent(event);
