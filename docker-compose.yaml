@@ -1,9 +1,15 @@
-version: '3.8'
+networks:
+  goldex-network:
+    external: true
 
 services:
-  goldex-landing:
-    image: goldex-landing:latest
-    container_name: goldex-landing
+  masoud-portfolio:
+    image: masoud-portfolio:latest
+    container_name: masoud_portfolio_app
     restart: always
     ports:
-      - "8081:80"
+      - "8080:80"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - goldex-network
