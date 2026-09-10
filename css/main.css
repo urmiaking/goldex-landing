@@ -1,0 +1,239 @@
+/* ==========================================================================
+   Qirato (قیراط) - Persian Sovereign Aurum Design System
+   Main Stylesheet: Variables, Reset, Typography, and Core Layout
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  /* Brand Metallic Palette */
+  --primary: #D4AF37;
+  --primary-light: #F3C64F;
+  --primary-dark: #997300;
+  --secondary: #B8860B;
+  --gold-gilt: #E6CA65;
+  --gold-gradient: linear-gradient(135deg, #F3C64F 0%, #D4AF37 50%, #B8860B 100%);
+  --gold-gradient-hover: linear-gradient(135deg, #FFE088 0%, #E6CA65 50%, #D4AF37 100%);
+  --gold-gradient-text: linear-gradient(135deg, #FFF0B3 0%, #D4AF37 50%, #E6CA65 100%);
+
+  /* Telemetry Indicators */
+  --bull-green: #10B981;
+  --bull-green-bg: rgba(16, 185, 129, 0.12);
+  --bear-red: #EF4444;
+  --bear-red-bg: rgba(239, 68, 68, 0.12);
+
+  /* Dark Theme (Haute-Horlogerie & Obsidian Vault - Default) */
+  --bg-deep: #080B11;
+  --bg-surface: #0E1420;
+  --bg-card: rgba(17, 24, 39, 0.82);
+  --bg-card-hover: rgba(26, 36, 58, 0.92);
+  --bg-glass: rgba(14, 20, 32, 0.82);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-gold: rgba(212, 175, 55, 0.22);
+  --border-gold-strong: rgba(212, 175, 55, 0.48);
+
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --text-inverse: #0F172A;
+
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.6);
+  --aurum-glow: 0 8px 30px rgba(212, 175, 55, 0.25);
+  --aurum-glow-strong: 0 12px 45px rgba(212, 175, 55, 0.45);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  --font-family: 'Vazirmatn', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --max-width: 1240px;
+  --header-height: 80px;
+}
+
+[data-theme="light"] {
+  --bg-deep: #F6F8FA;
+  --bg-surface: #FFFFFF;
+  --bg-card: rgba(255, 255, 255, 0.92);
+  --bg-card-hover: #FFFFFF;
+  --bg-glass: rgba(246, 248, 250, 0.82);
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-gold: rgba(184, 134, 11, 0.25);
+  --border-gold-strong: rgba(184, 134, 11, 0.55);
+
+  --text-primary: #0F172A;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
+  --text-inverse: #FFFFFF;
+
+  --shadow-sm: 0 4px 16px rgba(17, 24, 39, 0.06);
+  --shadow-md: 0 10px 30px rgba(17, 24, 39, 0.09);
+  --shadow-lg: 0 20px 50px rgba(17, 24, 39, 0.12);
+  --aurum-glow: 0 8px 30px rgba(184, 134, 11, 0.2);
+  --aurum-glow-strong: 0 12px 45px rgba(184, 134, 11, 0.35);
+}
+
+/* ==========================================================================
+   CSS Reset & Base Rules
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background-color: var(--bg-deep);
+  direction: rtl;
+  text-align: right;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Background atmospheric lighting */
+body::before {
+  content: '';
+  position: fixed;
+  top: -15vw;
+  right: 10vw;
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, rgba(212, 175, 55, 0.02) 50%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(60px);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  bottom: 5vw;
+  left: -10vw;
+  width: 45vw;
+  height: 45vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184, 134, 11, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 180ms ease-out;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button, input, select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   Typography & Accents
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.gold-gradient-text {
+  background: var(--gold-gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 3.5rem auto;
+}
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1rem;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-light);
+  margin-bottom: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+.section-title {
+  font-size: 2.35rem;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   Responsive Utilities
+   ========================================================================== */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.85rem;
+  }
+  .section-subtitle {
+    font-size: 1rem;
+  }
+}

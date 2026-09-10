@@ -1,0 +1,300 @@
+/* ==========================================================================
+   Qirato (قیراط) - Animations & Transitions
+   Hardware Accelerated (GPU-Only: Transform & Opacity)
+   Based on Emil Kowalski Design Engineering & Modern Web Standards
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Scroll Progress Indicator (Modern Scroll-Driven Animation)
+   -------------------------------------------------------------------------- */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gold-gradient);
+  z-index: 9999;
+  transform-origin: 100% 50%; /* RTL: starts from right to left */
+  transform: scaleX(0);
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes grow-progress {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+    #scroll-progress {
+      animation: grow-progress auto linear;
+      animation-timeline: scroll();
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Interactive Buttons & Tactile Feedback
+   -------------------------------------------------------------------------- */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.85rem 2rem;
+  background: var(--gold-gradient);
+  color: #0A0D14;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--aurum-glow);
+  position: relative;
+  overflow: hidden;
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 180ms ease-out;
+  will-change: transform;
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--aurum-glow-strong);
+}
+
+.btn-gold:active {
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-gold);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(12px);
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 180ms ease-out,
+              background-color 180ms ease-out;
+  will-change: transform;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  background: rgba(212, 175, 55, 0.1);
+  border-color: var(--border-gold-strong);
+  color: var(--primary-light);
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* Gold light sweep on CTA buttons */
+.btn-gold::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: skewX(-25deg);
+  animation: shine-sweep 4.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes shine-sweep {
+  0%, 60% {
+    left: -120%;
+  }
+  100% {
+    left: 180%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Float & Physics Animations
+   -------------------------------------------------------------------------- */
+@keyframes float-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float-subtle 4.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes float-delayed {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-float-delayed {
+  animation: float-delayed 5.5s ease-in-out infinite 1.2s;
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   Card 3D Hover & Lighting
+   -------------------------------------------------------------------------- */
+.luxury-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(16px);
+  padding: 1.75rem;
+  position: relative;
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 240ms ease-out,
+              box-shadow 240ms ease-out;
+  will-change: transform;
+}
+
+.luxury-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-gold-strong);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.5), 0 0 25px rgba(212, 175, 55, 0.18);
+}
+
+/* Top hairline accent on cards */
+.luxury-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 15%;
+  left: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+  opacity: 0.6;
+  transition: opacity 240ms ease-out;
+}
+
+.luxury-card:hover::before {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Pulse and Live Indicators
+   -------------------------------------------------------------------------- */
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--bull-green);
+  position: relative;
+  display: inline-block;
+}
+
+.live-dot::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  border: 1.5px solid var(--bull-green);
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.9;
+  }
+  70% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Ticker Flash Animations
+   -------------------------------------------------------------------------- */
+@keyframes flash-green {
+  0% { background-color: rgba(16, 185, 129, 0.3); }
+  100% { background-color: transparent; }
+}
+
+@keyframes flash-red {
+  0% { background-color: rgba(239, 68, 68, 0.3); }
+  100% { background-color: transparent; }
+}
+
+.price-flash-up {
+  animation: flash-green 800ms ease-out;
+}
+
+.price-flash-down {
+  animation: flash-red 800ms ease-out;
+}
+
+/* --------------------------------------------------------------------------
+   Lightbox Modal Animations
+   -------------------------------------------------------------------------- */
+.lightbox-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(8, 11, 17, 0.88);
+  backdrop-filter: blur(20px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease-out;
+}
+
+.lightbox-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 88vh;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-gold);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8), 0 0 40px rgba(212, 175, 55, 0.25);
+  transform: scale(0.95);
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+.lightbox-modal.active .lightbox-content {
+  transform: scale(1);
+}
+
+/* --------------------------------------------------------------------------
+   Reduced Motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
