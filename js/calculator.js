@@ -1,22 +1,46 @@
 /**
  * Qirato (قیراط) - Interactive Gold & Jewelry Calculator
- * Standardized Iranian Gold Union Formula (New VAT Article 26 Law):
+ * Persian Digits & Standardized Iranian Gold Union Formula (Article 26 VAT Law):
  * - Raw Gold is VAT exempt.
  * - Jeweler Profit = 7% on (Gold Value + Wage)
  * - VAT = 9% ONLY on (Wage + Profit)
+ * - Full Persian Numeral Input & Display (ارقام فارسی)
  */
 
-// Helper: Convert digits to Persian numbers
-function toPersianDigits(num) {
-  if (num === null || num === undefined) return '';
-  const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-  return num.toString().replace(/\d/g, x => farsiDigits[x]);
+// Mapping between Persian and Latin digits
+const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+
+function toPersianDigits(str) {
+  if (str === null || str === undefined) return '';
+  return str.toString()
+    .replace(/\d/g, x => farsiDigits[x])
+    .replace(/,/g, '،');
 }
 
-// Helper: Format number with thousand separators
-function formatMoney(amount) {
+function toLatinDigits(str) {
+  if (!str) return '';
+  let res = str.toString()
+    .replace(/[۰-۹]/g, d => farsiDigits.indexOf(d))
+    .replace(/[٠-٩]/g, d => arabicDigits.indexOf(d))
+    .replace(/[٫\/]/g, '.')
+    .replace(/،/g, '')
+    .replace(/,/g, '')
+    .replace(/[^\d.]/g, '');
+
+  const parts = res.split('.');
+  if (parts.length > 2) {
+    res = parts[0] + '.' + parts.slice(1).join('');
+  }
+  return res;
+}
+
+// Format number with thousands separators using Persian digits
+function formatMoneyPersian(amount) {
   if (!amount || isNaN(amount)) return '۰';
-  return toPersianDigits(Math.round(amount).toLocaleString('en-US'));
+  const rounded = Math.round(amount);
+  const formatted = rounded.toLocaleString('en-US');
+  return toPersianDigits(formatted);
 }
 
 // Convert numbers to Persian Words (حروف فارسی)
@@ -67,7 +91,6 @@ function numberToPersianWords(num) {
   return (parts.join(' و ') || 'صفر') + ' تومان';
 }
 
-// Main Calculator Logic
 document.addEventListener('DOMContentLoaded', () => {
   const weightInput = document.getElementById('calc-weight');
   const priceInput = document.getElementById('calc-price');
@@ -83,8 +106,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const outTotal = document.getElementById('out-total');
   const outWords = document.getElementById('out-words');
 
-  let currentKarat = 750; // 18K standard
+  let currentKarat = 750; // Standard 18K
 
+  // Karat Switcher
   karatButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       karatButtons.forEach(b => b.classList.remove('active'));
@@ -94,14 +118,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  function calculateGold() {
-    const weight = parseFloat(weightInput?.value) || 0;
-    const basePrice18K = parseFloat(priceInput?.value) || 0;
-    const wagePercent = parseFloat(wageInput?.value) || 0;
-    const profitPercent = parseFloat(profitInput?.value) || 0;
-    const taxPercent = parseFloat(taxInput?.value) || 0;
+  // Parse raw value from Persian/formatted inputs
+  function getInputValue(input) {
+    if (!input) return 0;
+    const cleanStr = toLatinDigits(input.value);
+    return parseFloat(cleanStr) || 0;
+  }
 
-    // Adjust rate for karat (750 is standard 18K base)
+  // Format inputs with Persian digits
+  function formatInputPersian(input, isCurrency = false) {
+    if (!input) return;
+    const cursorPos = input.selectionStart;
+    const rawVal = toLatinDigits(input.value);
+    if (!rawVal && rawVal !== '0') {
+      input.value = '';
+      return;
+    }
+
+    if (isCurrency) {
+      const num = parseInt(rawVal, 10);
+      if (!isNaN(num)) {
+        input.value = toPersianDigits(num.toLocaleString('en-US'));
+      }
+    } else {
+      input.value = toPersianDigits(rawVal);
+    }
+  }
+
+  function calculateGold() {
+    const weight = getInputValue(weightInput);
+    const basePrice18K = getInputValue(priceInput);
+    const wagePercent = getInputValue(wageInput);
+    const profitPercent = getInputValue(profitInput);
+    const taxPercent = getInputValue(taxInput);
+
+    // Adjust rate for karat (750 base)
     const karatRatio = currentKarat / 750;
     const rawGoldValue = weight * basePrice18K * karatRatio;
 
@@ -111,25 +162,60 @@ document.addEventListener('DOMContentLoaded', () => {
     // Jeweler profit (7% standard on gold value + wage)
     const profitValue = (rawGoldValue + wageValue) * (profitPercent / 100);
 
-    // VAT (9% standard ONLY on wage + profit per new law)
+    // VAT (9% standard ONLY on wage + profit per Article 26)
     const vatValue = (wageValue + profitValue) * (taxPercent / 100);
 
     // Total Payable
     const totalPayable = rawGoldValue + wageValue + profitValue + vatValue;
 
-    if (outGoldValue) outGoldValue.textContent = formatMoney(rawGoldValue) + ' تومان';
-    if (outWage) outWage.textContent = formatMoney(wageValue) + ' تومان';
-    if (outProfit) outProfit.textContent = formatMoney(profitValue) + ' تومان';
-    if (outTax) outTax.textContent = formatMoney(vatValue) + ' تومان';
-    if (outTotal) outTotal.textContent = formatMoney(totalPayable) + ' تومان';
+    if (outGoldValue) outGoldValue.textContent = formatMoneyPersian(rawGoldValue) + ' تومان';
+    if (outWage) outWage.textContent = formatMoneyPersian(wageValue) + ' تومان';
+    if (outProfit) outProfit.textContent = formatMoneyPersian(profitValue) + ' تومان';
+    if (outTax) outTax.textContent = formatMoneyPersian(vatValue) + ' تومان';
+    if (outTotal) outTotal.textContent = formatMoneyPersian(totalPayable) + ' تومان';
     if (outWords) outWords.textContent = numberToPersianWords(totalPayable);
   }
 
-  [weightInput, priceInput, wageInput, profitInput, taxInput].forEach(inp => {
-    if (inp) {
-      inp.addEventListener('input', calculateGold);
-    }
-  });
+  // Attach input formatting listeners
+  if (weightInput) {
+    weightInput.value = toPersianDigits('۴.۸۵');
+    weightInput.addEventListener('input', () => {
+      formatInputPersian(weightInput, false);
+      calculateGold();
+    });
+  }
+
+  if (priceInput) {
+    priceInput.value = toPersianDigits('۴,۴۲۵,۰۰۰');
+    priceInput.addEventListener('input', () => {
+      formatInputPersian(priceInput, true);
+      calculateGold();
+    });
+  }
+
+  if (wageInput) {
+    wageInput.value = toPersianDigits('۱۴');
+    wageInput.addEventListener('input', () => {
+      formatInputPersian(wageInput, false);
+      calculateGold();
+    });
+  }
+
+  if (profitInput) {
+    profitInput.value = toPersianDigits('۷');
+    profitInput.addEventListener('input', () => {
+      formatInputPersian(profitInput, false);
+      calculateGold();
+    });
+  }
+
+  if (taxInput) {
+    taxInput.value = toPersianDigits('۹');
+    taxInput.addEventListener('input', () => {
+      formatInputPersian(taxInput, false);
+      calculateGold();
+    });
+  }
 
   // Initial Calculation
   calculateGold();

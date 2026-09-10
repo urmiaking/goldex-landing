@@ -232,6 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
   mobileMenuBtn?.addEventListener('click', () => {
     if (!navLinks) return;
     const isOpen = navLinks.classList.toggle('mobile-open');
+    mobileMenuBtn.classList.toggle('active', isOpen);
     mobileMenuBtn.innerHTML = isOpen ? '✕' : '☰';
     mobileMenuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   });
@@ -247,7 +248,11 @@ document.addEventListener('DOMContentLoaded', () => {
         targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
         if (navLinks && navLinks.classList.contains('mobile-open')) {
           navLinks.classList.remove('mobile-open');
-          if (mobileMenuBtn) mobileMenuBtn.innerHTML = '☰';
+          if (mobileMenuBtn) {
+            mobileMenuBtn.classList.remove('active');
+            mobileMenuBtn.innerHTML = '☰';
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+          }
         }
       }
     });

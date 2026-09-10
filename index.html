@@ -54,9 +54,9 @@
         <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="تغییر تم شب و روز" title="تغییر حالت تم">
           ☀️
         </button>
-        <a href="#download" class="btn-gold" style="padding: 0.55rem 1.25rem; font-size: 0.88rem;">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span>دانلود برنامه</span>
+        <a href="#download" class="btn-gold nav-download-btn" aria-label="دانلود مستقیم برنامه قیراط" title="دانلود برنامه قیراط">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span class="btn-text">دانلود برنامه</span>
         </a>
         <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="منوی موبایل" aria-expanded="false">
           ☰
@@ -113,7 +113,7 @@
             </div>
             <div class="spec-item">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>متن‌باز و ایمن</span>
+              <span>مستقل، پایدار و ایمن</span>
             </div>
           </div>
         </div>
@@ -181,7 +181,7 @@
             <div class="calc-input-group">
               <label class="calc-label" for="calc-weight">وزن طلا (گرم)</label>
               <div class="calc-input-wrapper">
-                <input type="number" id="calc-weight" class="calc-input" value="4.85" step="0.01" min="0.01">
+                <input type="text" inputmode="decimal" id="calc-weight" class="calc-input" value="۴.۸۵" autocomplete="off" spellcheck="false">
                 <span class="calc-unit">گرم</span>
               </div>
             </div>
@@ -189,17 +189,29 @@
             <div class="calc-input-group">
               <label class="calc-label" id="karat-label">عیار طلا</label>
               <div class="karat-selector" role="group" aria-labelledby="karat-label">
-                <button type="button" class="karat-btn" data-karat="705">۷۰۵ (آبشده)</button>
-                <button type="button" class="karat-btn active" data-karat="750">۷۵۰ (۱۸ عیار)</button>
-                <button type="button" class="karat-btn" data-karat="840">۸۴۰ (۲۱ عیار)</button>
-                <button type="button" class="karat-btn" data-karat="995">۹۹۵ (۲۴ عیار)</button>
+                <button type="button" class="karat-btn" data-karat="705">
+                  <span class="karat-name">آبشده</span>
+                  <span class="karat-code">۷۰۵</span>
+                </button>
+                <button type="button" class="karat-btn active" data-karat="750">
+                  <span class="karat-name">۱۸ عیار</span>
+                  <span class="karat-code">۷۵۰</span>
+                </button>
+                <button type="button" class="karat-btn" data-karat="840">
+                  <span class="karat-name">۲۱ عیار</span>
+                  <span class="karat-code">۸۴۰</span>
+                </button>
+                <button type="button" class="karat-btn" data-karat="995">
+                  <span class="karat-name">۲۴ عیار</span>
+                  <span class="karat-code">۹۹۵</span>
+                </button>
               </div>
             </div>
 
             <div class="calc-input-group">
               <label class="calc-label" for="calc-price">مظنه هر گرم طلای ۱۸ عیار خام</label>
               <div class="calc-input-wrapper">
-                <input type="number" id="calc-price" class="calc-input" value="4425000" step="1000">
+                <input type="text" inputmode="numeric" id="calc-price" class="calc-input" value="۴،۴۲۵،۰۰۰" autocomplete="off" spellcheck="false">
                 <span class="calc-unit">تومان</span>
               </div>
             </div>
@@ -207,7 +219,7 @@
             <div class="calc-input-group">
               <label class="calc-label" for="calc-wage">درصد اجرت ساخت طلاساز</label>
               <div class="calc-input-wrapper">
-                <input type="number" id="calc-wage" class="calc-input" value="14" step="0.5" min="0">
+                <input type="text" inputmode="decimal" id="calc-wage" class="calc-input" value="۱۴" autocomplete="off" spellcheck="false">
                 <span class="calc-unit">درصد (٪)</span>
               </div>
             </div>
@@ -216,7 +228,7 @@
               <div class="calc-input-group">
                 <label class="calc-label" for="calc-profit">سود فروشنده</label>
                 <div class="calc-input-wrapper">
-                  <input type="number" id="calc-profit" class="calc-input" value="7" step="0.5" min="0">
+                  <input type="text" inputmode="decimal" id="calc-profit" class="calc-input" value="۷" autocomplete="off" spellcheck="false">
                   <span class="calc-unit">٪</span>
                 </div>
               </div>
@@ -224,7 +236,7 @@
               <div class="calc-input-group">
                 <label class="calc-label" for="calc-tax">مالیات ارزش‌افزوده</label>
                 <div class="calc-input-wrapper">
-                  <input type="number" id="calc-tax" class="calc-input" value="9" step="0.5" min="0">
+                  <input type="text" inputmode="decimal" id="calc-tax" class="calc-input" value="۹" autocomplete="off" spellcheck="false">
                   <span class="calc-unit">٪</span>
                 </div>
               </div>
@@ -456,21 +468,21 @@
             </p>
 
             <div class="download-buttons">
-              <a href="https://github.com/urmiaking/goldex-companion/releases/latest/download/app-release.apk" class="btn-gold" download>
+              <a href="https://github.com/urmiaking/goldex-companion/releases/latest/download/app-release.apk" class="btn-gold" download="qirato-v0.27.0.apk">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 <span>دانلود مستقیم نسخه v0.27.0 (APK)</span>
               </a>
-              <a href="https://github.com/urmiaking/goldex-companion/releases" target="_blank" rel="noopener noreferrer" class="btn-secondary">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                <span>مشاهده انتشارها در گیت‌هاب</span>
+              <a href="#specs" class="btn-secondary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                <span>مشخصات فنی و نیازمندی‌ها</span>
               </a>
             </div>
 
             <div class="download-meta">
-              <span>حجم فایل: حدود ۲۲ مگابایت</span>
+              <span>حجم فایل: حدود ۱۰ مگابایت</span>
               <span>حداقل سیستم: اندروید ۷.۰ (Nougat)</span>
               <span>امضای رسمی: RSA 2048-bit</span>
-              <span>مجوز: متن‌باز و ایمن</span>
+              <span>امنیت: پردازش محلی ۱۰۰٪ آفلاین</span>
             </div>
           </div>
 
@@ -523,8 +535,8 @@
 
           <div class="spec-card">
             <div class="spec-card-icon">🚀</div>
-            <h3 class="spec-card-title">GitHub Actions CI/CD</h3>
-            <p class="spec-card-sub">تست‌های خودکار واحد، فرمول‌های مالی و تولید خودکار بیلد نهایی در بستر ابری</p>
+            <h3 class="spec-card-title">اعتبارسنجی مداوم و پایداری</h3>
+            <p class="spec-card-sub">تست‌های خودکار الگوریتم‌های مالی، دقت ری‌گیری و تولید بیلد استاندارد با حداکثر پایداری</p>
           </div>
         </div>
       </div>
@@ -630,19 +642,19 @@
         </div>
 
         <div>
-          <h4 class="footer-heading">پیوندهای توسعه</h4>
+          <h4 class="footer-heading">راهنما و اطلاعات</h4>
           <div class="footer-links">
-            <a href="https://github.com/urmiaking/goldex-companion" target="_blank" rel="noopener noreferrer" class="footer-link">مخزن رسمی گیت‌هاب</a>
-            <a href="https://github.com/urmiaking/goldex-companion/releases" target="_blank" rel="noopener noreferrer" class="footer-link">انتشارها و تغییرات نسخه</a>
-            <a href="https://github.com/urmiaking/goldex-companion/issues" target="_blank" rel="noopener noreferrer" class="footer-link">ثبت بازخورد و پیشنهادات</a>
-            <a href="#faq" class="footer-link">راهنما و سوالات متداول</a>
+            <a href="#faq" class="footer-link">پرسش‌های متداول</a>
+            <a href="#specs" class="footer-link">مشخصات فنی و حریم خصوصی</a>
+            <a href="#calculator" class="footer-link">فرمول محاسباتی ماده ۲۶</a>
+            <a href="#download" class="footer-link">دریافت نسخه رسمی v0.27.0</a>
           </div>
         </div>
       </div>
 
       <div class="footer-bottom">
         <div>
-          © تمام حقوق مادی و معنوی برای پروژه قیراط (GoldEx Companion) محفوظ است.
+          © تمام حقوق مادی و معنوی برای سامانه تخصصی قیراط محفوظ است.
         </div>
         <div style="direction: ltr; font-family: monospace; font-size: 0.8rem; color: #F3C64F;">
           QIRATO v0.27.0 • Jetpack Compose Native
