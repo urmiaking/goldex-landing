@@ -1,9 +1,9 @@
 /**
  * Qirato (قیراط) - Main Landing Page Script
- * Interactivity, Themes, Showcase Tabs, Lightbox, and FAQ
+ * Interactivity, High-Contrast Themes, Showcase Tabs, Lightbox, and FAQ
  */
 
-// Screenshots data
+// Screenshots data with high-res Retina captures
 const showcaseData = {
   dashboard: {
     title: 'داشبورد اختصاصی بنکداران و فعالان بازار طلا',
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. Sticky Header with shadow on scroll
   const header = document.querySelector('.header');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 30) {
+    if (window.scrollY > 20) {
       header?.classList.add('scrolled');
     } else {
       header?.classList.remove('scrolled');
@@ -111,22 +111,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 3. Theme Toggle (Dark Obsidian / Light Sovereign Porcelain)
   const themeToggleBtn = document.getElementById('theme-toggle-btn');
-  const currentTheme = localStorage.getItem('qirato-theme') || 'dark';
+  const savedTheme = localStorage.getItem('qirato-theme') || 'dark';
 
-  if (currentTheme === 'light') {
-    document.documentElement.setAttribute('data-theme', 'light');
-    if (themeToggleBtn) themeToggleBtn.innerHTML = '🌙';
-  } else {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    if (themeToggleBtn) themeToggleBtn.innerHTML = '☀️';
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('qirato-theme', theme);
+    if (themeToggleBtn) {
+      themeToggleBtn.innerHTML = theme === 'light' ? '🌙' : '☀️';
+      themeToggleBtn.setAttribute('title', theme === 'light' ? 'تغییر به حالت شب' : 'تغییر به حالت روز');
+    }
   }
+
+  applyTheme(savedTheme);
 
   themeToggleBtn?.addEventListener('click', () => {
     const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-    const newTheme = isLight ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('qirato-theme', newTheme);
-    themeToggleBtn.innerHTML = newTheme === 'light' ? '🌙' : '☀️';
+    applyTheme(isLight ? 'dark' : 'light');
   });
 
   // 4. Showcase Tabs Switcher
@@ -146,8 +146,11 @@ document.addEventListener('DOMContentLoaded', () => {
       showcaseTabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
 
+      // Ensure active tab is scrolled into view in mobile horizontal scroll
+      tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+
       // Smooth content swap with subtle fade
-      if (showcaseHolder) showcaseHolder.style.opacity = '0.4';
+      if (showcaseHolder) showcaseHolder.style.opacity = '0.3';
 
       setTimeout(() => {
         if (showcaseImg) {
@@ -225,23 +228,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // 7. Mobile Navigation Toggle
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const navLinks = document.querySelector('.nav-links');
+
   mobileMenuBtn?.addEventListener('click', () => {
     if (!navLinks) return;
-    const isShown = navLinks.style.display === 'flex';
-    navLinks.style.display = isShown ? 'none' : 'flex';
-    if (!isShown) {
-      navLinks.style.flexDirection = 'column';
-      navLinks.style.position = 'absolute';
-      navLinks.style.top = 'var(--header-height)';
-      navLinks.style.left = '0';
-      navLinks.style.right = '0';
-      navLinks.style.background = 'var(--bg-card)';
-      navLinks.style.padding = '1.5rem';
-      navLinks.style.borderBottom = '1px solid var(--border-gold)';
-    }
+    const isOpen = navLinks.classList.toggle('mobile-open');
+    mobileMenuBtn.innerHTML = isOpen ? '✕' : '☰';
+    mobileMenuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   });
 
-  // 8. Smooth scrolling on anchor clicks
+  // 8. Smooth scrolling on anchor clicks & close mobile menu
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const targetId = this.getAttribute('href');
@@ -250,8 +245,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (targetElem) {
         e.preventDefault();
         targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        if (window.innerWidth <= 768 && navLinks) {
-          navLinks.style.display = 'none';
+        if (navLinks && navLinks.classList.contains('mobile-open')) {
+          navLinks.classList.remove('mobile-open');
+          if (mobileMenuBtn) mobileMenuBtn.innerHTML = '☰';
         }
       }
     });
@@ -268,12 +264,11 @@ function renderDownloadQr() {
 
   const downloadUrl = 'https://github.com/urmiaking/goldex-companion/releases/latest/download/app-release.apk';
   
-  // Use official QR code API for high-density crisp vector QR
   const qrImg = document.createElement('img');
   qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=4&color=111827&bgcolor=FFFFFF&data=${encodeURIComponent(downloadUrl)}`;
   qrImg.alt = 'کد QR دانلود مستقیم اپلیکیشن قیراط';
-  qrImg.width = 170;
-  qrImg.height = 170;
+  qrImg.width = 160;
+  qrImg.height = 160;
   qrImg.loading = 'lazy';
 
   qrContainer.innerHTML = '';

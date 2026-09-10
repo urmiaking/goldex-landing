@@ -1,48 +1,61 @@
 /* ==========================================================================
    Qirato (قیراط) - Persian Sovereign Aurum Design System
    Main Stylesheet: Variables, Reset, Typography, and Core Layout
+   High-Contrast Light Mode + Obsidian Dark Mode
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
-  /* Brand Metallic Palette */
+  /* ------------------------------------------------------------------------
+     Dark Mode (Default - Luxury Obsidian & Bullion Vault)
+     ------------------------------------------------------------------------ */
   --primary: #D4AF37;
   --primary-light: #F3C64F;
-  --primary-dark: #997300;
+  --primary-dark: #A37F00;
   --secondary: #B8860B;
   --gold-gilt: #E6CA65;
   --gold-gradient: linear-gradient(135deg, #F3C64F 0%, #D4AF37 50%, #B8860B 100%);
   --gold-gradient-hover: linear-gradient(135deg, #FFE088 0%, #E6CA65 50%, #D4AF37 100%);
-  --gold-gradient-text: linear-gradient(135deg, #FFF0B3 0%, #D4AF37 50%, #E6CA65 100%);
+  --gold-gradient-text: linear-gradient(135deg, #FFF1B8 0%, #E6CA65 40%, #D4AF37 100%);
 
-  /* Telemetry Indicators */
+  /* Status Indicators */
   --bull-green: #10B981;
-  --bull-green-bg: rgba(16, 185, 129, 0.12);
+  --bull-green-bg: rgba(16, 185, 129, 0.14);
+  --bull-green-text: #34D399;
   --bear-red: #EF4444;
-  --bear-red-bg: rgba(239, 68, 68, 0.12);
+  --bear-red-bg: rgba(239, 68, 68, 0.14);
+  --bear-red-text: #F87171;
 
-  /* Dark Theme (Haute-Horlogerie & Obsidian Vault - Default) */
+  /* Surfaces & Backgrounds */
   --bg-deep: #080B11;
   --bg-surface: #0E1420;
-  --bg-card: rgba(17, 24, 39, 0.82);
-  --bg-card-hover: rgba(26, 36, 58, 0.92);
-  --bg-glass: rgba(14, 20, 32, 0.82);
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-gold: rgba(212, 175, 55, 0.22);
-  --border-gold-strong: rgba(212, 175, 55, 0.48);
+  --bg-card: rgba(17, 24, 39, 0.88);
+  --bg-card-hover: rgba(26, 36, 58, 0.95);
+  --bg-glass: rgba(11, 16, 26, 0.85);
+  --bg-input: rgba(0, 0, 0, 0.35);
 
+  /* Borders & Dividers */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-card: rgba(212, 175, 55, 0.22);
+  --border-gold: rgba(212, 175, 55, 0.25);
+  --border-gold-strong: rgba(212, 175, 55, 0.55);
+
+  /* Typography Colors */
   --text-primary: #F8FAFC;
   --text-secondary: #CBD5E1;
   --text-muted: #94A3B8;
-  --text-inverse: #0F172A;
+  --text-inverse: #080B11;
+  --text-gold: #F3C64F;
 
-  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.6);
+  /* Shadows & Glow */
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.7);
   --aurum-glow: 0 8px 30px rgba(212, 175, 55, 0.25);
   --aurum-glow-strong: 0 12px 45px rgba(212, 175, 55, 0.45);
 
+  /* Radii */
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
@@ -50,30 +63,59 @@
   --radius-full: 9999px;
 
   --font-family: 'Vazirmatn', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --max-width: 1240px;
-  --header-height: 80px;
+  --max-width: 1220px;
+  --header-height: 76px;
 }
 
+/* --------------------------------------------------------------------------
+   Light Mode (High-Contrast Haute-Horlogerie & Porcelain Alabaster)
+   Specifically engineered for WCAG AA/AAA legibility in direct sunlight
+   -------------------------------------------------------------------------- */
 [data-theme="light"] {
-  --bg-deep: #F6F8FA;
+  --primary: #946900;
+  --primary-light: #7A5500;
+  --primary-dark: #5C4000;
+  --secondary: #8C6500;
+  --gold-gilt: #B8860B;
+  --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #B8860B 60%, #8C6500 100%);
+  --gold-gradient-hover: linear-gradient(135deg, #E6CA65 0%, #D4AF37 60%, #A37700 100%);
+  --gold-gradient-text: linear-gradient(135deg, #785000 0%, #9E7000 45%, #6B4500 100%);
+
+  /* Status Indicators */
+  --bull-green: #047857;
+  --bull-green-bg: rgba(4, 120, 87, 0.12);
+  --bull-green-text: #047857;
+  --bear-red: #B91C1C;
+  --bear-red-bg: rgba(185, 28, 28, 0.12);
+  --bear-red-text: #B91C1C;
+
+  /* Surfaces & Backgrounds */
+  --bg-deep: #F8FAFC;
   --bg-surface: #FFFFFF;
-  --bg-card: rgba(255, 255, 255, 0.92);
+  --bg-card: #FFFFFF;
   --bg-card-hover: #FFFFFF;
-  --bg-glass: rgba(246, 248, 250, 0.82);
-  --border-subtle: rgba(0, 0, 0, 0.08);
-  --border-gold: rgba(184, 134, 11, 0.25);
-  --border-gold-strong: rgba(184, 134, 11, 0.55);
+  --bg-glass: rgba(248, 250, 252, 0.9);
+  --bg-input: #F1F5F9;
 
-  --text-primary: #0F172A;
-  --text-secondary: #334155;
-  --text-muted: #64748B;
+  /* Borders & Dividers */
+  --border-subtle: #E2E8F0;
+  --border-card: rgba(184, 134, 11, 0.28);
+  --border-gold: rgba(184, 134, 11, 0.35);
+  --border-gold-strong: rgba(184, 134, 11, 0.7);
+
+  /* Typography Colors - Guaranteed High Contrast */
+  --text-primary: #0F172A;     /* Obsidian Black (Ratio 15.8:1) */
+  --text-secondary: #334155;   /* Slate Charcoal (Ratio 9.6:1) */
+  --text-muted: #64748B;       /* Neutral Pewter (Ratio 4.8:1) */
   --text-inverse: #FFFFFF;
+  --text-gold: #785000;
 
-  --shadow-sm: 0 4px 16px rgba(17, 24, 39, 0.06);
-  --shadow-md: 0 10px 30px rgba(17, 24, 39, 0.09);
-  --shadow-lg: 0 20px 50px rgba(17, 24, 39, 0.12);
-  --aurum-glow: 0 8px 30px rgba(184, 134, 11, 0.2);
-  --aurum-glow-strong: 0 12px 45px rgba(184, 134, 11, 0.35);
+  /* Shadows & Glow */
+  --shadow-sm: 0 4px 16px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 20px 50px rgba(15, 23, 42, 0.12);
+  --aurum-glow: 0 8px 25px rgba(184, 134, 11, 0.2);
+  --aurum-glow-strong: 0 12px 35px rgba(184, 134, 11, 0.32);
 }
 
 /* ==========================================================================
@@ -89,6 +131,7 @@ html {
   scroll-behavior: smooth;
   text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
+  overflow-x: clip;
 }
 
 body {
@@ -99,41 +142,49 @@ body {
   background-color: var(--bg-deep);
   direction: rtl;
   text-align: right;
-  overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
   min-height: 100vh;
   font-variant-numeric: tabular-nums;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 200ms ease, color 200ms ease;
 }
 
 /* Background atmospheric lighting */
 body::before {
   content: '';
   position: fixed;
-  top: -15vw;
-  right: 10vw;
-  width: 50vw;
-  height: 50vw;
+  top: -10vw;
+  right: 5vw;
+  width: 45vw;
+  height: 45vw;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, rgba(212, 175, 55, 0.02) 50%, transparent 70%);
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
-  filter: blur(60px);
+  filter: blur(80px);
 }
 
 body::after {
   content: '';
   position: fixed;
-  bottom: 5vw;
-  left: -10vw;
-  width: 45vw;
-  height: 45vw;
+  bottom: 0vw;
+  left: -5vw;
+  width: 40vw;
+  height: 40vw;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(184, 134, 11, 0.08) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
   filter: blur(80px);
+}
+
+[data-theme="light"] body::before {
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+}
+[data-theme="light"] body::after {
+  background: radial-gradient(circle, rgba(184, 134, 11, 0.05) 0%, transparent 70%);
 }
 
 a {
@@ -159,6 +210,7 @@ button, input, select {
 
 button {
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 ul, ol {
@@ -170,8 +222,8 @@ ul, ol {
   max-width: var(--max-width);
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
   position: relative;
   z-index: 1;
 }
@@ -197,7 +249,7 @@ h1, h2, h3, h4, h5, h6 {
 .section-header {
   text-align: center;
   max-width: 720px;
-  margin: 0 auto 3.5rem auto;
+  margin: 0 auto 3rem auto;
 }
 
 .section-badge {
@@ -205,35 +257,31 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   gap: 0.5rem;
   padding: 0.35rem 1rem;
-  background: rgba(212, 175, 55, 0.1);
+  background: rgba(212, 175, 55, 0.12);
   border: 1px solid var(--border-gold);
   border-radius: var(--radius-full);
   font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--primary-light);
-  margin-bottom: 1rem;
+  font-weight: 700;
+  color: var(--text-gold);
+  margin-bottom: 0.85rem;
   backdrop-filter: blur(10px);
 }
 
+[data-theme="light"] .section-badge {
+  background: rgba(184, 134, 11, 0.1);
+  border-color: var(--border-gold-strong);
+  color: #7A5500;
+}
+
 .section-title {
-  font-size: 2.35rem;
-  margin-bottom: 1rem;
+  font-size: clamp(1.85rem, 3.5vw, 2.45rem);
+  margin-bottom: 0.85rem;
+  font-weight: 800;
 }
 
 .section-subtitle {
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
   color: var(--text-secondary);
   font-weight: 400;
-}
-
-/* ==========================================================================
-   Responsive Utilities
-   ========================================================================== */
-@media (max-width: 768px) {
-  .section-title {
-    font-size: 1.85rem;
-  }
-  .section-subtitle {
-    font-size: 1rem;
-  }
+  line-height: 1.8;
 }
