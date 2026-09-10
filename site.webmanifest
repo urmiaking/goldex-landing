@@ -1,0 +1,19 @@
+﻿{
+  "name": "قیراط - دستیار هوشمند طلا",
+  "short_name": "قیراط",
+  "description": "سامانه جامع، هوشمند و فوق‌مدرن ویژه طلافروشان و معامله‌گران بازار طلا",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080B11",
+  "theme_color": "#080B11",
+  "dir": "rtl",
+  "lang": "fa",
+  "icons": [
+    {
+      "src": "assets/icons/logo.png",
+      "sizes": "192x192 345x347 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+﻿.git
+.gitignore
+*.tar
+*.tar.gz
+qirato-nginx.conf
+docker-compose.yml
+Dockerfile
+README.md

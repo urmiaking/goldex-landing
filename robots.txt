@@ -1,0 +1,14 @@
+﻿# ==============================================================================
+# Qirato (قیراط) - Robots.txt
+# https://qirato.ir/
+# ==============================================================================
+
+User-agent: *
+Allow: /
+Allow: /css/
+Allow: /js/
+Allow: /assets/
+
+# Host & Sitemap
+Host: https://qirato.ir
+Sitemap: https://qirato.ir/sitemap.xml

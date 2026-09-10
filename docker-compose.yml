@@ -1,0 +1,14 @@
+﻿services:
+  qirato:
+    image: reg.goldexsoft.ir/qirato:latest
+    container_name: qirato
+    restart: unless-stopped
+    expose:
+      - "8080"
+    networks:
+      - qirato-net
+
+networks:
+  qirato-net:
+    name: qirato-net
+    driver: bridge
