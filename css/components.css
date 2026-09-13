@@ -1397,31 +1397,43 @@
     border-color: var(--border-gold);
   }
 
-  /* 3. Hero adjustments */
+  /* 3. Hero adjustments & Mobile Layout Ordering */
   .hero-section {
     padding-top: calc(var(--header-height) + 1.5rem);
     padding-bottom: 3.5rem;
   }
+  .hero-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.35rem;
+    text-align: center;
+  }
+  .hero-content {
+    display: contents;
+  }
   .hero-title {
+    order: 1;
     font-size: 2rem;
+    text-align: center;
   }
   .hero-description {
+    order: 2;
     font-size: 0.98rem;
-  }
-  .hero-cta-group {
-    flex-direction: column;
-    width: 100%;
-  }
-  .btn-gold, .btn-secondary {
-    width: 100%;
+    text-align: center;
+    margin: 0 auto;
   }
 
-  /* 4. Phone Mockup on Mobile: NO horizontal overflow */
+  /* 4. Phone Mockup Screenshot on Mobile: App visual comes FIRST before download */
   .hero-device-wrapper {
+    order: 3;
     width: 100%;
     max-width: 320px;
-    margin: 0 auto;
+    margin: 0.5rem auto 0.75rem;
     overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .phone-mockup {
     width: 270px;
@@ -1430,7 +1442,8 @@
   .floating-chip {
     position: static;
     width: 100%;
-    margin-top: 0.85rem;
+    max-width: 280px;
+    margin-top: 0.65rem;
     box-shadow: var(--shadow-sm);
   }
   .chip-1, .chip-2 {
@@ -1440,7 +1453,23 @@
     left: auto;
   }
 
-  /* 5. Karat buttons never break on mobile */
+  /* 5. Download CTA & Specs come AFTER Screenshot on Mobile */
+  .hero-cta-group {
+    order: 4;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.85rem;
+  }
+  .btn-gold, .btn-secondary {
+    width: 100%;
+  }
+  .hero-specs-pill {
+    order: 5;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* 6. Karat buttons never break on mobile */
   .karat-selector {
     grid-template-columns: repeat(4, 1fr);
     gap: 0.35rem;

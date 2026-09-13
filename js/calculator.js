@@ -3,7 +3,7 @@
  * Persian Digits & Standardized Iranian Gold Union Formula (Article 26 VAT Law):
  * - Raw Gold is VAT exempt.
  * - Jeweler Profit = 7% on (Gold Value + Wage)
- * - VAT = 9% ONLY on (Wage + Profit)
+ * - VAT = 10% ONLY on (Wage + Profit)
  * - Full Persian Numeral Input & Display (ارقام فارسی)
  */
 
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (priceInput) {
-    priceInput.value = toPersianDigits('۴,۴۲۵,۰۰۰');
+    priceInput.value = toPersianDigits('۲۳,۹۱۶,۰۰۰');
     priceInput.addEventListener('input', () => {
       formatInputPersian(priceInput, true);
       calculateGold();
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (taxInput) {
-    taxInput.value = toPersianDigits('۹');
+    taxInput.value = toPersianDigits('۱۰');
     taxInput.addEventListener('input', () => {
       formatInputPersian(taxInput, false);
       calculateGold();

@@ -103,7 +103,7 @@
             "name": "نحوه محاسبه مالیات در قیراط طبق چه قانونی است؟",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "محاسبات بر اساس جدیدترین اصلاحیه ماده ۲۶ قانون مالیات بر ارزش افزوده و دستورالعمل اتحادیه طلا و جواهر صورت می‌گیرد. در این روش، اصل طلا از مالیات معاف بوده و مالیات ۹٪ منحصراً بر روی مجموع سود ۷٪ و اجرت ساخت طلاساز محاسبه می‌گردد."
+              "text": "محاسبات بر اساس جدیدترین اصلاحیه ماده ۲۶ قانون مالیات بر ارزش افزوده و دستورالعمل اتحادیه طلا و جواهر صورت می‌گیرد. در این روش، اصل طلا از مالیات معاف بوده و مالیات ۱۰٪ منحصراً بر روی مجموع سود ۷٪ و اجرت ساخت طلاساز محاسبه می‌گردد."
             }
           },
           {
@@ -187,11 +187,6 @@
       <div class="container hero-grid">
         <!-- Content Column -->
         <div class="hero-content">
-          <div class="hero-badge">
-            <span class="live-dot"></span>
-            <span>نسخه جدید v0.27.0 • نشان جدید و دیزاین سیستم Aurum</span>
-          </div>
-
           <h1 class="hero-title">
             دستیار هوشمند، جامع و مدرن <br>
             <span class="gold-gradient-text">زرگری و معامله‌گران بازار طلا</span>
@@ -248,7 +243,7 @@
             </div>
             <div class="chip-info">
               <span class="chip-label">طلای ۱۸ عیار زنده</span>
-              <span class="chip-val">۴,۴۲۵,۰۰۰ تومان</span>
+              <span class="chip-val">۲۳،۹۱۶،۰۰۰ تومان</span>
             </div>
           </div>
 
@@ -258,7 +253,7 @@
             </div>
             <div class="chip-info">
               <span class="chip-label">حباب سکه امامی</span>
-              <span class="chip-val">۷,۸۵۰,۰۰۰ تومان</span>
+              <span class="chip-val">۶،۶۱۰،۰۰۰ تومان</span>
             </div>
           </div>
         </div>
@@ -285,7 +280,7 @@
           </div>
           <h2 class="section-title">محاسبه دقیق قیمت طلا، اجرت و مالیات</h2>
           <p class="section-subtitle">
-            محاسبه فوری بر اساس آخرین اصلاحیه قانون مالیات بر ارزش افزوده (معافیت اصل طلا و احتساب مالیات ۹٪ صرفاً روی سود ۷٪ و اجرت ساخت).
+            محاسبه فوری بر اساس آخرین اصلاحیه قانون مالیات بر ارزش افزوده (معافیت اصل طلا و احتساب مالیات ۱۰٪ صرفاً روی سود ۷٪ و اجرت ساخت).
           </p>
         </div>
 
@@ -325,7 +320,7 @@
             <div class="calc-input-group">
               <label class="calc-label" for="calc-price">مظنه هر گرم طلای ۱۸ عیار خام</label>
               <div class="calc-input-wrapper">
-                <input type="text" inputmode="numeric" id="calc-price" class="calc-input" value="۴،۴۲۵،۰۰۰" autocomplete="off" spellcheck="false">
+                <input type="text" inputmode="numeric" id="calc-price" class="calc-input" value="۲۳،۹۱۶،۰۰۰" autocomplete="off" spellcheck="false">
                 <span class="calc-unit">تومان</span>
               </div>
             </div>
@@ -350,7 +345,7 @@
               <div class="calc-input-group">
                 <label class="calc-label" for="calc-tax">مالیات ارزش‌افزوده</label>
                 <div class="calc-input-wrapper">
-                  <input type="text" inputmode="decimal" id="calc-tax" class="calc-input" value="۹" autocomplete="off" spellcheck="false">
+                  <input type="text" inputmode="decimal" id="calc-tax" class="calc-input" value="۱۰" autocomplete="off" spellcheck="false">
                   <span class="calc-unit">٪</span>
                 </div>
               </div>
@@ -366,22 +361,22 @@
               </div>
 
               <div class="calc-breakdown-row">
-                <span class="breakdown-label">ارزش طلای خام (معاف از مالیات):</span>
+                <span class="breakdown-label">طلای خام:</span>
                 <span class="breakdown-value" id="out-gold-value">۰ تومان</span>
               </div>
 
               <div class="calc-breakdown-row">
-                <span class="breakdown-label">مبلغ اجرت ساخت:</span>
+                <span class="breakdown-label">اجرت:</span>
                 <span class="breakdown-value" id="out-wage">۰ تومان</span>
               </div>
 
               <div class="calc-breakdown-row">
-                <span class="breakdown-label">سود قانونی طلافروش (۷٪):</span>
+                <span class="breakdown-label">سود:</span>
                 <span class="breakdown-value" id="out-profit">۰ تومان</span>
               </div>
 
               <div class="calc-breakdown-row">
-                <span class="breakdown-label">مالیات بر ارزش افزوده (۹٪ سود و اجرت):</span>
+                <span class="breakdown-label">مالیات:</span>
                 <span class="breakdown-value" id="out-tax">۰ تومان</span>
               </div>
             </div>
@@ -688,7 +683,7 @@
               <span class="faq-icon">▼</span>
             </button>
             <div class="faq-answer">
-              محاسبات بر اساس جدیدترین اصلاحیه ماده ۲۶ قانون مالیات بر ارزش افزوده و دستورالعمل اتحادیه طلا و جواهر صورت می‌گیرد. در این روش، اصل طلا از مالیات معاف بوده و مالیات ۹٪ منحصراً بر روی مجموع سود ۷٪ و اجرت ساخت طلاساز محاسبه می‌گردد.
+              محاسبات بر اساس جدیدترین اصلاحیه ماده ۲۶ قانون مالیات بر ارزش افزوده و دستورالعمل اتحادیه طلا و جواهر صورت می‌گیرد. در این روش، اصل طلا از مالیات معاف بوده و مالیات ۱۰٪ منحصراً بر روی مجموع سود ۷٪ و اجرت ساخت طلاساز محاسبه می‌گردد.
             </div>
           </div>
 

@@ -3,17 +3,17 @@
  */
 
 const marketRates = [
-  { id: 'geram18', name: 'طلای ۱۸ عیار (گرم)', price: 4425000, change: 1.42, unit: 'تومان' },
-  { id: 'mesghal', name: 'مثقال طلای تهران', price: 19165000, change: 1.38, unit: 'تومان' },
-  { id: 'geram24', name: 'طلای ۲۴ عیار (شمش)', price: 5898000, change: 1.45, unit: 'تومان' },
-  { id: 'emami', name: 'سکه طرح جدید (امامی)', price: 52100000, change: 0.95, unit: 'تومان' },
-  { id: 'bahar', name: 'سکه تمام بهار آزادی', price: 46800000, change: 0.82, unit: 'تومان' },
-  { id: 'nim', name: 'نیم سکه بهار آزادی', price: 28200000, change: 1.15, unit: 'تومان' },
-  { id: 'rob', name: 'ربع سکه بهار آزادی', price: 18100000, change: 1.68, unit: 'تومان' },
-  { id: 'gerami', name: 'سکه یک گرمی بانک مرکزی', price: 8700000, change: -0.35, unit: 'تومان' },
-  { id: 'bubble', name: 'حباب سکه امامی', price: 7850000, change: -1.24, unit: 'تومان' },
-  { id: 'ounce', name: 'انس جهانی طلا', price: 2748.6, change: 0.45, unit: 'دلار' },
-  { id: 'dollar', name: 'دلار برابری درهم امارات', price: 68900, change: 0.62, unit: 'تومان' }
+  { id: 'geram18', name: 'طلای ۱۸ عیار (گرم)', price: 23916800, change: 0.85, unit: 'تومان' },
+  { id: 'mesghal', name: 'مثقال طلای تهران', price: 103604000, change: 0.72, unit: 'تومان' },
+  { id: 'geram24', name: 'طلای ۲۴ عیار (شمش)', price: 31888800, change: 0.91, unit: 'تومان' },
+  { id: 'emami', name: 'سکه طرح جدید (امامی)', price: 239495000, change: 0.64, unit: 'تومان' },
+  { id: 'bahar', name: 'سکه تمام بهار آزادی', price: 235280000, change: 0.52, unit: 'تومان' },
+  { id: 'nim', name: 'نیم سکه بهار آزادی', price: 122000000, change: 0.45, unit: 'تومان' },
+  { id: 'rob', name: 'ربع سکه بهار آزادی', price: 65000000, change: 0.38, unit: 'تومان' },
+  { id: 'gerami', name: 'سکه یک گرمی بانک مرکزی', price: 34000000, change: 0.25, unit: 'تومان' },
+  { id: 'bubble', name: 'حباب سکه امامی', price: 6610000, change: -1.15, unit: 'تومان' },
+  { id: 'ounce', name: 'انس جهانی طلا', price: 4350.4, change: 0.32, unit: 'دلار' },
+  { id: 'dollar', name: 'دلار آزاد بازار تهران', price: 233900, change: 0.48, unit: 'تومان' }
 ];
 
 function formatFarsiNumber(num, isDecimal = false) {
