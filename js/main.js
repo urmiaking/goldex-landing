@@ -287,7 +287,6 @@ function renderDownloadQr() {
 function initBankCardInteraction() {
   const cardContainer = document.getElementById('luxury-bank-card-container');
   const cardInner = document.getElementById('luxury-bank-card');
-  const flipToggleBtn = document.getElementById('btn-flip-card-toggle');
 
   if (!cardContainer || !cardInner) return;
 
@@ -306,8 +305,9 @@ function initBankCardInteraction() {
     cardContainer.classList.add('in-view');
   }
 
-  // 2. Flip functionality
+  // 2. Flip functionality when clicking anywhere on the card
   function toggleFlip(e) {
+    // If click was directly on an inline copy button, do not flip
     if (e && e.target && e.target.closest('.copy-field-btn')) {
       return;
     }
@@ -315,12 +315,8 @@ function initBankCardInteraction() {
   }
 
   cardInner.addEventListener('click', toggleFlip);
-  flipToggleBtn?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    cardInner.classList.toggle('flipped');
-  });
 
-  // 3. Clipboard copy handler
+  // 3. Clipboard copy handler with Toast feedback (no innerHTML label mutation)
   const copyButtons = document.querySelectorAll('[data-copy]');
   copyButtons.forEach(btn => {
     btn.addEventListener('click', async (e) => {
@@ -331,16 +327,18 @@ function initBankCardInteraction() {
       const success = await copyToClipboard(textToCopy);
       if (success) {
         btn.classList.add('copied');
-        const originalHtml = btn.innerHTML;
-        
-        btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> <span>کپی شد! ✓</span>`;
 
-        showToast(`شماره به کلیپ‌بورد کپی شد: ${textToCopy}`);
+        if (textToCopy.startsWith('6037')) {
+          showToast('شماره کارت بانکی با موفقیت کپی شد ✓');
+        } else if (textToCopy.startsWith('IR')) {
+          showToast('شماره شبا حساب با موفقیت کپی شد ✓');
+        } else {
+          showToast('با موفقیت در کلیپ‌بورد کپی شد ✓');
+        }
 
         setTimeout(() => {
           btn.classList.remove('copied');
-          btn.innerHTML = originalHtml;
-        }, 2200);
+        }, 1400);
       }
     });
   });
@@ -383,33 +381,37 @@ function showToast(message) {
     toast.id = 'qirato-toast';
     toast.style.cssText = `
       position: fixed;
-      bottom: 2rem;
+      bottom: 2.2rem;
       left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: rgba(16, 185, 129, 0.95);
+      transform: translateX(-50%) translateY(80px);
+      background: rgba(15, 23, 42, 0.96);
+      border: 1.5px solid #10B981;
       color: #FFFFFF;
-      padding: 0.75rem 1.5rem;
+      padding: 0.85rem 1.6rem;
       border-radius: 9999px;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       font-weight: 700;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45), 0 0 16px rgba(16, 185, 129, 0.3);
       z-index: 99999;
-      transition: transform 0.3s cubic-bezier(0.18, 0.9, 0.25, 1.15), opacity 0.3s ease;
+      transition: transform 0.32s cubic-bezier(0.18, 0.9, 0.25, 1.15), opacity 0.3s ease;
       opacity: 0;
       pointer-events: none;
       direction: rtl;
       font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
     `;
     document.body.appendChild(toast);
   }
 
-  toast.textContent = message;
+  toast.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> <span>${message}</span>`;
   toast.style.transform = 'translateX(-50%) translateY(0)';
   toast.style.opacity = '1';
 
   clearTimeout(toast._timeout);
   toast._timeout = setTimeout(() => {
-    toast.style.transform = 'translateX(-50%) translateY(100px)';
+    toast.style.transform = 'translateX(-50%) translateY(80px)';
     toast.style.opacity = '0';
-  }, 2500);
+  }, 2400);
 }

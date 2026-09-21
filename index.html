@@ -44,9 +44,9 @@
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/main.css?v=2026092201">
-  <link rel="stylesheet" href="css/animations.css?v=2026092201">
-  <link rel="stylesheet" href="css/components.css?v=2026092201">
+  <link rel="stylesheet" href="css/main.css?v=2026092203">
+  <link rel="stylesheet" href="css/animations.css?v=2026092203">
+  <link rel="stylesheet" href="css/components.css?v=2026092203">
 
   <!-- Structured Data: Schema.org (JSON-LD) -->
   <script type="application/ld+json">
@@ -798,9 +798,8 @@
                         <span>5817</span>
                         <span>2674</span>
                       </div>
-                      <button type="button" class="copy-field-btn card-overlay-copy" id="btn-copy-card-inline" data-copy="6037997458172674" aria-label="کپی شماره کارت">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                        <span>کپی</span>
+                      <button type="button" class="copy-field-btn card-overlay-copy" id="btn-copy-card-inline" data-copy="6037997458172674" aria-label="کپی شماره کارت" title="کپی شماره کارت">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                       </button>
                     </div>
 
@@ -812,7 +811,6 @@
                       </div>
                       <div class="card-network-badge">
                         <span class="shetab-badge">عضو شتاب</span>
-                        <span class="card-flip-prompt">چرخش کارت 🔄</span>
                       </div>
                     </div>
                   </div>
@@ -840,9 +838,8 @@
                       <span class="card-meta-label">شماره شبا (IBAN) - حساب بانک ملی ایران</span>
                       <div class="iban-row">
                         <span class="bank-iban-number" id="iban-display" dir="ltr">IR560170000000340872617000</span>
-                        <button type="button" class="copy-field-btn card-overlay-copy" id="btn-copy-iban-inline" data-copy="IR560170000000340872617000" aria-label="کپی شماره شبا">
-                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                          <span>کپی شبا</span>
+                        <button type="button" class="copy-field-btn card-overlay-copy" id="btn-copy-iban-inline" data-copy="IR560170000000340872617000" aria-label="کپی شماره شبا" title="کپی شماره شبا">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                         </button>
                       </div>
                     </div>
@@ -850,7 +847,6 @@
                     <!-- Back Footer -->
                     <div class="card-back-footer">
                       <div class="back-notice">جهت واریز وجه و صدور کد لایسنس دائمی قیراط</div>
-                      <span class="card-flip-prompt">بازگشت به روی کارت 🔄</span>
                     </div>
                   </div>
 
@@ -858,7 +854,7 @@
               </div>
             </div>
 
-            <!-- Quick Action Copy Pills & Card Flip Controls -->
+            <!-- Quick Action Copy Pills -->
             <div class="bank-card-actions-bar">
               <button type="button" class="bank-copy-pill" id="btn-copy-card-main" data-copy="6037997458172674">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
@@ -868,11 +864,6 @@
               <button type="button" class="bank-copy-pill" id="btn-copy-iban-main" data-copy="IR560170000000340872617000">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 <span class="pill-label">کپی شماره شبا (IR56...)</span>
-              </button>
-
-              <button type="button" class="bank-flip-btn" id="btn-flip-card-toggle" aria-label="چرخش کارت ۳ بعدی">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-                <span>چرخش سه‌بعدی کارت</span>
               </button>
             </div>
 
@@ -1161,8 +1152,8 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/ticker.js?v=2026092201"></script>
-  <script src="js/calculator.js?v=2026092201"></script>
-  <script src="js/main.js?v=2026092201"></script>
+  <script src="js/ticker.js?v=2026092203"></script>
+  <script src="js/calculator.js?v=2026092203"></script>
+  <script src="js/main.js?v=2026092203"></script>
 </body>
 </html>
