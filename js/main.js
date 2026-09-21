@@ -260,6 +260,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 9. Generate QR Code for direct APK download
   renderDownloadQr();
+
+  // 10. Luxury 3D Bank Card Interactions & Copy Feedback
+  initBankCardInteraction();
 });
 
 // Render dynamic QR code for direct download URL
@@ -278,4 +281,135 @@ function renderDownloadQr() {
 
   qrContainer.innerHTML = '';
   qrContainer.appendChild(qrImg);
+}
+
+// 3D Bank Card Flip, Entrance Animation & Clipboard Copying
+function initBankCardInteraction() {
+  const cardContainer = document.getElementById('luxury-bank-card-container');
+  const cardInner = document.getElementById('luxury-bank-card');
+  const flipToggleBtn = document.getElementById('btn-flip-card-toggle');
+
+  if (!cardContainer || !cardInner) return;
+
+  // 1. Entrance animation on scroll via IntersectionObserver
+  if ('IntersectionObserver' in window) {
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          cardContainer.classList.add('in-view');
+          cardObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    cardObserver.observe(cardContainer);
+  } else {
+    cardContainer.classList.add('in-view');
+  }
+
+  // 2. Flip functionality
+  function toggleFlip(e) {
+    if (e && e.target && e.target.closest('.copy-field-btn')) {
+      return;
+    }
+    cardInner.classList.toggle('flipped');
+  }
+
+  cardInner.addEventListener('click', toggleFlip);
+  flipToggleBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    cardInner.classList.toggle('flipped');
+  });
+
+  // 3. Clipboard copy handler
+  const copyButtons = document.querySelectorAll('[data-copy]');
+  copyButtons.forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      const textToCopy = btn.getAttribute('data-copy');
+      if (!textToCopy) return;
+
+      const success = await copyToClipboard(textToCopy);
+      if (success) {
+        btn.classList.add('copied');
+        const originalHtml = btn.innerHTML;
+        
+        btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> <span>کپی شد! ✓</span>`;
+
+        showToast(`شماره به کلیپ‌بورد کپی شد: ${textToCopy}`);
+
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerHTML = originalHtml;
+        }, 2200);
+      }
+    });
+  });
+}
+
+// Copy to clipboard with legacy fallback
+async function copyToClipboard(text) {
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+  } catch (err) {
+    console.warn('Clipboard API failed, using textarea fallback', err);
+  }
+
+  try {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-9999px';
+    textArea.style.top = '-9999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    const successful = document.execCommand('copy');
+    textArea.remove();
+    return successful;
+  } catch (err) {
+    console.error('Fallback copy failed', err);
+    return false;
+  }
+}
+
+// Sleek floating toast feedback
+function showToast(message) {
+  let toast = document.getElementById('qirato-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'qirato-toast';
+    toast.style.cssText = `
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(16, 185, 129, 0.95);
+      color: #FFFFFF;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      z-index: 99999;
+      transition: transform 0.3s cubic-bezier(0.18, 0.9, 0.25, 1.15), opacity 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+      direction: rtl;
+      font-family: inherit;
+    `;
+    document.body.appendChild(toast);
+  }
+
+  toast.textContent = message;
+  toast.style.transform = 'translateX(-50%) translateY(0)';
+  toast.style.opacity = '1';
+
+  clearTimeout(toast._timeout);
+  toast._timeout = setTimeout(() => {
+    toast.style.transform = 'translateX(-50%) translateY(100px)';
+    toast.style.opacity = '0';
+  }, 2500);
 }
