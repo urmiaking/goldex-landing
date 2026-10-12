@@ -18,38 +18,20 @@ html { scroll-padding-top: calc(var(--header-height) + 20px); }
 .hero-offer small { font-weight: 400; font-size: .78rem; }
 .hero-offer a { color: var(--text-gold); border-bottom: 1px solid var(--border-gold); }
 .hero-footnote { font-size: .8rem; color: var(--text-muted); }
-.device-stage { position: relative; min-width: 0; height: 460px; direction: rtl; isolation: isolate; }
+.device-stage { position: relative; min-width: 0; height: 510px; direction: rtl; isolation: isolate; }
 .device-stage::before { content: ''; position: absolute; inset: 12% -3% 0; border-radius: 50%; background: radial-gradient(ellipse, var(--border-gold) 0, transparent 67%); z-index: -1; }
-.laptop-group { position: absolute; top: 38px; left: 0; width: 100%; }
-.desktop-device { position: relative; top: 0; left: 0; width: 100%; border: 5px solid var(--bg-card-hover); border-radius: 13px 13px 6px 6px; background: var(--bg-deep); box-shadow: var(--shadow-lg); overflow: hidden; }
-.desktop-chrome { display: flex; justify-content: space-between; align-items: center; padding: 7px 12px; font-size: 9px; background: var(--bg-surface); color: var(--text-muted); border-bottom: 1px solid var(--border-subtle); }
-.desktop-preview { display: grid; grid-template-columns: 86px 1fr; min-height: 273px; }
-.desktop-preview aside { display: flex; align-items: center; flex-direction: column; gap: 14px; padding: 17px 5px; background: var(--bg-surface); border-left: 1px solid var(--border-subtle); font-size: 9px; color: var(--text-muted); }
-.desktop-preview aside strong { color: var(--text-gold); font-size: 14px; margin-top: -8px; }
-.desktop-preview aside span { width: 100%; padding: 4px; text-align: center; }
-.desktop-preview .preview-active { border-radius: 5px; background: var(--border-gold); color: var(--text-gold); }
-.desktop-workspace { padding: 20px 17px; min-width: 0; font-size: 10px; line-height: 1.5; }
-.preview-heading { display: flex; justify-content: space-between; align-items: center; }
-.preview-heading small { font-size: 9px; color: var(--text-muted); }
-.preview-heading h3 { font-size: 13px; margin-top: 4px; }
-.preview-heading > .ui-icon { color: var(--text-gold); width: 20px; }
-.preview-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 15px; }
-.preview-stats div { display: flex; flex-direction: column; gap: 6px; padding: 11px; background: var(--bg-surface); border: 1px solid var(--border-gold); border-radius: 7px; }
-.preview-stats span { font-size: 9px; color: var(--text-muted); }
-.preview-stats strong { font-size: 11px; color: var(--text-gold); }
-.preview-chart { margin-top: 13px; color: var(--text-gold); }
-.preview-chart > span { font-size: 10px; color: var(--text-secondary); }
-.preview-chart svg { display: block; width: 100%; height: 75px; margin-top: 5px; }
-.preview-chart small { font-size: 8px; color: var(--text-muted); }
-.preview-tools { display: flex; gap: 7px; margin-top: 10px; font-size: 8px; color: var(--text-secondary); }
-.preview-tools span { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 4px; padding: 6px; }
-.desktop-base { position: relative; width: 108%; left: -4%; height: 12px; background: linear-gradient(var(--text-muted), var(--bg-card-hover)); border-radius: 1px 1px 35px 35px; box-shadow: var(--shadow-lg); }
-.hero-phone { position: absolute; top: 135px; left: 19px; width: 151px; padding: 5px; border: 3px solid var(--text-muted); border-radius: 24px; background: var(--bg-deep); box-shadow: var(--shadow-lg); overflow: hidden; transition: transform 180ms ease; }
-.hero-phone:hover { transform: translateY(-4px); }
-.hero-phone img { width: 100%; border-radius: 16px; }
-.phone-speaker { position: absolute; top: 7px; left: 40%; width: 20%; height: 4px; background: var(--bg-deep); border-radius: 20px; }
-.device-caption { position: absolute; right: 6px; bottom: 6px; display: flex; gap: 8px; align-items: center; font-size: .79rem; color: var(--text-secondary); }
-.device-caption .ui-icon { color: var(--text-gold); width: 16px; }
+.rog-laptop { position: absolute; top: -100px; left: -7.5%; width: 115%; }
+.rog-hardware { display: block; width: 100%; height: auto; pointer-events: none; }
+.rog-screen { position: absolute; top: 22.68%; left: 16.25%; width: 67.45%; height: 42.35%; overflow: hidden; background: #0a0d11; }
+.rog-screen img { width: 100%; height: 100%; object-fit: contain; }
+.rog-screen:hover { outline: 1px solid var(--text-gold); }
+.s25-phone { position: absolute; top: 178px; left: -1%; width: 150px; aspect-ratio: 540 / 1100; padding: 0; overflow: visible; filter: drop-shadow(0 14px 20px rgba(0,0,0,.45)); transition: transform 180ms ease; }
+.s25-phone:hover { transform: translateY(-4px); }
+.s25-phone .s25-hardware { position: absolute; width: 355.5556%; max-width: none; height: auto; left: -127.7778%; top: -8.3636%; pointer-events: none; }
+.s25-phone .phone-app-image { position: absolute; left: 5%; top: 2.55%; width: 89.26%; height: 94.55%; object-fit: cover; border-radius: 5.5% / 2.6%; }
+.s25-camera { position: absolute; z-index: 2; top: 3.55%; left: 47.6%; width: 4.25%; aspect-ratio: 1; border-radius: 50%; background: #05090c; border: 1px solid #273139; pointer-events: none; }
+.device-models { position: absolute; bottom: 4px; left: 0; right: 0; display: flex; flex-direction: row-reverse; justify-content: space-between; gap: 1rem; direction: ltr; font-size: .66rem; font-weight: 500; color: var(--text-muted); }
+.device-caption { position: absolute; bottom: -28px; left: 0; right: 0; text-align: center; font-size: .74rem; color: var(--text-muted); }
 .platform-section { padding: 2rem 0 4rem; }
 .platform-intro { display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem; margin-bottom: 1.6rem; }
 .platform-intro h2 { font-size: 1.5rem; }
@@ -113,8 +95,6 @@ html { scroll-padding-top: calc(var(--header-height) + 20px); }
 .header .brand-tagline { white-space: nowrap; }
 @media (max-width: 1100px) {
  .dual-hero .hero-grid { gap: 2rem; }
- .desktop-preview { grid-template-columns: 68px 1fr; }
- .desktop-workspace { padding: 14px 12px; }
 
  .package-card { padding: 1.8rem; }
  .nav-links { gap: .9rem; }
@@ -127,7 +107,9 @@ html { scroll-padding-top: calc(var(--header-height) + 20px); }
  .dual-hero .hero-content { text-align: center; align-items: center; }
  .dual-hero .hero-title { font-size: 3.1rem; }
  .dual-hero .hero-description { max-width: 580px; }
- .device-stage { width: min(530px, 100%); margin: auto; height: 465px; }
+ .device-stage { width: min(530px, 100%); margin: auto; height: 485px; }
+ .rog-laptop { top: -95px; }
+ .s25-phone { top: 153px; width: 145px; }
 
  .platform-intro { flex-direction: column; gap: .5rem; }
  .platform-card { padding: 1.5rem; gap: .8rem; }
@@ -144,27 +126,11 @@ html { scroll-padding-top: calc(var(--header-height) + 20px); }
  .dual-hero .hero-cta-group { width: 100%; justify-content: center; }
  .dual-hero .hero-cta-group a { flex: 1 1 auto; justify-content: center; }
  .hero-offer { justify-content: center; }
- .device-stage { height: 360px; }
- .laptop-group { top: 27px; }
- .desktop-chrome { font-size: 7px; }
- .desktop-preview { grid-template-columns: 52px 1fr; min-height: 225px; }
- .desktop-preview aside { gap: 8px; padding: 12px 3px; font-size: 7px; }
- .desktop-preview aside img { width: 24px; height: 24px; }
- .desktop-preview aside strong { font-size: 10px; margin-top: -3px; }
- .desktop-workspace { padding: 12px 9px; font-size: 7px; }
- .preview-heading h3 { font-size: 10px; }
- .preview-stats { gap: 5px; margin-top: 11px; }
- .preview-stats div { padding: 8px 5px; }
- .preview-stats strong { font-size: 8px; }
- .preview-stats span { font-size: 7px; }
- .preview-chart svg { height: 50px; }
- .preview-chart > span { font-size: 8px; }
- .preview-tools { gap: 4px; font-size: 6px; }
- .preview-tools span { padding: 4px; }
- .desktop-base { height: 8px; }
- .hero-phone { width: 113px; top: 100px; left: 6px; padding: 3px; border-width: 2px; border-radius: 19px; }
- .hero-phone img { border-radius: 12px; }
- .device-caption { font-size: .7rem; right: 0; bottom: 0; }
+ .device-stage { height: 340px; }
+ .rog-laptop { top: -60px; }
+ .s25-phone { top: 105px; width: 105px; }
+ .device-models { font-size: .58rem; }
+ .device-caption { font-size: .65rem; }
  .platform-section { padding: 2rem 0; }
  .platform-intro h2 { font-size: 1.3rem; }
  .platform-grid, .package-grid, .installer-grid { grid-template-columns: 1fr; }

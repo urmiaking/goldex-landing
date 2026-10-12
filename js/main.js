@@ -115,6 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
+    document.querySelectorAll('img[data-theme-dark][data-theme-light]').forEach(img => {
+      img.src = theme === 'light' ? img.dataset.themeLight : img.dataset.themeDark;
+    });
     localStorage.setItem('qirato-theme', theme);
     if (themeToggleBtn) {
       themeToggleBtn.innerHTML = theme === 'light' ? '🌙' : '☀️';
@@ -199,7 +202,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const heroScreenTrigger = document.getElementById('hero-screen-holder');
   heroScreenTrigger?.addEventListener('click', () => {
-    const img = heroScreenTrigger.querySelector('img');
+    const img = heroScreenTrigger.querySelector('.phone-app-image');
+    if (img) openLightbox(img.src, img.alt);
+  });
+
+  document.getElementById('hero-desktop-holder')?.addEventListener('click', () => {
+    const img = document.querySelector('.desktop-app-image');
     if (img) openLightbox(img.src, img.alt);
   });
 
