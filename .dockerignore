@@ -6,3 +6,4 @@ qirato-nginx.conf
 docker-compose.yml
 Dockerfile
 README.md
+tests/

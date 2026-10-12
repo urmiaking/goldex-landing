@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tab.classList.add('active');
 
       // Ensure active tab is scrolled into view in mobile horizontal scroll
-      tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      tab.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
 
       // Smooth content swap with subtle fade
       if (showcaseHolder) showcaseHolder.style.opacity = '0.3';
@@ -216,12 +216,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
     const question = item.querySelector('.faq-question');
+    question?.setAttribute('aria-expanded', String(item.classList.contains('active')));
     question?.addEventListener('click', () => {
       const isActive = item.classList.contains('active');
-      faqItems.forEach(i => i.classList.remove('active'));
+      faqItems.forEach(i => { i.classList.remove('active'); i.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false'); });
       if (!isActive) {
         item.classList.add('active');
       }
+      question.setAttribute('aria-expanded', String(!isActive));
     });
   });
 
@@ -245,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetElem = document.querySelector(targetId);
       if (targetElem) {
         e.preventDefault();
-        targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        targetElem.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
         if (navLinks && navLinks.classList.contains('mobile-open')) {
           navLinks.classList.remove('mobile-open');
           if (mobileMenuBtn) {

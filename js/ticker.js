@@ -1,5 +1,5 @@
 /**
- * Qirato (قیراط) - Live Market Rates Ticker & Feed Simulation
+ * Qirato (قیراط) - Illustrative Market Rates Ticker (not a live feed)
  */
 
 const marketRates = [
@@ -48,25 +48,4 @@ function renderTickerItems() {
   }).join('');
 }
 
-// Gentle live tick pulse simulation (simulating live TGJU/Tala.ir websocket ticks)
-function simulateLiveTicks() {
-  setInterval(() => {
-    // Pick a random rate
-    const randomIndex = Math.floor(Math.random() * marketRates.length);
-    const item = marketRates[randomIndex];
-
-    // Micro fluctuation: between -0.08% and +0.08%
-    const deltaPercent = (Math.random() - 0.49) * 0.15;
-    const factor = 1 + (deltaPercent / 100);
-    const oldPrice = item.price;
-    item.price = item.id === 'ounce' ? item.price * factor : Math.round(item.price * factor);
-    item.change = +(item.change + (deltaPercent * 0.5)).toFixed(2);
-
-    renderTickerItems();
-  }, 4500);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  renderTickerItems();
-  simulateLiveTicks();
-});
+document.addEventListener('DOMContentLoaded', renderTickerItems);
