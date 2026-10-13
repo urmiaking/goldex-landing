@@ -13,10 +13,6 @@ html { scroll-padding-top: calc(var(--header-height) + 20px); }
 .label-divider { width: 1px; height: 16px; margin-inline: .6rem; background: var(--border-gold-strong); }
 .dual-hero .hero-cta-group { gap: .75rem; }
 .dual-hero .hero-cta-group a { font-size: .88rem; padding: .9rem 1.15rem; min-height: 48px; }
-.hero-offer { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.1rem; padding-top: 1.4rem; border-top: 1px solid var(--border-subtle); font-size: .83rem; color: var(--text-muted); }
-.hero-offer strong { color: var(--text-primary); font-size: 1.15rem; }
-.hero-offer small { font-weight: 400; font-size: .78rem; }
-.hero-offer a { color: var(--text-gold); border-bottom: 1px solid var(--border-gold); }
 .hero-footnote { font-size: .8rem; color: var(--text-muted); }
 .device-stage { position: relative; min-width: 0; height: 510px; direction: rtl; isolation: isolate; }
 .device-stage::before { content: ''; position: absolute; inset: 12% -3% 0; border-radius: 50%; background: radial-gradient(ellipse, var(--border-gold) 0, transparent 67%); z-index: -1; }
@@ -125,7 +121,6 @@ html { scroll-padding-top: calc(var(--header-height) + 20px); }
  .dual-hero .hero-description { font-size: .96rem; }
  .dual-hero .hero-cta-group { width: 100%; justify-content: center; }
  .dual-hero .hero-cta-group a { flex: 1 1 auto; justify-content: center; }
- .hero-offer { justify-content: center; }
  .device-stage { height: 340px; }
  .rog-laptop { top: -60px; }
  .s25-phone { top: 105px; width: 105px; }
