@@ -266,9 +266,9 @@ const i18n = {
             "price_mini_badge": "Offline & Lite",
             "price_mini_title": "<i class=\"fa-solid fa-receipt text-gold\"></i> GoldEx Mini",
             "price_mini_subtitle": "Best for quick invoicing & gold calculations on the go",
-            "price_mini_amount": "5,000,000",
+            "price_mini_amount": "9,999,000",
             "price_mini_period": "One-time Lifetime License",
-            "price_mini_strike": "15,000,000",
+            "price_mini_strike": "20,000,000",
             "price_mini_f1": "<strong>Public Cloud Domain:</strong> Access via shared global domain with private username/password",
             "price_mini_f2": "<strong>PWA Install Support:</strong> Install directly on mobile or desktop devices",
             "price_mini_f3": "Runs completely offline without internet or server data transfers",
@@ -333,8 +333,8 @@ const i18n = {
             "footer_link_tech": "PWA & Blazor Support",
             "footer_link_scanner": "Barcode Scanner",
             "footer_contact_email": "info@goldex-platform.ir",
-            "footer_contact_phone": "+98 21 8888 4444",
-            "footer_address_val": "Tehran Grand Bazaar, Gold & Jewelry Center, No. 110",
+            "footer_contact_phone": "+98 990 549 2104",
+            "footer_address_val": "Urmia",
             
             "footer_desc": "GoldEx Smart Accounting & Sales Platform. The choice of professionals for growing jewelry enterprises in both cloud and traditional markets.",
             "footer_rights": "© 2026 GoldEx Smart Platform. All rights reserved.",
@@ -504,7 +504,7 @@ const i18n = {
             "modal_buyer_val": "General Gallery Customer (Gold Guild)",
             "modal_national_id": "National ID / Tax ID:",
             "modal_mobile": "Mobile Number:",
-            "modal_address_text": "Address: Tehran Grand Bazaar, Gold & Jewelry Center, No. 110 | Tel: +982188884444"
+            "modal_address_text": "Address: Urmia | Tel: +989905492104"
         }
     },
     tr: {
@@ -765,9 +765,9 @@ const i18n = {
             "price_mini_badge": "Çevrimdışı & Hafif",
             "price_mini_title": "<i class=\"fa-solid fa-receipt text-gold\"></i> GoldEx Mini",
             "price_mini_subtitle": "Hareket halindeyken hızlı faturalandırma ve altın hesaplamaları için en iyisi",
-            "price_mini_amount": "5,000,000",
+            "price_mini_amount": "9,999,000",
             "price_mini_period": "Tek Seferlik Ömür Boyu Lisans",
-            "price_mini_strike": "15,000,000",
+            "price_mini_strike": "20,000,000",
             "price_mini_f1": "<strong>Ortak Bulut Alan Adı:</strong> Özel kullanıcı adı/şifre ile paylaşılan küresel alan adı üzerinden erişim",
             "price_mini_f2": "<strong>PWA Yükleme Desteği:</strong> Doğrudan mobil veya masaüstü cihazlara yükleyin",
             "price_mini_f3": "İnternet veya sunucu veri aktarımı olmadan tamamen çevrimdışı çalışır",
@@ -832,8 +832,8 @@ const i18n = {
             "footer_link_tech": "PWA ve Blazor Desteği",
             "footer_link_scanner": "Barkod Tarayıcı",
             "footer_contact_email": "info@goldex-platform.ir",
-            "footer_contact_phone": "+98 21 8888 4444",
-            "footer_address_val": "Tahran Kapalıçarşı, Altın ve Mücevher Merkezi, No: 110",
+            "footer_contact_phone": "+98 990 549 2104",
+            "footer_address_val": "Urmiye",
             
             "footer_desc": "GoldEx Akıllı Muhasebe ve Satış Platformu. Hem bulut hem de geleneksel pazarlarda büyüyen kuyumculuk işletmeleri için profesyonellerin tercihi.",
             "footer_rights": "© 2026 GoldEx Akıllı Platformu. Tüm hakları saklıdır.",
@@ -1003,7 +1003,7 @@ const i18n = {
             "modal_buyer_val": "Genel Galeri Müşterisi (Altın Loncası)",
             "modal_national_id": "T.C. Kimlik / Vergi No:",
             "modal_mobile": "Cep Telefonu:",
-            "modal_address_text": "Adres: Tahran Kapalıçarşı, Altın ve Mücevher Merkezi, No: 110 | Tel: +982188884444"
+            "modal_address_text": "Adres: Urmiye | Tel: +989905492104"
         }
     }
 };
