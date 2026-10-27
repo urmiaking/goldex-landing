@@ -40,6 +40,9 @@ def verify():
     mini = re.search(r'<article[^>]+id="pricing-mini".*?</article>', source, re.S).group()
     assert "۹٬۹۹۹٬۰۰۰" in mini and "۲۰٬۰۰۰٬۰۰۰" in mini
     assert "بدون نیاز به اینترنت، سرور یا شارژ سالیانه" in mini
+    assert "سینی هوشمند" not in mini and "اسکن بارکد" not in mini, "Cloud tray feature attributed to Mini"
+    assert "سینی هوشمند و اسکن بارکد با دوربین مخصوص نسخه جامع است و در گلدکس مینی وجود ندارد" in source
+    assert "گلدکس ابری: <strong>۱۲۹٬۰۰۰٬۰۰۰ تومان</strong>" in source, "Payment guidance has a stale price"
     cloud = re.search(r'<article[^>]+id="pricing-cloud".*?</article>', source, re.S).group()
     assert "۲۰۰٬۰۰۰٬۰۰۰" not in source
     assert "۱۲۹٬۰۰۰٬۰۰۰" in cloud and "۱۷۹٬۰۰۰٬۰۰۰" in cloud
