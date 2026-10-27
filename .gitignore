@@ -53,3 +53,6 @@ project.assets.json
 # Local environment
 .env.local
 .env.development.local
+
+# Local verification cache
+__pycache__/

@@ -116,8 +116,8 @@ function updatePricingDisplay() {
     const prices = {
         miniStrike: 15000000,
         miniActive: 5000000,
-        cloudStrike: 200000000,
-        cloudActive: 179000000
+        cloudStrike: 179000000,
+        cloudActive: 129000000
     };
 
     let currency = "تومان";
@@ -166,9 +166,9 @@ function updatePricingDisplay() {
     if (hcActive) hcActive.innerText = formatted.cloudActive;
     const hcPeriod = document.getElementById("home-price-cloud-period");
     if (hcPeriod) {
-        if (currentLang === "fa") hcPeriod.innerText = "تومان / لایسنس پایه ابری";
-        else if (currentLang === "tr") hcPeriod.innerText = "TL / Temel Bulut Lisansı";
-        else hcPeriod.innerText = "$ / Base Cloud License";
+        if (currentLang === "fa") hcPeriod.innerText = "تومان / لایسنس دائمی، سال اول خدمات رایگان";
+        else if (currentLang === "tr") hcPeriod.innerText = "TL / Ömür Boyu Lisans, İlk Yıl Hizmetler Ücretsiz";
+        else hcPeriod.innerText = "$ / Lifetime License, First Year Services Free";
     }
 
     // Pricing Page Mini

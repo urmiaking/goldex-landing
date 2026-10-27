@@ -1,0 +1,63 @@
+name: Verify and deploy GoldEx website
+
+on:
+  push:
+    branches: [main]
+    paths: ['wwwroot/**', 'deployment/**', '.github/workflows/deploy-goldex-landing.yml']
+  pull_request:
+    branches: [main]
+    paths: ['wwwroot/**', 'deployment/**', '.github/workflows/deploy-goldex-landing.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: goldex-landing-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Verify static content and deployment archive handling
+        run: |
+          python3 deployment/verify_site.py
+          python3 -m unittest discover -s deployment -p 'test_*.py'
+          for source in wwwroot/*.js wwwroot/js/*.js; do node --check "$source"; done
+
+  deploy:
+    needs: verify
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Deploy only the GoldEx landing container
+        env:
+          DEPLOY_KEY: ${{ secrets.GOLDEX_DEPLOY_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.GOLDEX_DEPLOY_KNOWN_HOSTS }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          key_file=$(mktemp)
+          hosts_file=$(mktemp)
+          archive_file=$(mktemp)
+          trap 'rm -f "$key_file" "$hosts_file" "$archive_file" release.json' EXIT
+          printf '%s\n' "$DEPLOY_KEY" > "$key_file"
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > "$hosts_file"
+          python3 -c 'import json,os; open("release.json","w").write(json.dumps({"revision":os.environ["GITHUB_SHA"]}))'
+          tar -czf "$archive_file" release.json wwwroot
+          ssh -i "$key_file" -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$hosts_file" -o ConnectTimeout=30 \
+            user@185.231.112.48 deploy-goldex-landing < "$archive_file"
+      - name: Check public website
+        run: |
+          curl --fail --silent --show-error --compressed --retry 3 --max-time 30 \
+            https://goldexsoft.ir/ -o /tmp/goldex-public.html
+          cmp wwwroot/index.html /tmp/goldex-public.html
