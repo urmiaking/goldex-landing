@@ -1,0 +1,49 @@
+name: Deploy Qirato website
+
+on:
+  push:
+    branches: [master]
+    paths: ['index.html', 'assets/**', 'css/**', 'js/**', 'site.webmanifest', 'robots.txt', 'sitemap.xml', 'deployment/**', '.github/workflows/deploy-qirato-landing.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: qirato-landing-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Deploy only the Qirato landing container
+        env:
+          DEPLOY_KEY: ${{ secrets.QIRATO_DEPLOY_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.QIRATO_DEPLOY_KNOWN_HOSTS }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          key_file=$(mktemp)
+          hosts_file=$(mktemp)
+          archive_file=$(mktemp)
+          trap 'rm -f "$key_file" "$hosts_file" "$archive_file" release.json' EXIT
+          printf '%s\n' "$DEPLOY_KEY" > "$key_file"
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > "$hosts_file"
+          python3 -c 'import json,os; open("release.json","w").write(json.dumps({"revision":os.environ["GITHUB_SHA"]}))'
+          mkdir wwwroot
+          cp -R index.html assets css js site.webmanifest robots.txt sitemap.xml wwwroot/
+          tar -czf "$archive_file" release.json wwwroot
+          ssh -i "$key_file" -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$hosts_file" -o ConnectTimeout=30 \
+            user@185.231.112.48 deploy-qirato-landing < "$archive_file"
+      - name: Check public website
+        run: |
+          curl --fail --silent --show-error --compressed --retry 3 --max-time 30 \
+            https://qirato.ir/ -o /tmp/qirato-public.html
+          cmp wwwroot/index.html /tmp/qirato-public.html

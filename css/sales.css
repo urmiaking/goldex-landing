@@ -1,0 +1,11 @@
+/* Sales enquiries use the existing Aurum surfaces, controls and typography. */
+.package-quote { padding: 1.4rem 0; margin: 1.2rem 0; border-block: 1px solid var(--border-subtle); }
+.package-quote strong { display: block; color: var(--text-gold); font-size: 1.2rem; line-height: 1.7; }
+.package-quote p { margin-top: .5rem; color: var(--text-secondary); font-size: .9rem; line-height: 1.9; }
+.package-quote small { display: block; margin-top: .8rem; color: var(--text-muted); font-size: .8rem; line-height: 1.8; }
+.package-contact-actions { display: grid; gap: .65rem; margin-top: auto; }
+.package-contact-actions .package-buy { margin: 0; width: 100%; min-height: 48px; gap: .55rem; font-size: .9rem; text-align: center; }
+.sales-contact-hub .pricing-contact-desc { margin-bottom: 1.4rem; }
+.sales-hub-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: .8rem; }
+.sales-hub-actions a { display: inline-flex; justify-content: center; align-items: center; gap: .6rem; min-height: 48px; }
+@media (max-width: 600px) { .sales-hub-actions { display: grid; } .package-quote strong { font-size: 1.1rem; } }
