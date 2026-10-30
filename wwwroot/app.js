@@ -110,97 +110,25 @@ function recalculateCartTotals() {
 
 // Centralized dynamic pricing matrix and cards updates based on live exchange rates
 function updatePricingDisplay() {
-    const usdRate = liveRates.usd > 0 ? liveRates.usd : 191000;
-    const tryRate = usdRate / 47.75; // 4,000 Toman per Lira
-
-    const prices = {
-        miniStrike: 15000000,
-        miniActive: 5000000,
-        cloudStrike: 179000000,
-        cloudActive: 129000000
-    };
-
-    let currency = "تومان";
-    let formatted = {
-        miniStrike: "",
-        miniActive: "",
-        cloudStrike: "",
-        cloudActive: ""
-    };
-
-    if (currentLang === "fa") {
-        formatted.miniStrike = toPersianDigits(formatNum(prices.miniStrike)) + " تومان";
-        formatted.miniActive = toPersianDigits(formatNum(prices.miniActive));
-        formatted.cloudStrike = toPersianDigits(formatNum(prices.cloudStrike)) + " تومان";
-        formatted.cloudActive = toPersianDigits(formatNum(prices.cloudActive));
-    } else if (currentLang === "tr") {
-        formatted.miniStrike = "₺" + formatNum(Math.round(prices.miniStrike / tryRate));
-        formatted.miniActive = formatNum(Math.round(prices.miniActive / tryRate));
-        formatted.cloudStrike = "₺" + formatNum(Math.round(prices.cloudStrike / tryRate));
-        formatted.cloudActive = formatNum(Math.round(prices.cloudActive / tryRate));
-        currency = "TL";
-    } else { // en
-        formatted.miniStrike = "$" + formatNum(Math.round(prices.miniStrike / usdRate));
-        formatted.miniActive = formatNum(Math.round(prices.miniActive / usdRate));
-        formatted.cloudStrike = "$" + formatNum(Math.round(prices.cloudStrike / usdRate));
-        formatted.cloudActive = formatNum(Math.round(prices.cloudActive / usdRate));
-        currency = "$";
+    const language = typeof currentLang === 'string' ? currentLang : 'fa';
+    const copy = {
+        fa: { quote: 'استعلام قیمت از فروش', mini: 'لایسنس دائمی؛ بدون آبونمان ماهانه', cloud: 'لایسنس دائمی؛ سال اول خدمات رایگان' },
+        en: { quote: 'Contact sales for pricing', mini: 'Lifetime license; no monthly subscription', cloud: 'Lifetime license; first year of services free' },
+        tr: { quote: 'Fiyat için satış ekibiyle iletişime geçin', mini: 'Ömür boyu lisans; aylık abonelik yok', cloud: 'Ömür boyu lisans; ilk yıl hizmetler ücretsiz' }
+    }[language] || { quote: 'Contact sales for pricing', mini: 'Lifetime license', cloud: 'Lifetime license' };
+    // Retained legacy targets must not restore old prices after a language/rate update.
+    for (const id of ['home-price-mini-strike', 'home-price-cloud-strike', 'pricing-price-mini-strike', 'pricing-price-cloud-strike']) {
+        const element = document.getElementById(id);
+        if (element) element.textContent = '';
     }
-
-    // Homepage Mini
-    const hmStrike = document.getElementById("home-price-mini-strike");
-    if (hmStrike) hmStrike.innerText = formatted.miniStrike;
-    const hmActive = document.getElementById("home-price-mini-val");
-    if (hmActive) hmActive.innerText = formatted.miniActive;
-    const hmPeriod = document.getElementById("home-price-mini-period");
-    if (hmPeriod) {
-        if (currentLang === "fa") hmPeriod.innerText = "تومان / خرید مادام‌العمر";
-        else if (currentLang === "tr") hmPeriod.innerText = "TL / Ömür Boyu Lisans";
-        else hmPeriod.innerText = "$ / Lifetime License";
+    for (const id of ['home-price-mini-val', 'home-price-cloud-val', 'pricing-price-mini-val', 'pricing-price-cloud-val', 'table-price-mini', 'table-price-cloud']) {
+        const element = document.getElementById(id);
+        if (element) element.textContent = copy.quote;
     }
-
-    // Homepage Cloud
-    const hcStrike = document.getElementById("home-price-cloud-strike");
-    if (hcStrike) hcStrike.innerText = formatted.cloudStrike;
-    const hcActive = document.getElementById("home-price-cloud-val");
-    if (hcActive) hcActive.innerText = formatted.cloudActive;
-    const hcPeriod = document.getElementById("home-price-cloud-period");
-    if (hcPeriod) {
-        if (currentLang === "fa") hcPeriod.innerText = "تومان / لایسنس دائمی، سال اول خدمات رایگان";
-        else if (currentLang === "tr") hcPeriod.innerText = "TL / Ömür Boyu Lisans, İlk Yıl Hizmetler Ücretsiz";
-        else hcPeriod.innerText = "$ / Lifetime License, First Year Services Free";
-    }
-
-    // Pricing Page Mini
-    const pmStrike = document.getElementById("pricing-price-mini-strike");
-    if (pmStrike) pmStrike.innerText = formatted.miniStrike;
-    const pmActive = document.getElementById("pricing-price-mini-val");
-    if (pmActive) {
-        pmActive.innerHTML = `${formatted.miniActive} <span>${currency}</span>`;
-    }
-
-    // Pricing Page Cloud
-    const pcStrike = document.getElementById("pricing-price-cloud-strike");
-    if (pcStrike) pcStrike.innerText = formatted.cloudStrike;
-    const pcActive = document.getElementById("pricing-price-cloud-val");
-    if (pcActive) {
-        pcActive.innerHTML = `${formatted.cloudActive} <span>${currency}</span>`;
-    }
-
-    // Comparison Table Prices
-    const tmPrice = document.getElementById("table-price-mini");
-    if (tmPrice) {
-        if (currentLang === "fa") tmPrice.innerText = formatted.miniActive + " تومان";
-        else if (currentLang === "tr") tmPrice.innerText = "₺" + formatted.miniActive;
-        else tmPrice.innerText = "$" + formatted.miniActive;
-    }
-
-    const tcPrice = document.getElementById("table-price-cloud");
-    if (tcPrice) {
-        if (currentLang === "fa") tcPrice.innerText = formatted.cloudActive + " تومان";
-        else if (currentLang === "tr") tcPrice.innerText = "₺" + formatted.cloudActive;
-        else tcPrice.innerText = "$" + formatted.cloudActive;
-    }
+    const mini = document.getElementById('home-price-mini-period');
+    const cloud = document.getElementById('home-price-cloud-period');
+    if (mini) mini.textContent = copy.mini;
+    if (cloud) cloud.textContent = copy.cloud;
 }
 
 // Subscribe to language change events from i18n.js

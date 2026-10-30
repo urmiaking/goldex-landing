@@ -1,4 +1,4 @@
-"""Verify published pricing, renewal terms and local static dependencies."""
+"""Verify contact pricing, preserved license terms and local static dependencies."""
 import json
 import pathlib
 import re
@@ -29,8 +29,8 @@ def verify():
         target = ROOT / unquote(urlsplit(reference).path)
         assert target.is_file(), "Missing local asset: " + reference
     for text in (
-        "گلدکس جامع ابری", "۱۷۹٬۰۰۰٬۰۰۰", "۱۲۹٬۰۰۰٬۰۰۰", "۵۰٬۰۰۰٬۰۰۰ تومان تخفیف",
-        "پیشنهاد ویژه", "لایسنس گلدکس جامع ابری دائمی است",
+        "گلدکس جامع ابری", "مشاوره و استعلام قیمت", "استعلام قیمت در تلگرام",
+        "تماس با فروش", "لایسنس گلدکس جامع ابری دائمی است",
         "سال اول میزبانی، پشتیبانی و به‌روزرسانی رایگان است",
         "از سال دوم، تمدید میزبانی ابری و خدمات پشتیبانی طبق تعرفه سالانه انجام می‌شود",
         "تمدید خدمات به معنی خرید مجدد لایسنس نیست",
@@ -38,21 +38,24 @@ def verify():
     ):
         assert text in source, "Missing sale term: " + text
     mini = re.search(r'<article[^>]+id="pricing-mini".*?</article>', source, re.S).group()
-    assert "۹٬۹۹۹٬۰۰۰" in mini and "۲۰٬۰۰۰٬۰۰۰" in mini
     assert "بدون نیاز به اینترنت، سرور یا شارژ سالیانه" in mini
     assert "سینی هوشمند" not in mini and "اسکن بارکد" not in mini, "Cloud tray feature attributed to Mini"
     assert "سینی هوشمند و اسکن بارکد با دوربین مخصوص نسخه جامع است و در گلدکس مینی وجود ندارد" in source
-    assert "گلدکس ابری: <strong>۱۲۹٬۰۰۰٬۰۰۰ تومان</strong>" in source, "Payment guidance has a stale price"
     cloud = re.search(r'<article[^>]+id="pricing-cloud".*?</article>', source, re.S).group()
-    assert "۲۰۰٬۰۰۰٬۰۰۰" not in source
-    assert "۱۲۹٬۰۰۰٬۰۰۰" in cloud and "۱۷۹٬۰۰۰٬۰۰۰" in cloud
+    cards = re.findall(r'<article[^>]+class="[^"]*package-card[^\"]*".*?</article>', source, re.S)
+    assert len(cards) == 3
+    for card in cards:
+        assert 'href="https://t.me/masoud_98pv"' in card and 'href="tel:09905492104"' in card
+        assert "package-quote" in card and "package-price" not in card
+        assert not re.search(r"[۰-۹0-9][٬،,][۰-۹0-9]{3}[٬،,][۰-۹0-9]{3}|تخفیف", card)
+    for stale in ("۹٬۹۹۹٬۰۰۰", "۲۰٬۰۰۰٬۰۰۰", "۱۷۹٬۰۰۰٬۰۰۰", "۱۲۹٬۰۰۰٬۰۰۰", "۵۰٬۰۰۰٬۰۰۰"):
+        assert stale not in source, "Stale software price in HTML or metadata"
     assert not re.search(r"م[ؤو]دیان|taxpayer|moadian", source, re.I)
     graph = json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', source, re.S).group(1))
-    offers = next(item for item in graph["@graph"] if item["@type"] == "SoftwareApplication")["offers"]
-    assert [(item["price"], item["priceCurrency"]) for item in offers] == [
-        ("99990000", "IRR"), ("1290000000", "IRR")]
+    application = next(item for item in graph["@graph"] if item["@type"] == "SoftwareApplication")
+    assert "offers" not in application, "Do not present contact pricing as a free or fixed-price offer"
     assert "index.html#pricing" in (ROOT / "pricing.html").read_text(encoding="utf-8")
-    print("GoldEx prices, service terms, Mini contract, JSON-LD and local assets verified")
+    print("GoldEx contact pricing, service terms, Mini contract, JSON-LD and local assets verified")
 
 
 if __name__ == "__main__":
