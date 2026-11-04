@@ -6,9 +6,10 @@
 // Screenshots data with high-res captures from GoldEx
 const showcaseData = {
   dashboard: {
-    title: 'پیشخوان کار و گزارش لحظه‌ای وضعیت مغازه',
-    desc: 'خلاصه دخل و خرج روزانه، موجودی کل طلا و فاکتورهای تسویه‌نشده در یک نگاه؛ بدون نیاز به محاسبه دستی فاکتورها در پایان شب.',
-    image: 'assets/screens/screen_dashboard.png',
+    title: 'پیشخوان فروشگاه؛ گزارش معاملات و نمودار فروش',
+    desc: 'گزارش‌های خرید و فروش، نمودار روزانه معاملات و وضعیت کلی فروشگاه در یک پیشخوان منظم و خوانا.',
+    image: 'assets/screens/2026-11/dashboard-desktop-dark.png',
+    imageLight: 'assets/screens/2026-11/dashboard-desktop-light.png',
     bullets: [
       'آمار لحظه‌ای فروش و خرید روز به گرم طلای ۱۸ عیار و معادل ریالی',
       'نمودار ۳۰ روزه معاملات طلا جهت تحلیل رونق فروش و سودآوری',
@@ -55,6 +56,12 @@ const showcaseData = {
       'تفکیک کارهای انتخابی مشتری برای صدور فاکتور یا بازگشت باقی طلاها به ویترین با یک کلیک'
     ]
   },
+  calculator: {
+    title: 'محاسبه‌گر طلا و قیمت نهایی فروش',
+    desc: 'محاسبه قیمت مصنوعات طلا با وزن، نرخ روز، اجرت، سود و مالیات در یک فرم سریع و خوانا.',
+    image: 'assets/screens/2026-11/calculator-desktop-light.png',
+    bullets: ['ورود وزن و نرخ روز در رابط کاربری روشن', 'نمایش قیمت نهایی همراه با جزئیات محاسبات', 'مناسب محاسبات فروش روزمره']
+  },
   vitrine: {
     title: 'ویترین و کاتالوگ آنلاین اختصاصی گالری',
     desc: 'ویترین ۲۴ ساعته اینترنتی با نام و نشان گالری شما؛ قیمت تمام کارها متناسب با نوسان مظنه بازار در هر لحظه به‌روز شده و مشتری مستقیم در واتساپ سفارش می‌دهد.',
@@ -98,6 +105,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('img[data-theme-dark][data-theme-light]').forEach(img => {
       img.src = theme === 'light' ? img.dataset.themeLight : img.dataset.themeDark;
     });
+    // Synchronize the screenshot in the active showcase tab.
+    const activeKey = document.querySelector('.showcase-tab-btn.active')?.dataset.tab;
+    const activeData = showcaseData[activeKey];
+    if (activeData?.imageLight) {
+      const img = document.getElementById('showcase-image');
+      if (img) img.src = theme === 'light' ? activeData.imageLight : activeData.image;
+    }
     localStorage.setItem('goldex-theme', theme);
     if (themeToggleBtn) {
       themeToggleBtn.innerHTML = theme === 'light' ? '🌙' : '☀️';
@@ -137,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       setTimeout(() => {
         if (showcaseImg) {
-          showcaseImg.src = data.image;
+          showcaseImg.src = document.documentElement.dataset.theme === 'light' && data.imageLight ? data.imageLight : data.image;
           showcaseImg.alt = data.title;
         }
         if (showcaseTitle) showcaseTitle.textContent = data.title;
@@ -178,6 +192,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (showcaseImg) {
       openLightbox(showcaseImg.src, showcaseImg.alt);
     }
+  });
+
+  document.querySelectorAll('[data-preview-image]').forEach(button => {
+    button.addEventListener('click', () => {
+      const img = button.querySelector('img');
+      if (img) openLightbox(img.currentSrc || img.src, img.alt);
+    });
   });
 
   const heroScreenTrigger = document.getElementById('hero-screen-holder');
